@@ -37,9 +37,8 @@
       font-family: 'Montserrat', -apple-system, sans-serif;
       display: flex;
       justify-content: center;
-      align-items: center;
       min-height: 100vh;
-      padding: 16px 12px;
+      padding: 16px 12px 32px 12px;
     }
 
     .container {
@@ -55,7 +54,16 @@
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    /* Стиль контейнера при показе скроллящегося отчета */
+    .container.report-mode {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 10px 4px;
+      min-height: auto;
     }
 
     .top-bar {
@@ -307,21 +315,33 @@
       50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(178, 34, 34, 0.45); }
     }
 
+    /* Экран результатов со свободным скроллом */
     .result-section {
       display: none;
       flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
+      gap: 20px;
       animation: fadeInResult 0.5s ease;
     }
 
     @keyframes fadeInResult {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .bars-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(74, 14, 23, 0.05);
+      border: 1px solid var(--border-color);
+    }
+
     .bar-group {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .bar-group:last-child {
+      margin-bottom: 0;
     }
 
     .bar-header {
@@ -329,7 +349,7 @@
       justify-content: space-between;
       font-size: 12px;
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
     .bar-bg {
@@ -348,63 +368,114 @@
 
     .card-dark-crimson {
       background: linear-gradient(145deg, var(--dark-red), var(--deep-crimson));
-      border: 1px solid #731320;
-      border-radius: 16px;
-      padding: 16px;
-      margin-top: 14px;
+      border-radius: 20px;
+      padding: 22px 18px;
       color: #FFFFFF;
-      box-shadow: 0 6px 20px rgba(42, 4, 9, 0.3);
+      box-shadow: 0 8px 24px rgba(42, 4, 9, 0.25);
     }
 
     .card-dark-crimson h3 {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       color: #FFCCD3;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
     .card-dark-crimson p {
-      font-size: 12px;
-      line-height: 1.55;
+      font-size: 12.5px;
+      line-height: 1.6;
       color: #F7EAEB;
     }
 
     .card-cream {
-      background: #FAF7F2;
+      background: #FFFFFF;
       border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 16px;
-      margin-top: 12px;
+      border-radius: 20px;
+      padding: 22px 18px;
+      box-shadow: 0 8px 24px rgba(74, 14, 23, 0.04);
     }
 
     .card-cream h3 {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       color: var(--dark-red);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
     .card-cream p {
-      font-size: 12px;
-      line-height: 1.55;
+      font-size: 12.5px;
+      line-height: 1.6;
       color: #4A423E;
     }
 
     .quote-box {
       border-left: 3px solid var(--primary-red);
-      padding-left: 10px;
+      padding-left: 12px;
       font-style: italic;
-      margin-top: 10px;
-      font-size: 11.5px;
+      margin-top: 12px;
+      font-size: 12px;
       color: var(--dark-red);
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
-    /* Полное подавление плашек хостингов */
+    /* Платный блок расширенного исследования */
+    .premium-offer-card {
+      background: linear-gradient(135deg, #FFF9F2 0%, #F5EDE1 100%);
+      border: 1.5px dashed #C8A070;
+      border-radius: 20px;
+      padding: 22px 18px;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .premium-offer-card .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: #580B14;
+      color: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .premium-offer-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 8px;
+    }
+
+    .premium-offer-card p {
+      font-size: 12px;
+      line-height: 1.55;
+      color: #635850;
+      margin-bottom: 16px;
+    }
+
+    .btn-buy {
+      background: linear-gradient(135deg, #9C1124, #580B14);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 700;
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(88, 11, 20, 0.35);
+    }
+
+    .btn-buy:active {
+      transform: scale(0.98);
+      background: #3A050C;
+    }
+
+    /* Блокировка рекламы хостинга */
     div[class*="tiiny"],
     iframe[src*="tiiny"],
     a[href*="tiiny.host"],
@@ -423,7 +494,8 @@
 </head>
 <body>
 
-  <div class="container">
+  <div class="container" id="main-container">
+    <!-- Шаг 0: Введение -->
     <div id="intro-section" style="display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;">
       <div>
         <div class="top-bar">
@@ -451,6 +523,7 @@
       </div>
     </div>
 
+    <!-- Шаги теста 1-3 -->
     <div id="test-section" style="display: none; flex-direction: column; flex-grow: 1; justify-content: space-between;">
       <div>
         <div class="top-bar">
@@ -468,14 +541,15 @@
       </div>
     </div>
 
+    <!-- Экран отчета (Свободный скролл без сжатия) -->
     <div id="result-section" class="result-section">
-      <div>
-        <div class="top-bar">
-          <div class="brand-tag">IDEALIUM®</div>
-          <div class="step-counter">REPORT</div>
-        </div>
-        <h1>Ваш сенсорный паспорт</h1>
+      <div style="text-align: center; margin-bottom: 4px;">
+        <div class="brand-tag" style="margin-bottom: 6px;">IDEALIUM® REPORT</div>
+        <h1 style="margin-bottom: 4px;">Ваш сенсорный паспорт</h1>
+        <div style="font-size: 12px; color: var(--text-muted);">Баланс психосемантических драйверов</div>
+      </div>
 
+      <div class="bars-card">
         <div class="bar-group">
           <div class="bar-header">
             <span>Окситоцин (Тепло / Слияние)</span>
@@ -499,21 +573,29 @@
           </div>
           <div class="bar-bg"><div class="bar-fill" id="dop-bar" style="width: 0%;"></div></div>
         </div>
-
-        <div class="card-dark-crimson">
-          <h3>Анти-Идеал (Блокировка влечения)</h3>
-          <p id="anti-ideal-text">Расчет параметров...</p>
-        </div>
-
-        <div class="card-cream">
-          <h3>Идеальный Сценарий</h3>
-          <p id="ideal-text">Расчет параметров...</p>
-          <div class="quote-box" id="partner-quote">«...»</div>
-        </div>
       </div>
 
-      <div class="btn-group" style="margin-top: 20px;">
-        <button class="btn btn-primary" style="width: 100%;" onclick="restartTest()">Пройти заново</button>
+      <div class="card-dark-crimson">
+        <h3>Анти-Идеал (Блокировка влечения)</h3>
+        <p id="anti-ideal-text">Расчет параметров...</p>
+      </div>
+
+      <div class="card-cream">
+        <h3>Идеальный Сценарий</h3>
+        <p id="ideal-text">Расчет параметров...</p>
+        <div class="quote-box" id="partner-quote">«...»</div>
+      </div>
+
+      <!-- Оффер на 299 руб -->
+      <div class="premium-offer-card">
+        <div class="badge">КАРТА СОМЕЛЬЕ</div>
+        <h4>Расширенная Сенсорная Спецификация</h4>
+        <p>Получите поминутный тактильный таймлайн свидания, карту звуковых частот и 3 суггестивных речевых ключа для раскрытия партнера.</p>
+        <button class="btn btn-buy btn-pulse" onclick="triggerHaptic(3); alert('Переход к оплате 299 ₽...');">Приобрести исследование — 299 ₽</button>
+      </div>
+
+      <div style="margin-top: 8px; margin-bottom: 20px;">
+        <button class="btn btn-secondary" style="width: 100%; padding: 14px;" onclick="restartTest()">Пройти заново</button>
       </div>
     </div>
   </div>
@@ -525,7 +607,6 @@
       tg.ready();
     }
 
-    // Принудительное удаление рекламных элементов из DOM
     setInterval(() => {
       document.querySelectorAll('div, a, iframe').forEach(el => {
         if (
@@ -541,13 +622,9 @@
 
     function triggerHaptic(absVal) {
       if (tg?.HapticFeedback) {
-        if (absVal === 1) {
-          tg.HapticFeedback.selectionChanged();
-        } else if (absVal === 2) {
-          tg.HapticFeedback.impactOccurred('medium');
-        } else if (absVal === 3) {
-          tg.HapticFeedback.impactOccurred('heavy');
-        }
+        if (absVal === 1) tg.HapticFeedback.selectionChanged();
+        else if (absVal === 2) tg.HapticFeedback.impactOccurred('medium');
+        else if (absVal === 3) tg.HapticFeedback.impactOccurred('heavy');
       } else if (navigator.vibrate) {
         if (absVal === 1) navigator.vibrate(15);
         else if (absVal === 2) navigator.vibrate(35);
@@ -700,6 +777,7 @@
       const dopPct = Math.round((scores.dop / maxPossible.dop) * 100);
 
       document.getElementById("test-section").style.display = "none";
+      document.getElementById("main-container").classList.add("report-mode");
       document.getElementById("result-section").style.display = "flex";
 
       setTimeout(() => {
@@ -736,6 +814,7 @@
       triggerHaptic(2);
       for (let key in userAnswers) delete userAnswers[key];
       currentStep = 0;
+      document.getElementById("main-container").classList.remove("report-mode");
       document.getElementById("result-section").style.display = "none";
       document.getElementById("intro-section").style.display = "flex";
       window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -258,15 +258,26 @@
       50% { transform: scale(1.22); box-shadow: 0 0 14px rgba(178, 34, 34, 0.75); }
     }
 
-    .slider-ticks-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
+    /* Идеальная калибровка цифр по центрам шарика */
+    .slider-ticks-flex {
+      display: flex;
+      justify-content: space-between;
       font-size: 9px;
       font-weight: 500;
       color: #A39B95;
       margin-top: 4px;
-      text-align: center;
+      padding: 0 12px;
     }
+
+    .slider-ticks-flex span {
+      width: 16px;
+      text-align: center;
+      margin-left: -8px;
+      margin-right: -8px;
+    }
+
+    .slider-ticks-flex span:first-child { margin-left: -8px; text-align: center; }
+    .slider-ticks-flex span:last-child { margin-right: -8px; text-align: center; }
 
     .btn-group {
       display: flex;
@@ -349,7 +360,7 @@
       margin-bottom: 2px;
     }
 
-    .driver-card {
+    .driver-card, .info-white-card {
       background: #FFFFFF;
       border-radius: 18px;
       padding: 16px 18px;
@@ -394,34 +405,33 @@
       color: #554D48;
     }
 
-    .pure-text-section {
-      padding: 4px 2px;
-    }
-
-    .pure-text-title {
-      font-size: 14px;
+    /* Заголовки и тексты внутри белых карточек отчета */
+    .card-title {
+      font-size: 13.5px;
       font-weight: 700;
-      color: #2A2523;
-      margin-bottom: 6px;
+      color: var(--dark-red);
+      margin-bottom: 8px;
       text-align: left;
     }
 
-    .pure-text-body {
+    .card-body-text {
       font-size: 12.5px;
       line-height: 1.6;
       color: #4A423E;
       text-align: left;
       min-height: 24px;
+      transition: all 0.3s ease;
     }
 
     .partner-quote {
       font-style: italic;
       color: var(--dark-red);
-      margin-top: 8px;
+      margin-top: 10px;
       font-size: 12px;
       border-left: 2.5px solid var(--primary-red);
       padding-left: 10px;
       text-align: left;
+      line-height: 1.5;
     }
 
     .loading-pulse {
@@ -547,6 +557,7 @@
         <div style="font-size: 11.5px; color: var(--text-muted);">Баланс нейрохимических ожиданий</div>
       </div>
 
+      <!-- 1. Окситоцин -->
       <div class="driver-card">
         <div class="driver-header">
           <span>Окситоцин (Тепло и Слияние)</span>
@@ -556,6 +567,7 @@
         <div class="driver-desc" id="oxy-desc">Расчет потребности...</div>
       </div>
 
+      <!-- 2. Серотонин -->
       <div class="driver-card">
         <div class="driver-header">
           <span>Серотонин (Статус и Достоинство)</span>
@@ -565,6 +577,7 @@
         <div class="driver-desc" id="ser-desc">Расчет потребности...</div>
       </div>
 
+      <!-- 3. Дофамин -->
       <div class="driver-card">
         <div class="driver-header">
           <span>Дофамин (Риск и Страсть)</span>
@@ -574,17 +587,20 @@
         <div class="driver-desc" id="dop-desc">Расчет потребности...</div>
       </div>
 
-      <div class="pure-text-section">
-        <div class="pure-text-title">Чего не хочется</div>
-        <div class="pure-text-body" id="anti-ideal-text">Анализ ответов...</div>
+      <!-- 4. Чего не хочется (Белая карточка) -->
+      <div class="info-white-card">
+        <div class="card-title">Чего не хочется</div>
+        <div class="card-body-text" id="anti-ideal-text">Анализ ответов...</div>
       </div>
 
-      <div class="pure-text-section">
-        <div class="pure-text-title">Чего хочется</div>
-        <div class="pure-text-body" id="ideal-text">Анализ ответов...</div>
+      <!-- 5. Чего хочется (Белая карточка с цитатой) -->
+      <div class="info-white-card">
+        <div class="card-title">Чего хочется</div>
+        <div class="card-body-text" id="ideal-text">Анализ ответов...</div>
         <div class="partner-quote" id="partner-quote">«...»</div>
       </div>
 
+      <!-- 6. Карточка покупки -->
       <div class="premium-white-card">
         <div class="badge">КАРТА СОМЕЛЬЕ</div>
         <h4>Расширенная Сенсорная Спецификация</h4>
@@ -605,7 +621,6 @@
       tg.ready();
     }
 
-    // Безопасное подключение ключа
     const _k1 = "AQ.Ab8RN6lyigNy";
     const _k2 = "frpXp-az0gCalqXxszQytKB";
     const _k3 = "XAwsp5YUP95gwfg";
@@ -682,7 +697,7 @@
           </div>
           <div class="slider-container">
             <input type="range" id="${id}" class="${thumbClass}" min="-3" max="3" step="1" value="${val}" oninput="handleSlide('${id}', this.value, ${index})">
-            <div class="slider-ticks-grid">
+            <div class="slider-ticks-flex">
               <span>-3</span><span>-2</span><span>-1</span><span>0</span><span>+1</span><span>+2</span><span>+3</span>
             </div>
           </div>
@@ -742,59 +757,83 @@
       const idealEl = document.getElementById("ideal-text");
       const quoteEl = document.getElementById("partner-quote");
 
-      antiIdealEl.className = "pure-text-body loading-pulse";
-      idealEl.className = "pure-text-body loading-pulse";
-      antiIdealEl.innerText = "Генерация психосемантического отчета через Gemini 3.7 Flash...";
-      idealEl.innerText = "Формирование уникального сенсорного профиля...";
+      antiIdealEl.className = "card-body-text loading-pulse";
+      idealEl.className = "card-body-text loading-pulse";
+      antiIdealEl.innerText = "Генерация персонального психосемантического отчета...";
+      idealEl.innerText = "Сонастройка нейрохимических дескрипторов...";
       quoteEl.innerText = "«...»";
 
-      const prompt = `
-Ты ведущий эксперт-психолог и психосемантический аналитик проекта IDEALIUM®.
-Проанализируй психосемантический профиль идеального психосексуального контакта респондента:
-- Окситоцин (Потребность в эмоциональном слиянии, нежности, безопасности): ${oxyPct}%
-- Серотонин (Потребность в признании статуса, исключительной желанности, уважении): ${serPct}%
-- Дофамин (Потребность в новизне, интриге, сексуальном риске, игре): ${dopPct}%
+      const promptText = `
+Ты психосемантический аналитик проекта IDEALIUM®.
+Проанализируй профиль идеального психологического и чувственного контакта респондента:
+Баланс драйверов:
+- Окситоцин (Тепло, эмоциональная безопасность, нежность): ${oxyPct}%
+- Серотонин (Признание статуса, уважение, исключительная желанность): ${serPct}%
+- Дофамин (Новизна, интрига, сексуальный риск, спонтанность): ${dopPct}%
 
-Детализированные выборы по шкалам (-3 до +3):
+Детальные оценки шкал (-3 до +3):
 ${JSON.stringify(detailedAnswers)}
 
-Сформируй глубокий, точный, психологически выверенный отчет СТРОГО в формате JSON:
+Сформулируй глубокий, персонализированный отчет строго по этой структуре JSON:
 {
-  "anti_ideal": "Один емкий абзац (2-3 предложения): что категорически блокирует влечение, разрушает возбуждение и чего этому человеку не хочется.",
-  "ideal": "Один емкий абзац (2-3 предложения): идеальный чувственный сценарий, атмосфера, темпоритм контакта и ключевые триггеры наслаждения, чего хочется.",
-  "quote": "Короткая метафоричная фраза от первого лица (1 предложение) в кавычках."
-}
-Ответь ТОЛЬКО валидным JSON без лишних слов.`;
+  "anti_ideal": "2 емких предложения: что конкретно блокирует влечение и чего категорически не хочется этому человеку исходя из его крайних выборов.",
+  "ideal": "2 емких предложения: идеальная чувственная атмосфера, темпоритм и сценарий контакта, чего хочется.",
+  "quote": "Короткая характерная реплика от первого лица (1 предложение) в кавычках."
+}`;
 
-      // Запрос к Gemini 3.7 Flash
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:generateContent?key=${GEMINI_API_KEY}`;
+      const requestBody = {
+        contents: [{ role: "user", parts: [{ text: promptText }] }],
+        generationConfig: {
+          responseMimeType: "application/json"
+        },
+        safetySettings: [
+          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
+        ]
+      };
+
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
       try {
         const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }]
-          })
+          body: JSON.stringify(requestBody)
         });
 
-        const data = await response.json();
-        let rawText = data.candidates[0].content.parts[0].text;
-        rawText = rawText.replace(/```json/g, "").replace(/```/g, "").trim();
-        const res = JSON.parse(rawText);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+        }
 
-        antiIdealEl.className = "pure-text-body";
-        idealEl.className = "pure-text-body";
+        const data = await response.json();
+        const rawJsonText = data.candidates[0].content.parts[0].text;
+        const res = JSON.parse(rawJsonText);
+
+        antiIdealEl.className = "card-body-text";
+        idealEl.className = "card-body-text";
         antiIdealEl.innerText = res.anti_ideal;
         idealEl.innerText = res.ideal;
         quoteEl.innerText = res.quote;
       } catch (err) {
-        console.error("Gemini 3.7 Flash API Error:", err);
-        antiIdealEl.className = "pure-text-body";
-        idealEl.className = "pure-text-body";
-        antiIdealEl.innerText = "Бытовая рутина, суетливые и нерешительные действия, разговоры о проблемах перед близостью и необходимость держать всё под жестким контролем.";
-        idealEl.innerText = "Глубокая атмосфера приватности, полумрак, плавный темпоритм без спешки, ощущение собственной абсолютной желанности и чуткая сонастройка без лишних слов.";
-        quoteEl.innerText = "«Мне важен контакт в глубоком полумраке, когда можно полностью отпустить контроль и довериться общему ритму...»";
+        console.error("Gemini Error:", err);
+        antiIdealEl.className = "card-body-text";
+        idealEl.className = "card-body-text";
+        
+        if (dopPct >= 40) {
+          antiIdealEl.innerText = "Предсказуемый рутинный сценарий без флирта, бытовые разговоры и отсутствие эмоциональной игры.";
+          idealEl.innerText = "Острая сексуальная интрига, дерзкая спонтанность, нарастающее напряжение и смелый слом привычных рамок.";
+          quoteEl.innerText = "«Мне необходим контраст и ощущение игры, когда каждое прикосновение непредсказуемо...»";
+        } else if (serPct >= 40) {
+          antiIdealEl.innerText = "Суета, нерешительность партнера, критика и необходимость оправдывать чьи-то ожидания.";
+          idealEl.innerText = "Безоговорочное признание вашего статуса, уважение к границам и атмосфера вашей исключительной ценности.";
+          quoteEl.innerText = "«Мне важно чувствовать безусловное уважение и видеть неподдельное восхищение в глазах...»";
+        } else {
+          antiIdealEl.innerText = "Эмоциональный холод, спешка к финалу и постоянная необходимость контролировать процесс.";
+          idealEl.innerText = "Томительно-медленное тактильное слияние, глубокий полумрак и абсолютное доверие без лишних слов.";
+          quoteEl.innerText = "«Мне важен контакт, где можно полностью выдохнуть и довериться общему ритму...»";
+        }
       }
     }
 
@@ -843,7 +882,6 @@ ${JSON.stringify(detailedAnswers)}
         ? "Предпочтение проверенного, глубокого и спокойного сценария без лишнего стресса и резких перемен."
         : "Сильный голод по новизне, игре и сексуальной интриге. Необходим слом привычного сценария, дерзость и нарастающее напряжение.";
 
-      // Запуск нейросетевого анализа Gemini 3.7 Flash
       fetchGeminiReport(oxyPct, serPct, dopPct, detailedList);
 
       window.scrollTo({ top: 0, behavior: 'smooth' });

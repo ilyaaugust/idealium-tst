@@ -226,8 +226,14 @@
     .wave-4::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.88s; }
 
     @keyframes wave-pulse-subtle {
-      0%, 100% { transform: scale(1); box-shadow: 0 2px 6px rgba(139, 0, 0, 0.12); }
-      50% { transform: scale(1.07); box-shadow: 0 0 7px rgba(178, 34, 34, 0.3); }
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 6px rgba(139, 0, 0, 0.12);
+      }
+      50% {
+        transform: scale(1.07);
+        box-shadow: 0 0 7px rgba(178, 34, 34, 0.3);
+      }
     }
 
     .val-1::-webkit-slider-thumb {
@@ -258,7 +264,6 @@
       50% { transform: scale(1.22); box-shadow: 0 0 14px rgba(178, 34, 34, 0.75); }
     }
 
-    /* Идеальная калибровка цифр по центрам шарика */
     .slider-ticks-flex {
       display: flex;
       justify-content: space-between;
@@ -399,13 +404,21 @@
       transition: width 1s ease-in-out;
     }
 
+    .driver-role-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      margin-bottom: 4px;
+    }
+
     .driver-desc {
       font-size: 11.5px;
-      line-height: 1.5;
+      line-height: 1.55;
       color: #554D48;
     }
 
-    /* Заголовки и тексты внутри белых карточек отчета */
     .card-title {
       font-size: 13.5px;
       font-weight: 700;
@@ -446,6 +459,15 @@
       50% { opacity: 1; }
     }
 
+    .report-note {
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #7A726D;
+      text-align: center;
+      padding: 0 8px;
+      font-style: italic;
+    }
+
     .premium-white-card {
       background: #FFFFFF;
       border: 1.5px solid var(--border-color);
@@ -453,7 +475,7 @@
       padding: 22px 20px;
       box-shadow: 0 8px 24px rgba(74, 14, 23, 0.05);
       text-align: left;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .premium-white-card .badge {
@@ -500,6 +522,32 @@
       transform: scale(0.98);
       background: #3A050C;
     }
+
+    /* Всплывающий тост сохранения */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #2A0409;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 12.5px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      text-align: center;
+      width: max-content;
+      max-width: 90%;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -530,7 +578,7 @@
 
       <div class="btn-group-vertical">
         <button class="btn btn-primary btn-pulse" onclick="startTest()">Далее</button>
-        <button class="btn btn-secondary" onclick="triggerHaptic(1); void(0);">Отправить партнёру</button>
+        <button class="btn btn-secondary" onclick="shareBotLink()">Отправить тест партнёру</button>
       </div>
     </div>
 
@@ -554,7 +602,7 @@
     <div id="result-section" class="result-section">
       <div style="text-align: center; margin-bottom: 2px;">
         <h1 class="report-main-title">IDEALIUM® REPORT</h1>
-        <div style="font-size: 11.5px; color: var(--text-muted);">Баланс нейрохимических ожиданий</div>
+        <div style="font-size: 11.5px; color: var(--text-muted);">Базовый сенсорный паспорт</div>
       </div>
 
       <!-- 1. Окситоцин -->
@@ -564,6 +612,7 @@
           <span class="driver-pct" id="oxy-val">0%</span>
         </div>
         <div class="bar-bg"><div class="bar-fill" id="oxy-bar" style="width: 0%;"></div></div>
+        <div class="driver-role-tag">Физиология: Гормон привязанности и безопасности</div>
         <div class="driver-desc" id="oxy-desc">Расчет потребности...</div>
       </div>
 
@@ -574,6 +623,7 @@
           <span class="driver-pct" id="ser-val">0%</span>
         </div>
         <div class="bar-bg"><div class="bar-fill" id="ser-bar" style="width: 0%;"></div></div>
+        <div class="driver-role-tag">Физиология: Гормон значимости и признания</div>
         <div class="driver-desc" id="ser-desc">Расчет потребности...</div>
       </div>
 
@@ -584,28 +634,38 @@
           <span class="driver-pct" id="dop-val">0%</span>
         </div>
         <div class="bar-bg"><div class="bar-fill" id="dop-bar" style="width: 0%;"></div></div>
+        <div class="driver-role-tag">Физиология: Гормон предвкушения и новизны</div>
         <div class="driver-desc" id="dop-desc">Расчет потребности...</div>
       </div>
 
-      <!-- 4. Чего не хочется (Белая карточка) -->
+      <!-- 4. Чего не хочется -->
       <div class="info-white-card">
-        <div class="card-title">Чего не хочется</div>
+        <div class="card-title">Чего не хочется (Стоп-факторы)</div>
         <div class="card-body-text" id="anti-ideal-text">Анализ ответов...</div>
       </div>
 
-      <!-- 5. Чего хочется (Белая карточка с цитатой) -->
+      <!-- 5. Чего хочется -->
       <div class="info-white-card">
-        <div class="card-title">Чего хочется</div>
+        <div class="card-title">Чего хочется (Идеальный сценарий)</div>
         <div class="card-body-text" id="ideal-text">Анализ ответов...</div>
         <div class="partner-quote" id="partner-quote">«...»</div>
       </div>
 
-      <!-- 6. Карточка покупки -->
+      <div class="report-note">
+        Это основа вашего сенсорного профиля. Сохраните её для себя или перешлите партнёру, чтобы сонастроить контакт без лишних неловких разговоров.
+      </div>
+
+      <!-- Кнопка отправки / сохранения отчета -->
+      <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 15px;" onclick="saveOrShareReport()">
+        Сохранить демо-отчет / Отправить партнёру
+      </button>
+
+      <!-- Платный оффер -->
       <div class="premium-white-card">
         <div class="badge">КАРТА СОМЕЛЬЕ</div>
         <h4>Расширенная Сенсорная Спецификация</h4>
         <p>Получите поминутный тактильный таймлайн свидания, карту звуковых частот и 3 суггестивных речевых ключа для настройки партнера.</p>
-        <button class="btn btn-buy btn-pulse" onclick="triggerHaptic(3); alert('Переход к оплате 299 ₽...');">Приобрести исследование — 299 ₽</button>
+        <button class="btn btn-buy" onclick="triggerHaptic(3); alert('Переход к оплате 299 ₽...');">Приобрести исследование — 299 ₽</button>
       </div>
 
       <div style="margin-top: 4px; margin-bottom: 20px;">
@@ -613,6 +673,8 @@
       </div>
     </div>
   </div>
+
+  <div id="toast" class="toast">Отчет скопирован в буфер обмена!</div>
 
   <script>
     const tg = window.Telegram?.WebApp;
@@ -626,12 +688,30 @@
     const _k3 = "XAwsp5YUP95gwfg";
     const GEMINI_API_KEY = _k1 + _k2 + _k3;
 
+    let lastCalculatedData = {
+      oxyPct: 0,
+      serPct: 0,
+      dopPct: 0,
+      antiIdeal: "",
+      ideal: "",
+      quote: ""
+    };
+
     function triggerHaptic(absVal) {
       if (tg?.HapticFeedback) {
         if (absVal === 1) tg.HapticFeedback.selectionChanged();
         else if (absVal === 2) tg.HapticFeedback.impactOccurred('medium');
         else if (absVal === 3) tg.HapticFeedback.impactOccurred('heavy');
       }
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById("toast");
+      toast.innerText = text;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2600);
     }
 
     const scales = [
@@ -816,24 +896,36 @@ ${JSON.stringify(detailedAnswers)}
         antiIdealEl.innerText = res.anti_ideal;
         idealEl.innerText = res.ideal;
         quoteEl.innerText = res.quote;
+
+        lastCalculatedData.antiIdeal = res.anti_ideal;
+        lastCalculatedData.ideal = res.ideal;
+        lastCalculatedData.quote = res.quote;
       } catch (err) {
         console.error("Gemini Error:", err);
         antiIdealEl.className = "card-body-text";
         idealEl.className = "card-body-text";
         
+        let anti = "Бытовая рутина, суетливые и нерешительные действия партнера, разговоры о проблемах перед близостью и необходимость держать всё под жестким контролем.";
+        let ide = "Глубокая атмосфера приватности, полумрак, плавный темпоритм без спешки, ощущение собственной абсолютной желанности и чуткая сонастройка без лишних слов.";
+        let q = "«Мне важен контакт в глубоком полумраке, когда можно полностью отпустить контроль и довериться общему ритму...»";
+
         if (dopPct >= 40) {
-          antiIdealEl.innerText = "Предсказуемый рутинный сценарий без флирта, бытовые разговоры и отсутствие эмоциональной игры.";
-          idealEl.innerText = "Острая сексуальная интрига, дерзкая спонтанность, нарастающее напряжение и смелый слом привычных рамок.";
-          quoteEl.innerText = "«Мне необходим контраст и ощущение игры, когда каждое прикосновение непредсказуемо...»";
+          anti = "Предсказуемый рутинный сценарий без флирта, бытовые разговоры и отсутствие эмоциональной игры.";
+          ide = "Острая сексуальная интрига, дерзкая спонтанность, нарастающее напряжение и смелый слом привычных рамок.";
+          q = "«Мне необходим контраст и ощущение игры, когда каждое прикосновение непредсказуемо...»";
         } else if (serPct >= 40) {
-          antiIdealEl.innerText = "Суета, нерешительность партнера, критика и необходимость оправдывать чьи-то ожидания.";
-          idealEl.innerText = "Безоговорочное признание вашего статуса, уважение к границам и атмосфера вашей исключительной ценности.";
-          quoteEl.innerText = "«Мне важно чувствовать безусловное уважение и видеть неподдельное восхищение в глазах...»";
-        } else {
-          antiIdealEl.innerText = "Эмоциональный холод, спешка к финалу и постоянная необходимость контролировать процесс.";
-          idealEl.innerText = "Томительно-медленное тактильное слияние, глубокий полумрак и абсолютное доверие без лишних слов.";
-          quoteEl.innerText = "«Мне важен контакт, где можно полностью выдохнуть и довериться общему ритму...»";
+          anti = "Суета, нерешительность партнера, критика и необходимость оправдывать чьи-то ожидания.";
+          ide = "Безоговорочное признание вашего статуса, уважение к границам и атмосфера вашей исключительной ценности.";
+          q = "«Мне важно чувствовать безусловное уважение и видеть неподдельное восхищение в глазах...»";
         }
+
+        antiIdealEl.innerText = anti;
+        idealEl.innerText = ide;
+        quoteEl.innerText = q;
+
+        lastCalculatedData.antiIdeal = anti;
+        lastCalculatedData.ideal = ide;
+        lastCalculatedData.quote = q;
       }
     }
 
@@ -856,6 +948,10 @@ ${JSON.stringify(detailedAnswers)}
       const serPct = Math.round((scores.ser / maxPossible.ser) * 100);
       const dopPct = Math.round((scores.dop / maxPossible.dop) * 100);
 
+      lastCalculatedData.oxyPct = oxyPct;
+      lastCalculatedData.serPct = serPct;
+      lastCalculatedData.dopPct = dopPct;
+
       document.body.classList.add("is-report-view");
       document.getElementById("main-container").classList.add("report-mode");
       document.getElementById("test-section").style.display = "none";
@@ -870,21 +966,73 @@ ${JSON.stringify(detailedAnswers)}
         document.getElementById("dop-val").innerText = dopPct + "%";
       }, 50);
 
+      // Глубокие описания гормональной структуры
       document.getElementById("oxy-desc").innerText = oxyPct < 40 
-        ? "Острый дефицит тепла и безопасности. Тело зажато контролем, не хватает медленного обнимающего контакта и возможности полностью выдохнуть."
-        : "Высокая потребность в эмоциональном слиянии, непрерывном тактильном легато и глубоком доверии.";
+        ? "Острый дефицит тактильной безопасности. В теле преобладает гиперконтроль; для раскрепощения необходим длительный медленный вход, обнимающее легато и снятие тревожности."
+        : "Высокая потребность в эмоциональном слиянии, непрерывном нежном контакте «кожа к коже» и полном психологическом доверии.";
 
       document.getElementById("ser-desc").innerText = serPct < 40
-        ? "Потребность в равенстве и простоте без ролевого давления и статусных проверок."
-        : "Высокая жажда признания собственного достоинства и исключительной желанности. Важен выверенный статус и уважение личных границ.";
+        ? "Фокус на равенстве и простоте без ролевого давления, проверок на статус и необходимости соответствовать сложным ожиданиям."
+        : "Высокая жажда признания исключительной желанности и безусловного уважения к личным границам. Важна эстетика процесса и подтверждение ценности.";
 
       document.getElementById("dop-desc").innerText = dopPct < 40
-        ? "Предпочтение проверенного, глубокого и спокойного сценария без лишнего стресса и резких перемен."
-        : "Сильный голод по новизне, игре и сексуальной интриге. Необходим слом привычного сценария, дерзость и нарастающее напряжение.";
+        ? "Предпочтение предсказуемого, глубокого и эмоционально безопасного сценария без резких перемен, спешки и стрессовой новизны."
+        : "Голод по новизне, сексуальной интриге и охотничьему азарту. Необходим контрастный темпоритм, элементы игры, дерзость и нарастающее напряжение.";
 
       fetchGeminiReport(oxyPct, serPct, dopPct, detailedList);
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Сохранить или отправить демо-отчет
+    function saveOrShareReport() {
+      triggerHaptic(2);
+      const text = 
+`🏛 IDEALIUM® REPORT | Сенсорный паспорт
+
+🧪 Баланс нейрохимических драйверов:
+• Окситоцин (Тепло и Слияние): ${lastCalculatedData.oxyPct}%
+• Серотонин (Статус и Достоинство): ${lastCalculatedData.serPct}%
+• Дофамин (Риск и Страсть): ${lastCalculatedData.dopPct}%
+
+🚫 Чего не хочется (Стоп-факторы):
+${lastCalculatedData.antiIdeal}
+
+✨ Чего хочется (Идеальный сценарий):
+${lastCalculatedData.ideal}
+
+💬 ${lastCalculatedData.quote}
+
+📌 Это основа моего сенсорного профиля. Пройди калибровку и сонастройся: https://t.me/idealium_test_bot/app`;
+
+      if (tg?.openTelegramLink) {
+        tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent('https://t.me/idealium_test_bot/app')}&text=${encodeURIComponent(text)}`);
+      } else if (navigator.share) {
+        navigator.share({
+          title: "IDEALIUM® REPORT",
+          text: text
+        }).catch(() => copyToClipboard(text));
+      } else {
+        copyToClipboard(text);
+      }
+    }
+
+    function shareBotLink() {
+      triggerHaptic(1);
+      const shareUrl = `https://t.me/share/url?url=${encodeURIComponent('https://t.me/idealium_test_bot/app')}&text=${encodeURIComponent('Пройди психосемантический тест IDEALIUM® и определи параметры идеального контакта ✨')}`;
+      if (tg?.openTelegramLink) {
+        tg.openTelegramLink(shareUrl);
+      } else {
+        copyToClipboard('https://t.me/idealium_test_bot/app');
+      }
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("Отчет скопирован в буфер обмена!");
+      }).catch(() => {
+        showToast("Скопируйте текст вручную");
+      });
     }
 
     function restartTest() {

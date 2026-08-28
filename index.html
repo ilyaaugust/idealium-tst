@@ -468,61 +468,6 @@
       font-style: italic;
     }
 
-    .premium-white-card {
-      background: #FFFFFF;
-      border: 1.5px solid var(--border-color);
-      border-radius: 20px;
-      padding: 22px 20px;
-      box-shadow: 0 8px 24px rgba(74, 14, 23, 0.05);
-      text-align: left;
-      margin-top: 4px;
-    }
-
-    .premium-white-card .badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      background: var(--dark-red);
-      color: #FFFFFF;
-      padding: 4px 10px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-    }
-
-    .premium-white-card h4 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--dark-red);
-      margin-bottom: 8px;
-      text-align: left;
-    }
-
-    .premium-white-card p {
-      font-size: 12px;
-      line-height: 1.55;
-      color: #5A524C;
-      margin-bottom: 16px;
-      text-align: left;
-    }
-
-    .btn-buy {
-      background: linear-gradient(135deg, #9C1124, #580B14);
-      color: #FFFFFF;
-      font-size: 14px;
-      font-weight: 700;
-      width: 100%;
-      padding: 16px;
-      border-radius: 14px;
-      box-shadow: 0 6px 18px rgba(88, 11, 20, 0.3);
-    }
-
-    .btn-buy:active {
-      transform: scale(0.98);
-      background: #3A050C;
-    }
-
     .toast {
       position: fixed;
       bottom: 24px;
@@ -661,14 +606,6 @@
       <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 15px;" onclick="saveOrShareReport()">
         Сохранить демо-отчет / Отправить партнёру
       </button>
-
-      <!-- Платный оффер -->
-      <div class="premium-white-card">
-        <div class="badge">КАРТА СОМЕЛЬЕ</div>
-        <h4>Расширенная Сенсорная Спецификация</h4>
-        <p>Получите поминутный тактильный таймлайн свидания, карту звуковых частот и 3 суггестивных речевых ключа для настройки партнера.</p>
-        <button class="btn btn-buy" onclick="triggerHaptic(3); alert('Переход к оплате 490 ₽...');">Приобрести исследование — 490 ₽</button>
-      </div>
 
       <div style="margin-top: 4px; margin-bottom: 20px;">
         <button class="btn btn-secondary" style="width: 100%; padding: 14px;" onclick="restartTest()">Пройти заново</button>

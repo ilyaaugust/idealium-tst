@@ -15,7 +15,6 @@
       --card-bg: #FFFFFF;
       --primary-red: #8B0000;
       --dark-red: #4A0E17;
-      --deep-crimson: #2A0409;
       --accent-red: #B22222;
       --pink-soft: #F4A6B0;
       --text-main: #2A2523;
@@ -40,22 +39,21 @@
       align-items: center;
       min-height: 100vh;
       min-height: -webkit-fill-available;
-      padding: 12px;
+      padding: 10px 12px;
     }
 
     html {
       height: -webkit-fill-available;
     }
 
-    /* Монолитный контейнер для шагов 0-3 */
     .container {
       width: 100%;
       max-width: 440px;
-      height: 600px;
-      max-height: 94vh;
+      height: 630px;
+      max-height: 96vh;
       background: var(--card-bg);
       border-radius: 24px;
-      padding: 22px 18px 18px 18px;
+      padding: 24px 22px 16px 22px;
       box-shadow: 0 10px 30px rgba(74, 14, 23, 0.06);
       border: 1px solid var(--border-color);
       display: flex;
@@ -65,7 +63,6 @@
       overflow: hidden;
     }
 
-    /* Режим свободного скролла только для экрана отчета */
     body.is-report-view {
       align-items: flex-start !important;
       padding: 16px 12px 40px 12px !important;
@@ -81,12 +78,11 @@
       overflow: visible !important;
     }
 
-    /* Верхний бар */
     .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       padding-bottom: 8px;
       border-bottom: 1px solid #F2ECE4;
     }
@@ -106,47 +102,51 @@
       letter-spacing: 1px;
     }
 
-    h1 {
-      font-size: 18px;
+    /* Типографика первого экрана */
+    .intro-title {
+      font-size: 18.5px;
+      font-weight: 700;
+      color: var(--dark-red);
+      text-align: left;
+      line-height: 1.35;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .intro-body-text {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #4A423E;
+      text-align: left;
+      margin-bottom: 22px;
+    }
+
+    .intro-scale-guide-clean {
+      border-left: 3px solid var(--primary-red);
+      padding-left: 14px;
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: var(--text-main);
+      text-align: left;
+    }
+
+    /* Заголовок карточек тестирования */
+    .test-title {
+      font-size: 17.5px;
       font-weight: 700;
       color: var(--dark-red);
       text-align: center;
       line-height: 1.3;
-      margin-bottom: 14px;
-    }
-
-    /* Интро */
-    .intro-card {
-      background: #FAF7F2;
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 16px 14px;
-      margin-bottom: 14px;
-    }
-
-    .intro-card p {
-      font-size: 12px;
-      line-height: 1.5;
-      color: #4A423E;
-      margin-bottom: 10px;
-    }
-
-    .intro-scale-guide {
-      background: #FFFFFF;
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 11px;
-      line-height: 1.5;
-      color: var(--text-main);
-      border-left: 3px solid var(--primary-red);
+      margin-top: 4px;
+      margin-bottom: 16px;
     }
 
     /* Слайдеры */
     .scales-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 12px;
+      gap: 13px;
+      margin-bottom: 8px;
     }
 
     .scale-card {
@@ -194,6 +194,7 @@
       -webkit-appearance: none;
       width: 100%;
       background: transparent;
+      margin: 0;
     }
 
     input[type=range]:focus {
@@ -208,6 +209,7 @@
       border-radius: 2px;
     }
 
+    /* Базовый белый thumb с каймой */
     input[type=range]::-webkit-slider-thumb {
       height: 22px;
       width: 22px;
@@ -221,40 +223,41 @@
       transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
     }
 
-    .pos-1::-webkit-slider-thumb {
+    /* Волнообразная пульсация сверху вниз в нейтральном положении 0 */
+    .wave-0::-webkit-slider-thumb { animation: wave-pulse 2.2s infinite ease-in-out 0.0s; }
+    .wave-1::-webkit-slider-thumb { animation: wave-pulse 2.2s infinite ease-in-out 0.18s; }
+    .wave-2::-webkit-slider-thumb { animation: wave-pulse 2.2s infinite ease-in-out 0.36s; }
+    .wave-3::-webkit-slider-thumb { animation: wave-pulse 2.2s infinite ease-in-out 0.54s; }
+    .wave-4::-webkit-slider-thumb { animation: wave-pulse 2.2s infinite ease-in-out 0.72s; }
+
+    @keyframes wave-pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 6px rgba(139, 0, 0, 0.15);
+      }
+      50% {
+        transform: scale(1.16);
+        box-shadow: 0 0 10px rgba(178, 34, 34, 0.45);
+      }
+    }
+
+    /* Симметричные градации красного при сдвиге влево/вправо */
+    .val-1::-webkit-slider-thumb {
       background: var(--pink-soft) !important;
       border-color: var(--accent-red) !important;
-      animation: pulse-soft 1.4s infinite ease-in-out;
+      animation: pulse-soft 1.4s infinite ease-in-out !important;
     }
 
-    .pos-2::-webkit-slider-thumb {
+    .val-2::-webkit-slider-thumb {
       background: var(--accent-red) !important;
       border-color: var(--primary-red) !important;
-      animation: pulse-active 0.9s infinite ease-in-out;
+      animation: pulse-active 0.9s infinite ease-in-out !important;
     }
 
-    .pos-3::-webkit-slider-thumb {
+    .val-3::-webkit-slider-thumb {
       background: var(--primary-red) !important;
       border-color: var(--dark-red) !important;
-      animation: pulse-active 0.9s infinite ease-in-out;
-    }
-
-    .neg-1::-webkit-slider-thumb {
-      background: #962837 !important;
-      border-color: var(--dark-red) !important;
-      animation: pulse-soft 1.4s infinite ease-in-out;
-    }
-
-    .neg-2::-webkit-slider-thumb {
-      background: var(--dark-red) !important;
-      border-color: var(--deep-crimson) !important;
-      animation: pulse-active 0.9s infinite ease-in-out;
-    }
-
-    .neg-3::-webkit-slider-thumb {
-      background: var(--deep-crimson) !important;
-      border-color: #000000 !important;
-      animation: pulse-active 0.9s infinite ease-in-out;
+      animation: pulse-active 0.9s infinite ease-in-out !important;
     }
 
     @keyframes pulse-soft {
@@ -267,14 +270,15 @@
       50% { transform: scale(1.28); box-shadow: 0 0 14px rgba(178, 34, 34, 0.75); }
     }
 
-    .slider-ticks {
-      display: flex;
-      justify-content: space-between;
+    /* Пиксельно точная центровка 7 делений через Grid */
+    .slider-ticks-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
       font-size: 9px;
       font-weight: 500;
       color: #A39B95;
       margin-top: 3px;
-      padding: 0 3px;
+      text-align: center;
     }
 
     /* Кнопки */
@@ -283,6 +287,7 @@
       gap: 10px;
       width: 100%;
       margin-top: auto;
+      padding-top: 4px;
     }
 
     .btn-group-vertical {
@@ -291,6 +296,7 @@
       gap: 10px;
       width: 100%;
       margin-top: auto;
+      padding-top: 4px;
     }
 
     .btn {
@@ -334,7 +340,7 @@
       50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(178, 34, 34, 0.45); }
     }
 
-    /* Экран результатов со свободным скроллом */
+    /* Экран отчета */
     .result-section {
       display: none;
       flex-direction: column;
@@ -348,7 +354,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 3 отдельные белые карточки нейродрайверов */
     .driver-card {
       background: #FFFFFF;
       border-radius: 18px;
@@ -394,24 +399,23 @@
       color: #554D48;
     }
 
-    /* Секции без плашек */
     .pure-text-section {
-      padding: 8px 4px;
+      padding: 4px 2px;
     }
 
     .pure-text-title {
       font-size: 14px;
       font-weight: 700;
-      color: var(--primary-red);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      color: #2A2523;
       margin-bottom: 6px;
+      text-align: left;
     }
 
     .pure-text-body {
       font-size: 12.5px;
       line-height: 1.6;
-      color: var(--text-main);
+      color: #4A423E;
+      text-align: left;
     }
 
     .partner-quote {
@@ -421,9 +425,9 @@
       font-size: 12px;
       border-left: 2.5px solid var(--primary-red);
       padding-left: 10px;
+      text-align: left;
     }
 
-    /* Белая контрастная карточка с выравниванием по левому краю */
     .premium-white-card {
       background: #FFFFFF;
       border: 1.5px solid var(--border-color);
@@ -478,46 +482,32 @@
       transform: scale(0.98);
       background: #3A050C;
     }
-
-    /* Подавление рекламы хостинга */
-    div[class*="tiiny"],
-    iframe[src*="tiiny"],
-    a[href*="tiiny.host"],
-    div[style*="z-index: 2147483647"],
-    div[style*="z-index: 9999999"],
-    #tiiny-host-banner,
-    .tiiny-branding {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      height: 0 !important;
-      width: 0 !important;
-    }
   </style>
 </head>
 <body>
 
   <div class="container" id="main-container">
-    <!-- Шаг 0: Введение -->
+    <!-- Шаг 0: Введение (Чистая верстка без подложек) -->
     <div id="intro-section" style="display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;">
       <div>
         <div class="top-bar">
           <div class="brand-tag">IDEALIUM®</div>
           <div class="step-counter">START</div>
         </div>
-        <h1>Идеальный психосексуальный контакт — для вас он какой?</h1>
 
-        <div class="intro-card">
-          <p>Перед вами полярные пары дескрипторов, описывающие различные характеристики и оттенки идеального в вашем представлении психосексуального контакта.</p>
-          <p>Оценивайте качества по первому импульсу. Двигайте ползунок исходя из ощущений. Если какой-то дескриптор вам непонятен — оставьте ползунок в центре на 0.</p>
-          
-          <div class="intro-scale-guide">
-            <strong>Шкала отклика:</strong><br>
-            • <strong>0 (По центру)</strong> — нейтрально / пропустить<br>
-            • <strong>+3</strong> — абсолютно ассоциируется с идеалом<br>
-            • <strong>-3</strong> — абсолютно не ассоциируется / отталкивает
-          </div>
+        <h1 class="intro-title">Идеальный психосексуальный контакт — для вас он какой?</h1>
+
+        <div class="intro-body-text">
+          Перед вами полярные пары дескрипторов, описывающие различные характеристики и оттенки идеального в вашем представлении психосексуального контакта.
+          <br><br>
+          Оценивайте качества по первому импульсу. Двигайте ползунок исходя из ощущений. Если какой-то дескриптор вам непонятен — оставьте ползунок в центре на 0.
+        </div>
+
+        <div class="intro-scale-guide-clean">
+          <strong style="color: var(--dark-red);">Шкала отклика:</strong><br>
+          • <strong>0 (По центру)</strong> — нейтрально / пропустить<br>
+          • <strong>+3</strong> — абсолютно ассоциируется с идеалом<br>
+          • <strong>-3</strong> — абсолютно не ассоциируется / отталкивает
         </div>
       </div>
 
@@ -534,7 +524,7 @@
           <div class="brand-tag">IDEALIUM®</div>
           <div class="step-counter" id="step-indicator">1/3</div>
         </div>
-        <h1>Идеальный контакт — он какой?</h1>
+        <h1 class="test-title">Идеальный контакт — он какой?</h1>
 
         <div class="scales-wrapper" id="scales-container"></div>
       </div>
@@ -545,15 +535,14 @@
       </div>
     </div>
 
-    <!-- Экран отчета (Свободный скролл) -->
+    <!-- Экран отчета -->
     <div id="result-section" class="result-section">
       <div style="text-align: center; margin-bottom: 2px;">
         <div class="brand-tag" style="margin-bottom: 4px;">IDEALIUM® REPORT</div>
-        <h1 style="margin-bottom: 2px;">Ваш сенсорный паспорт</h1>
+        <h1 style="margin-bottom: 2px; text-align: center;">Ваш сенсорный паспорт</h1>
         <div style="font-size: 11.5px; color: var(--text-muted);">Баланс нейрохимических ожиданий</div>
       </div>
 
-      <!-- 1. Окситоцин -->
       <div class="driver-card">
         <div class="driver-header">
           <span>Окситоцин (Тепло и Слияние)</span>
@@ -563,7 +552,6 @@
         <div class="driver-desc" id="oxy-desc">Расчет потребности...</div>
       </div>
 
-      <!-- 2. Серотонин -->
       <div class="driver-card">
         <div class="driver-header">
           <span>Серотонин (Статус и Достоинство)</span>
@@ -573,7 +561,6 @@
         <div class="driver-desc" id="ser-desc">Расчет потребности...</div>
       </div>
 
-      <!-- 3. Дофамин -->
       <div class="driver-card">
         <div class="driver-header">
           <span>Дофамин (Риск и Страсть)</span>
@@ -583,20 +570,17 @@
         <div class="driver-desc" id="dop-desc">Расчет потребности...</div>
       </div>
 
-      <!-- Анти-идеал без фоновой плашки -->
       <div class="pure-text-section">
-        <div class="pure-text-title">Анти-идеальное позиционирование контакта</div>
+        <div class="pure-text-title">Чего не хочется</div>
         <div class="pure-text-body" id="anti-ideal-text">Расчет параметров...</div>
       </div>
 
-      <!-- Идеал без фоновой плашки -->
       <div class="pure-text-section">
-        <div class="pure-text-title">Идеальное позиционирование контакта</div>
+        <div class="pure-text-title">Чего хочется</div>
         <div class="pure-text-body" id="ideal-text">Расчет параметров...</div>
         <div class="partner-quote" id="partner-quote">«...»</div>
       </div>
 
-      <!-- Белая карточка покупки (выравнивание влево) -->
       <div class="premium-white-card">
         <div class="badge">КАРТА СОМЕЛЬЕ</div>
         <h4>Расширенная Сенсорная Спецификация</h4>
@@ -617,19 +601,7 @@
       tg.ready();
     }
 
-    setInterval(() => {
-      document.querySelectorAll('div, a, iframe').forEach(el => {
-        if (
-          el.href?.includes('tiiny.host') ||
-          el.innerText?.includes('tiiny.host') ||
-          el.innerText?.includes('Upload for free') ||
-          el.style?.zIndex > 100000
-        ) {
-          el.remove();
-        }
-      });
-    }, 100);
-
+    let audioCtx = null;
     function triggerHaptic(absVal) {
       if (tg?.HapticFeedback) {
         if (absVal === 1) tg.HapticFeedback.selectionChanged();
@@ -639,6 +611,19 @@
         if (absVal === 1) navigator.vibrate(15);
         else if (absVal === 2) navigator.vibrate(35);
         else if (absVal === 3) navigator.vibrate([45, 30, 45]);
+      } else {
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.frequency.value = absVal === 1 ? 80 : (absVal === 2 ? 120 : 160);
+          gain.gain.value = 0.02;
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.03);
+        } catch(e) {}
       }
     }
 
@@ -679,14 +664,12 @@
       renderScales();
     }
 
-    function getThumbClass(val) {
-      if (val === 1) return "pos-1";
-      if (val === 2) return "pos-2";
-      if (val === 3) return "pos-3";
-      if (val === -1) return "neg-1";
-      if (val === -2) return "neg-2";
-      if (val === -3) return "neg-3";
-      return "";
+    function getThumbClass(val, index) {
+      const abs = Math.abs(val);
+      if (abs === 1) return "val-1";
+      if (abs === 2) return "val-2";
+      if (abs === 3) return "val-3";
+      return `wave-${index % 5}`;
     }
 
     function renderScales() {
@@ -699,7 +682,7 @@
       currentScales.forEach((item, index) => {
         const id = `scale_${currentStep}_${index}`;
         const val = userAnswers[id] !== undefined ? userAnswers[id] : 0;
-        const thumbClass = getThumbClass(val);
+        const thumbClass = getThumbClass(val, index);
 
         const card = document.createElement("div");
         card.className = "scale-card";
@@ -709,8 +692,8 @@
             <span class="label-right">${item.right}</span>
           </div>
           <div class="slider-container">
-            <input type="range" id="${id}" class="${thumbClass}" min="-3" max="3" step="1" value="${val}" oninput="handleSlide('${id}', this.value)">
-            <div class="slider-ticks">
+            <input type="range" id="${id}" class="${thumbClass}" min="-3" max="3" step="1" value="${val}" oninput="handleSlide('${id}', this.value, ${index})">
+            <div class="slider-ticks-grid">
               <span>-3</span><span>-2</span><span>-1</span><span>0</span><span>+1</span><span>+2</span><span>+3</span>
             </div>
           </div>
@@ -726,13 +709,13 @@
       document.getElementById("next-btn").innerText = currentStep === 2 ? "Получить отчет" : "Далее";
     }
 
-    function handleSlide(id, value) {
+    function handleSlide(id, value, index) {
       const intVal = parseInt(value, 10);
       const prevVal = userAnswers[id] !== undefined ? userAnswers[id] : 0;
       userAnswers[id] = intVal;
       
       const el = document.getElementById(id);
-      el.className = getThumbClass(intVal);
+      el.className = getThumbClass(intVal, index);
 
       if (intVal !== prevVal) {
         triggerHaptic(Math.abs(intVal));
@@ -796,7 +779,6 @@
         document.getElementById("dop-val").innerText = dopPct + "%";
       }, 50);
 
-      // Описания под каждой карточкой
       document.getElementById("oxy-desc").innerText = oxyPct < 40 
         ? "Острый дефицит тепла и безопасности. Тело зажато контролем, не хватает медленного обнимающего контакта и возможности полностью выдохнуть."
         : "Высокая потребность в эмоциональном слиянии, непрерывном тактильном легато и глубоком доверии.";

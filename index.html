@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>IDEALIUM®</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,46 +37,62 @@
       font-family: 'Montserrat', -apple-system, sans-serif;
       display: flex;
       justify-content: center;
+      align-items: center;
       min-height: 100vh;
-      padding: 16px 12px 32px 12px;
+      min-height: -webkit-fill-available;
+      padding: 12px;
     }
 
+    html {
+      height: -webkit-fill-available;
+    }
+
+    /* Монолитный контейнер для шагов 0-3 */
     .container {
       width: 100%;
       max-width: 440px;
-      min-height: 620px;
+      height: 600px;
+      max-height: 94vh;
       background: var(--card-bg);
       border-radius: 24px;
-      padding: 28px 20px;
-      box-shadow: 0 12px 36px rgba(74, 14, 23, 0.07);
+      padding: 22px 18px 18px 18px;
+      box-shadow: 0 10px 30px rgba(74, 14, 23, 0.06);
       border: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-      transition: all 0.3s ease;
+      overflow: hidden;
     }
 
-    /* Стиль контейнера при показе скроллящегося отчета */
+    /* Режим свободного скролла только для экрана отчета */
+    body.is-report-view {
+      align-items: flex-start !important;
+      padding: 16px 12px 40px 12px !important;
+    }
+
     .container.report-mode {
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      padding: 10px 4px;
-      min-height: auto;
+      height: auto !important;
+      max-height: none !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      overflow: visible !important;
     }
 
+    /* Верхний бар */
     .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
       border-bottom: 1px solid #F2ECE4;
     }
 
     .brand-tag {
-      font-size: 11px;
+      font-size: 10.5px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--primary-red);
@@ -84,58 +100,60 @@
     }
 
     .step-counter {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       color: var(--text-muted);
       letter-spacing: 1px;
     }
 
     h1 {
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 700;
       color: var(--dark-red);
       text-align: center;
-      line-height: 1.35;
-      margin-bottom: 20px;
+      line-height: 1.3;
+      margin-bottom: 14px;
     }
 
+    /* Интро */
     .intro-card {
       background: #FAF7F2;
       border: 1px solid var(--border-color);
       border-radius: 16px;
-      padding: 18px 16px;
-      margin-bottom: 20px;
+      padding: 16px 14px;
+      margin-bottom: 14px;
     }
 
     .intro-card p {
-      font-size: 12.5px;
-      line-height: 1.6;
+      font-size: 12px;
+      line-height: 1.5;
       color: #4A423E;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .intro-scale-guide {
       background: #FFFFFF;
       border-radius: 10px;
-      padding: 12px 14px;
-      font-size: 11.5px;
-      line-height: 1.55;
+      padding: 10px 12px;
+      font-size: 11px;
+      line-height: 1.5;
       color: var(--text-main);
       border-left: 3px solid var(--primary-red);
     }
 
+    /* Слайдеры */
     .scales-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-bottom: 20px;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
     .scale-card {
-      padding-bottom: 8px;
+      padding-bottom: 6px;
       border-bottom: 1px solid #F4EFEA;
       opacity: 0;
-      transform: translateY(-14px);
+      transform: translateY(-12px);
       transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -149,7 +167,7 @@
       justify-content: space-between;
       font-size: 11px;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       gap: 8px;
     }
 
@@ -157,19 +175,19 @@
       color: var(--text-main);
       text-align: left;
       flex: 1;
-      line-height: 1.25;
+      line-height: 1.2;
     }
 
     .label-right {
       color: var(--text-main);
       text-align: right;
       flex: 1;
-      line-height: 1.25;
+      line-height: 1.2;
     }
 
     .slider-container {
       position: relative;
-      padding: 6px 0;
+      padding: 4px 0;
     }
 
     input[type=range] {
@@ -255,13 +273,14 @@
       font-size: 9px;
       font-weight: 500;
       color: #A39B95;
-      margin-top: 4px;
+      margin-top: 3px;
       padding: 0 3px;
     }
 
+    /* Кнопки */
     .btn-group {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
       margin-top: auto;
     }
@@ -269,13 +288,13 @@
     .btn-group-vertical {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
       margin-top: auto;
     }
 
     .btn {
-      padding: 15px 18px;
+      padding: 14px 16px;
       border-radius: 14px;
       font-size: 13.5px;
       font-weight: 600;
@@ -293,7 +312,7 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-red), var(--primary-red));
       color: #FFFFFF;
-      box-shadow: 0 4px 14px rgba(139, 0, 0, 0.28);
+      box-shadow: 0 4px 14px rgba(139, 0, 0, 0.25);
     }
 
     .btn-primary:active {
@@ -319,7 +338,8 @@
     .result-section {
       display: none;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
+      width: 100%;
       animation: fadeInResult 0.5s ease;
     }
 
@@ -328,135 +348,119 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .bars-card {
+    /* 3 отдельные белые карточки нейродрайверов */
+    .driver-card {
       background: #FFFFFF;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 8px 24px rgba(74, 14, 23, 0.05);
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 20px rgba(74, 14, 23, 0.04);
       border: 1px solid var(--border-color);
     }
 
-    .bar-group {
-      margin-bottom: 16px;
-    }
-
-    .bar-group:last-child {
-      margin-bottom: 0;
-    }
-
-    .bar-header {
+    .driver-header {
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 6px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 8px;
+    }
+
+    .driver-pct {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-red);
     }
 
     .bar-bg {
       background: var(--track-bg);
-      height: 7px;
-      border-radius: 4px;
+      height: 6px;
+      border-radius: 3px;
       overflow: hidden;
+      margin-bottom: 10px;
     }
 
     .bar-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--accent-red), var(--dark-red));
-      border-radius: 4px;
+      border-radius: 3px;
       transition: width 1s ease-in-out;
     }
 
-    .card-dark-crimson {
-      background: linear-gradient(145deg, var(--dark-red), var(--deep-crimson));
-      border-radius: 20px;
-      padding: 22px 18px;
-      color: #FFFFFF;
-      box-shadow: 0 8px 24px rgba(42, 4, 9, 0.25);
-    }
-
-    .card-dark-crimson h3 {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #FFCCD3;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .card-dark-crimson p {
-      font-size: 12.5px;
-      line-height: 1.6;
-      color: #F7EAEB;
-    }
-
-    .card-cream {
-      background: #FFFFFF;
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 22px 18px;
-      box-shadow: 0 8px 24px rgba(74, 14, 23, 0.04);
-    }
-
-    .card-cream h3 {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--dark-red);
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .card-cream p {
-      font-size: 12.5px;
-      line-height: 1.6;
-      color: #4A423E;
-    }
-
-    .quote-box {
-      border-left: 3px solid var(--primary-red);
-      padding-left: 12px;
-      font-style: italic;
-      margin-top: 12px;
-      font-size: 12px;
-      color: var(--dark-red);
+    .driver-desc {
+      font-size: 11.5px;
       line-height: 1.5;
+      color: #554D48;
     }
 
-    /* Платный блок расширенного исследования */
-    .premium-offer-card {
-      background: linear-gradient(135deg, #FFF9F2 0%, #F5EDE1 100%);
-      border: 1.5px dashed #C8A070;
+    /* Секции без плашек */
+    .pure-text-section {
+      padding: 8px 4px;
+    }
+
+    .pure-text-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-red);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .pure-text-body {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .partner-quote {
+      font-style: italic;
+      color: var(--dark-red);
+      margin-top: 8px;
+      font-size: 12px;
+      border-left: 2.5px solid var(--primary-red);
+      padding-left: 10px;
+    }
+
+    /* Белая контрастная карточка с выравниванием по левому краю */
+    .premium-white-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-color);
       border-radius: 20px;
-      padding: 22px 18px;
-      text-align: center;
-      margin-top: 4px;
+      padding: 22px 20px;
+      box-shadow: 0 8px 24px rgba(74, 14, 23, 0.05);
+      text-align: left;
+      margin-top: 6px;
     }
 
-    .premium-offer-card .badge {
+    .premium-white-card .badge {
       display: inline-block;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      background: #580B14;
+      background: var(--dark-red);
       color: #FFFFFF;
       padding: 4px 10px;
       border-radius: 20px;
       margin-bottom: 12px;
     }
 
-    .premium-offer-card h4 {
+    .premium-white-card h4 {
       font-size: 16px;
       font-weight: 700;
       color: var(--dark-red);
       margin-bottom: 8px;
+      text-align: left;
     }
 
-    .premium-offer-card p {
+    .premium-white-card p {
       font-size: 12px;
       line-height: 1.55;
-      color: #635850;
+      color: #5A524C;
       margin-bottom: 16px;
+      text-align: left;
     }
 
     .btn-buy {
@@ -467,7 +471,7 @@
       width: 100%;
       padding: 16px;
       border-radius: 14px;
-      box-shadow: 0 6px 18px rgba(88, 11, 20, 0.35);
+      box-shadow: 0 6px 18px rgba(88, 11, 20, 0.3);
     }
 
     .btn-buy:active {
@@ -475,7 +479,7 @@
       background: #3A050C;
     }
 
-    /* Блокировка рекламы хостинга */
+    /* Подавление рекламы хостинга */
     div[class*="tiiny"],
     iframe[src*="tiiny"],
     a[href*="tiiny.host"],
@@ -541,60 +545,66 @@
       </div>
     </div>
 
-    <!-- Экран отчета (Свободный скролл без сжатия) -->
+    <!-- Экран отчета (Свободный скролл) -->
     <div id="result-section" class="result-section">
-      <div style="text-align: center; margin-bottom: 4px;">
-        <div class="brand-tag" style="margin-bottom: 6px;">IDEALIUM® REPORT</div>
-        <h1 style="margin-bottom: 4px;">Ваш сенсорный паспорт</h1>
-        <div style="font-size: 12px; color: var(--text-muted);">Баланс психосемантических драйверов</div>
+      <div style="text-align: center; margin-bottom: 2px;">
+        <div class="brand-tag" style="margin-bottom: 4px;">IDEALIUM® REPORT</div>
+        <h1 style="margin-bottom: 2px;">Ваш сенсорный паспорт</h1>
+        <div style="font-size: 11.5px; color: var(--text-muted);">Баланс нейрохимических ожиданий</div>
       </div>
 
-      <div class="bars-card">
-        <div class="bar-group">
-          <div class="bar-header">
-            <span>Окситоцин (Тепло / Слияние)</span>
-            <span id="oxy-val">0%</span>
-          </div>
-          <div class="bar-bg"><div class="bar-fill" id="oxy-bar" style="width: 0%;"></div></div>
+      <!-- 1. Окситоцин -->
+      <div class="driver-card">
+        <div class="driver-header">
+          <span>Окситоцин (Тепло и Слияние)</span>
+          <span class="driver-pct" id="oxy-val">0%</span>
         </div>
+        <div class="bar-bg"><div class="bar-fill" id="oxy-bar" style="width: 0%;"></div></div>
+        <div class="driver-desc" id="oxy-desc">Расчет потребности...</div>
+      </div>
 
-        <div class="bar-group">
-          <div class="bar-header">
-            <span>Серотонин (Статус / Достоинство)</span>
-            <span id="ser-val">0%</span>
-          </div>
-          <div class="bar-bg"><div class="bar-fill" id="ser-bar" style="width: 0%;"></div></div>
+      <!-- 2. Серотонин -->
+      <div class="driver-card">
+        <div class="driver-header">
+          <span>Серотонин (Статус и Достоинство)</span>
+          <span class="driver-pct" id="ser-val">0%</span>
         </div>
+        <div class="bar-bg"><div class="bar-fill" id="ser-bar" style="width: 0%;"></div></div>
+        <div class="driver-desc" id="ser-desc">Расчет потребности...</div>
+      </div>
 
-        <div class="bar-group">
-          <div class="bar-header">
-            <span>Дофамин (Риск / Страсть)</span>
-            <span id="dop-val">0%</span>
-          </div>
-          <div class="bar-bg"><div class="bar-fill" id="dop-bar" style="width: 0%;"></div></div>
+      <!-- 3. Дофамин -->
+      <div class="driver-card">
+        <div class="driver-header">
+          <span>Дофамин (Риск и Страсть)</span>
+          <span class="driver-pct" id="dop-val">0%</span>
         </div>
+        <div class="bar-bg"><div class="bar-fill" id="dop-bar" style="width: 0%;"></div></div>
+        <div class="driver-desc" id="dop-desc">Расчет потребности...</div>
       </div>
 
-      <div class="card-dark-crimson">
-        <h3>Анти-Идеал (Блокировка влечения)</h3>
-        <p id="anti-ideal-text">Расчет параметров...</p>
+      <!-- Анти-идеал без фоновой плашки -->
+      <div class="pure-text-section">
+        <div class="pure-text-title">Анти-идеальное позиционирование контакта</div>
+        <div class="pure-text-body" id="anti-ideal-text">Расчет параметров...</div>
       </div>
 
-      <div class="card-cream">
-        <h3>Идеальный Сценарий</h3>
-        <p id="ideal-text">Расчет параметров...</p>
-        <div class="quote-box" id="partner-quote">«...»</div>
+      <!-- Идеал без фоновой плашки -->
+      <div class="pure-text-section">
+        <div class="pure-text-title">Идеальное позиционирование контакта</div>
+        <div class="pure-text-body" id="ideal-text">Расчет параметров...</div>
+        <div class="partner-quote" id="partner-quote">«...»</div>
       </div>
 
-      <!-- Оффер на 299 руб -->
-      <div class="premium-offer-card">
+      <!-- Белая карточка покупки (выравнивание влево) -->
+      <div class="premium-white-card">
         <div class="badge">КАРТА СОМЕЛЬЕ</div>
         <h4>Расширенная Сенсорная Спецификация</h4>
-        <p>Получите поминутный тактильный таймлайн свидания, карту звуковых частот и 3 суггестивных речевых ключа для раскрытия партнера.</p>
+        <p>Получите поминутный тактильный таймлайн свидания, карту звуковых частот и 3 суггестивных речевых ключа для настройки партнера.</p>
         <button class="btn btn-buy btn-pulse" onclick="triggerHaptic(3); alert('Переход к оплате 299 ₽...');">Приобрести исследование — 299 ₽</button>
       </div>
 
-      <div style="margin-top: 8px; margin-bottom: 20px;">
+      <div style="margin-top: 4px; margin-bottom: 20px;">
         <button class="btn btn-secondary" style="width: 100%; padding: 14px;" onclick="restartTest()">Пройти заново</button>
       </div>
     </div>
@@ -667,7 +677,6 @@
       document.getElementById("intro-section").style.display = "none";
       document.getElementById("test-section").style.display = "flex";
       renderScales();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function getThumbClass(val) {
@@ -710,7 +719,7 @@
 
         setTimeout(() => {
           card.classList.add("show-card");
-        }, index * 75 + 40);
+        }, index * 60 + 30);
       });
 
       document.getElementById("prev-btn").innerText = currentStep === 0 ? "В начало" : "Назад";
@@ -740,7 +749,6 @@
       if (currentStep < 2) {
         currentStep++;
         renderScales();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         calculateResults();
       }
@@ -751,11 +759,9 @@
       if (currentStep > 0) {
         currentStep--;
         renderScales();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         document.getElementById("test-section").style.display = "none";
         document.getElementById("intro-section").style.display = "flex";
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -776,8 +782,9 @@
       const serPct = Math.round((scores.ser / maxPossible.ser) * 100);
       const dopPct = Math.round((scores.dop / maxPossible.dop) * 100);
 
-      document.getElementById("test-section").style.display = "none";
+      document.body.classList.add("is-report-view");
       document.getElementById("main-container").classList.add("report-mode");
+      document.getElementById("test-section").style.display = "none";
       document.getElementById("result-section").style.display = "flex";
 
       setTimeout(() => {
@@ -789,18 +796,28 @@
         document.getElementById("dop-val").innerText = dopPct + "%";
       }, 50);
 
-      let antiIdeal = "Бытовая рутина, суетливые движения и необходимость держать постоянный контроль.";
-      let ideal = "Глубокая атмосфера приватности, полумрак, плавный темпоритм без спешки и чуткая сонастройка.";
+      // Описания под каждой карточкой
+      document.getElementById("oxy-desc").innerText = oxyPct < 40 
+        ? "Острый дефицит тепла и безопасности. Тело зажато контролем, не хватает медленного обнимающего контакта и возможности полностью выдохнуть."
+        : "Высокая потребность в эмоциональном слиянии, непрерывном тактильном легато и глубоком доверии.";
+
+      document.getElementById("ser-desc").innerText = serPct < 40
+        ? "Потребность в равенстве и простоте без ролевого давления и статусных проверок."
+        : "Высокая жажда признания собственного достоинства и исключительной желанности. Важен выверенный статус и уважение личных границ.";
+
+      document.getElementById("dop-desc").innerText = dopPct < 40
+        ? "Предпочтение проверенного, глубокого и спокойного сценария без лишнего стресса и резких перемен."
+        : "Сильный голод по новизне, игре и сексуальной интриге. Необходим слом привычного сценария, дерзость и нарастающее напряжение.";
+
+      let antiIdeal = "Бытовая рутина, суетливые и нерешительные действия партнера, разговоры о проблемах перед близостью и необходимость держать всё под жестким контролем.";
+      let ideal = "Глубокая атмосфера приватности, полумрак, плавный темпоритм без спешки, ощущение собственной абсолютной желанности и чуткая сонастройка без лишних слов.";
 
       if (dopPct > serPct && dopPct > oxyPct) {
-        antiIdeal = "Механический контакт по заученному сценарию, скука, банальные разговоры перед близостью.";
-        ideal = "Контрастная динамика, сексуальная интрига, элементы игры и смелый слом рамок.";
+        antiIdeal = "Механический контакт по заученному шаблону, банальные разговоры, отсутствие флирта и предсказуемость каждого шага.";
+        ideal = "Контрастная динамика, сексуальная интрига, элементы игры, дерзкий слом шаблонов и нарастающее напряжение.";
       } else if (serPct >= dopPct && serPct >= oxyPct) {
-        antiIdeal = "Неуверенность партнера, обесценивание, суета и сомнения в вашей привлекательности.";
-        ideal = "Атмосфера исключительности, признание вашего статуса и выверенное ролевое взаимодействие.";
-      } else {
-        antiIdeal = "Холодная дистанцированность, спешка к финалу и отсутствие психологической безопасности.";
-        ideal = "Томительно-медленный обнимающий контакт, непрерывное легато и полное снятие контроля.";
+        antiIdeal = "Неуверенность со стороны партнера, критика, мелкая суета, извиняющийся тон и обесценивание ваших желаний.";
+        ideal = "Атмосфера исключительности, безоговорочное признание вашего авторитета и выверенное ролевое взаимодействие.";
       }
 
       document.getElementById("anti-ideal-text").innerText = antiIdeal;
@@ -814,6 +831,7 @@
       triggerHaptic(2);
       for (let key in userAnswers) delete userAnswers[key];
       currentStep = 0;
+      document.body.classList.remove("is-report-view");
       document.getElementById("main-container").classList.remove("report-mode");
       document.getElementById("result-section").style.display = "none";
       document.getElementById("intro-section").style.display = "flex";

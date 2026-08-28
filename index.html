@@ -49,11 +49,11 @@
     .container {
       width: 100%;
       max-width: 440px;
-      height: 630px;
+      height: 640px;
       max-height: 96vh;
       background: var(--card-bg);
       border-radius: 24px;
-      padding: 24px 22px 16px 22px;
+      padding: 24px 22px 18px 22px;
       box-shadow: 0 10px 30px rgba(74, 14, 23, 0.06);
       border: 1px solid var(--border-color);
       display: flex;
@@ -130,27 +130,27 @@
       text-align: left;
     }
 
-    /* Заголовок карточек тестирования */
+    /* Заголовок карточек тестирования (выравнивание влево) */
     .test-title {
       font-size: 17.5px;
       font-weight: 700;
       color: var(--dark-red);
-      text-align: center;
+      text-align: left;
       line-height: 1.3;
-      margin-top: 4px;
-      margin-bottom: 16px;
+      margin-top: 8px;
+      margin-bottom: 22px;
     }
 
-    /* Слайдеры */
+    /* Слайдеры с гармоничным распределением по вертикали */
     .scales-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 13px;
-      margin-bottom: 8px;
+      gap: 16px;
+      margin-bottom: 10px;
     }
 
     .scale-card {
-      padding-bottom: 6px;
+      padding-bottom: 8px;
       border-bottom: 1px solid #F4EFEA;
       opacity: 0;
       transform: translateY(-12px);
@@ -167,7 +167,7 @@
       justify-content: space-between;
       font-size: 11px;
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
       gap: 8px;
     }
 
@@ -187,7 +187,7 @@
 
     .slider-container {
       position: relative;
-      padding: 4px 0;
+      padding: 5px 0;
     }
 
     input[type=range] {
@@ -209,39 +209,39 @@
       border-radius: 2px;
     }
 
-    /* Базовый белый thumb с каймой */
+    /* Ползунок увеличен на 10% (24.5px) */
     input[type=range]::-webkit-slider-thumb {
-      height: 22px;
-      width: 22px;
+      height: 24.5px;
+      width: 24.5px;
       border-radius: 50%;
       background: #FFFFFF;
       border: 2.5px solid var(--primary-red);
       cursor: pointer;
       -webkit-appearance: none;
-      margin-top: -9px;
+      margin-top: -10.2px;
       box-shadow: 0 2px 8px rgba(74, 14, 23, 0.15);
       transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
     }
 
-    /* Волнообразная пульсация сверху вниз в нейтральном положении 0 */
-    .wave-0::-webkit-slider-thumb { animation: wave-pulse 2.2s infinite ease-in-out 0.0s; }
-    .wave-1::-webkit-slider-thumb { animation: wave-pulse 2.2s infinite ease-in-out 0.18s; }
-    .wave-2::-webkit-slider-thumb { animation: wave-pulse 2.2s infinite ease-in-out 0.36s; }
-    .wave-3::-webkit-slider-thumb { animation: wave-pulse 2.2s infinite ease-in-out 0.54s; }
-    .wave-4::-webkit-slider-thumb { animation: wave-pulse 2.2s infinite ease-in-out 0.72s; }
+    /* Деликатная, мягкая пульсация в положении 0 */
+    .wave-0::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.0s; }
+    .wave-1::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.22s; }
+    .wave-2::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.44s; }
+    .wave-3::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.66s; }
+    .wave-4::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.88s; }
 
-    @keyframes wave-pulse {
+    @keyframes wave-pulse-subtle {
       0%, 100% {
         transform: scale(1);
-        box-shadow: 0 2px 6px rgba(139, 0, 0, 0.15);
+        box-shadow: 0 2px 6px rgba(139, 0, 0, 0.12);
       }
       50% {
-        transform: scale(1.16);
-        box-shadow: 0 0 10px rgba(178, 34, 34, 0.45);
+        transform: scale(1.07);
+        box-shadow: 0 0 7px rgba(178, 34, 34, 0.3);
       }
     }
 
-    /* Симметричные градации красного при сдвиге влево/вправо */
+    /* Симметричные градации красного */
     .val-1::-webkit-slider-thumb {
       background: var(--pink-soft) !important;
       border-color: var(--accent-red) !important;
@@ -262,22 +262,21 @@
 
     @keyframes pulse-soft {
       0%, 100% { transform: scale(1); box-shadow: 0 2px 6px rgba(178, 34, 34, 0.25); }
-      50% { transform: scale(1.12); box-shadow: 0 0 8px rgba(178, 34, 34, 0.45); }
+      50% { transform: scale(1.1); box-shadow: 0 0 8px rgba(178, 34, 34, 0.45); }
     }
 
     @keyframes pulse-active {
       0%, 100% { transform: scale(1); box-shadow: 0 2px 6px rgba(139, 0, 0, 0.35); }
-      50% { transform: scale(1.28); box-shadow: 0 0 14px rgba(178, 34, 34, 0.75); }
+      50% { transform: scale(1.22); box-shadow: 0 0 14px rgba(178, 34, 34, 0.75); }
     }
 
-    /* Пиксельно точная центровка 7 делений через Grid */
     .slider-ticks-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       font-size: 9px;
       font-weight: 500;
       color: #A39B95;
-      margin-top: 3px;
+      margin-top: 4px;
       text-align: center;
     }
 
@@ -352,6 +351,16 @@
     @keyframes fadeInResult {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    .report-main-title {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--dark-red);
+      text-align: center;
+      margin-top: 6px;
+      margin-bottom: 2px;
     }
 
     .driver-card {
@@ -487,7 +496,7 @@
 <body>
 
   <div class="container" id="main-container">
-    <!-- Шаг 0: Введение (Чистая верстка без подложек) -->
+    <!-- Шаг 0: Введение -->
     <div id="intro-section" style="display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;">
       <div>
         <div class="top-bar">
@@ -538,8 +547,7 @@
     <!-- Экран отчета -->
     <div id="result-section" class="result-section">
       <div style="text-align: center; margin-bottom: 2px;">
-        <div class="brand-tag" style="margin-bottom: 4px;">IDEALIUM® REPORT</div>
-        <h1 style="margin-bottom: 2px; text-align: center;">Ваш сенсорный паспорт</h1>
+        <h1 class="report-main-title">IDEALIUM® REPORT</h1>
         <div style="font-size: 11.5px; color: var(--text-muted);">Баланс нейрохимических ожиданий</div>
       </div>
 
@@ -601,29 +609,11 @@
       tg.ready();
     }
 
-    let audioCtx = null;
     function triggerHaptic(absVal) {
       if (tg?.HapticFeedback) {
         if (absVal === 1) tg.HapticFeedback.selectionChanged();
         else if (absVal === 2) tg.HapticFeedback.impactOccurred('medium');
         else if (absVal === 3) tg.HapticFeedback.impactOccurred('heavy');
-      } else if (navigator.vibrate) {
-        if (absVal === 1) navigator.vibrate(15);
-        else if (absVal === 2) navigator.vibrate(35);
-        else if (absVal === 3) navigator.vibrate([45, 30, 45]);
-      } else {
-        try {
-          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-          if (audioCtx.state === 'suspended') audioCtx.resume();
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.frequency.value = absVal === 1 ? 80 : (absVal === 2 ? 120 : 160);
-          gain.gain.value = 0.02;
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-          osc.start();
-          osc.stop(audioCtx.currentTime + 0.03);
-        } catch(e) {}
       }
     }
 

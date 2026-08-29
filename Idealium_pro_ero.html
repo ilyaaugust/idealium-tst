@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>IDEALIUM®</title>
+  <title>IDEALIUM® PRO SOMMELIER</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,17 +11,20 @@
 
   <style>
     :root {
-      --bg-cream: #F9F6F0;
-      --card-bg: #FFFFFF;
+      --bg-dark-wine: #220407;
+      --bg-gradient: radial-gradient(circle at 50% 10%, #3B060D 0%, #1A0204 100%);
+      --card-white: #FFFFFF;
+      --card-cream: #FAF7F2;
       --primary-red: #8B0000;
-      --dark-red: #4A0E17;
       --accent-red: #B22222;
+      --light-gold: #E8D3B9;
       --pink-soft: #F4A6B0;
-      --text-main: #2A2523;
-      --text-muted: #7A726D;
-      --border-color: #E8E2D9;
-      --border-red-light: rgba(139, 0, 0, 0.22);
-      --track-bg: #EAE5DC;
+      --text-white: #FAF4EB;
+      --text-dark: #201A18;
+      --text-muted-dark: #6B625D;
+      --text-muted-light: rgba(250, 244, 235, 0.65);
+      --border-light: rgba(232, 211, 185, 0.2);
+      --track-bg: rgba(255, 255, 255, 0.15);
     }
 
     * {
@@ -32,15 +35,16 @@
     }
 
     body {
-      background-color: var(--bg-cream);
-      color: var(--text-main);
+      background: var(--bg-dark-wine);
+      background-image: var(--bg-gradient);
+      color: var(--text-white);
       font-family: 'Montserrat', -apple-system, sans-serif;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       min-height: 100vh;
       min-height: -webkit-fill-available;
-      padding: 10px 12px;
+      padding: 16px 14px 40px 14px;
     }
 
     html {
@@ -49,79 +53,52 @@
 
     .container {
       width: 100%;
-      max-width: 440px;
-      height: 640px;
-      max-height: 96vh;
-      background: var(--card-bg);
-      border-radius: 24px;
-      padding: 24px 22px 18px 22px;
-      box-shadow: 0 10px 30px rgba(74, 14, 23, 0.06);
-      border: 1px solid var(--border-color);
+      max-width: 450px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 16px;
       position: relative;
-      overflow: hidden;
     }
 
-    body.is-scroll-view {
-      align-items: flex-start !important;
-      padding: 14px 12px 36px 12px !important;
-    }
-
-    .container.scroll-mode {
-      height: auto !important;
-      max-height: none !important;
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      padding: 0 !important;
-      overflow: visible !important;
-    }
-
+    /* Верхняя панель */
     .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 12px;
       padding-bottom: 8px;
-      border-bottom: 1px solid #F2ECE4;
+      border-bottom: 1px solid var(--border-light);
     }
 
     .brand-tag {
       font-size: 10.5px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--primary-red);
-      font-weight: 700;
+      color: var(--light-gold);
+      font-weight: 800;
     }
 
     .step-counter {
-      font-size: 11.5px;
-      font-weight: 600;
-      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted-light);
       letter-spacing: 1px;
     }
 
-    .intro-card-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      width: 100%;
-    }
-
+    /* Лендинг (Введение) */
     .intro-hero-box {
-      background: #FFFFFF;
-      border-radius: 20px;
-      padding: 22px 20px 20px 20px;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 6px 20px rgba(74, 14, 23, 0.04);
+      background: var(--card-white);
+      color: var(--text-dark);
+      border-radius: 24px;
+      padding: 22px 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .intro-main-title {
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 800;
-      color: var(--dark-red);
+      color: var(--primary-red);
       line-height: 1.35;
       margin-bottom: 6px;
       text-align: left;
@@ -130,31 +107,30 @@
     .intro-sub-lead {
       font-size: 12px;
       font-weight: 500;
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
       line-height: 1.5;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
       text-align: left;
+      font-style: italic;
     }
 
     .intro-deficits-lead {
       font-size: 12.5px;
-      font-weight: 600;
-      line-height: 1.6;
-      color: var(--text-main);
-      margin-top: 6px;
+      font-weight: 700;
+      line-height: 1.55;
+      color: var(--text-dark);
       margin-bottom: 14px;
       text-align: left;
-      border-left: 3px solid var(--primary-red);
-      padding-left: 12px;
+      border-left: 3.5px solid var(--primary-red);
+      padding-left: 10px;
     }
 
     .deficit-card {
-      background: #FFFFFF;
+      background: var(--card-cream);
       border-radius: 16px;
       padding: 14px 16px;
       margin-bottom: 12px;
-      border: 1px solid var(--border-red-light);
-      box-shadow: 0 4px 14px rgba(139, 0, 0, 0.03);
+      border: 1px solid rgba(139, 0, 0, 0.15);
       text-align: left;
     }
 
@@ -164,37 +140,51 @@
 
     .deficit-title {
       font-size: 13px;
+      font-weight: 800;
+      color: var(--primary-red);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .deficit-badge {
+      font-size: 9.5px;
       font-weight: 700;
-      color: var(--dark-red);
-      margin-bottom: 5px;
+      text-transform: uppercase;
+      color: var(--primary-red);
+      background: #FFFFFF;
+      padding: 2px 7px;
+      border-radius: 6px;
+      border: 1px solid rgba(139, 0, 0, 0.18);
     }
 
     .deficit-text {
       font-size: 11.5px;
       line-height: 1.55;
-      color: #4E4642;
+      color: var(--text-muted-dark);
     }
 
     .benefits-box {
-      background: #FFFFFF;
-      border-radius: 18px;
+      background: var(--card-white);
+      color: var(--text-dark);
+      border-radius: 20px;
       padding: 18px 20px;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 6px 20px rgba(74, 14, 23, 0.04);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
       text-align: left;
     }
 
     .benefits-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--dark-red);
-      margin-bottom: 10px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--primary-red);
+      margin-bottom: 12px;
     }
 
     .benefit-item {
-      font-size: 11.5px;
+      font-size: 11.8px;
       line-height: 1.55;
-      color: #4A423E;
+      color: #3E3733;
       margin-bottom: 10px;
       padding-left: 14px;
       position: relative;
@@ -215,73 +205,83 @@
     }
 
     .meta-pill-bar {
-      background: #EFEAE1;
-      color: #554D48;
-      font-size: 10.5px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--light-gold);
+      font-size: 11px;
       font-weight: 600;
-      padding: 9px 14px;
-      border-radius: 12px;
+      padding: 11px 16px;
+      border-radius: 14px;
       text-align: center;
       line-height: 1.4;
-      letter-spacing: 0.3px;
+      border: 1px solid var(--border-light);
+      backdrop-filter: blur(10px);
     }
 
-    .test-title {
-      font-size: 17.5px;
-      font-weight: 700;
-      color: var(--dark-red);
+    /* Экран теста (Премиальный темный вид, без белых рамок) */
+    .test-main-title {
+      font-size: 18.5px;
+      font-weight: 800;
+      color: var(--light-gold);
       text-align: left;
-      line-height: 1.3;
-      margin-top: 8px;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .test-subtitle {
+      font-size: 11.5px;
+      color: var(--text-muted-light);
+      text-align: left;
       margin-bottom: 22px;
+      line-height: 1.45;
     }
 
     .scales-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-bottom: 10px;
+      gap: 22px;
+      margin-bottom: 24px;
     }
 
-    .scale-card {
-      padding-bottom: 8px;
-      border-bottom: 1px solid #F4EFEA;
+    .scale-row {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(232, 211, 185, 0.12);
       opacity: 0;
-      transform: translateY(-12px);
-      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(-8px);
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .scale-card.show-card {
+    .scale-row:last-child {
+      border-bottom: none;
+      padding-bottom: 4px;
+    }
+
+    .scale-row.show-scale {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .scale-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      font-weight: 600;
-      margin-bottom: 5px;
-      gap: 8px;
-    }
-
-    .label-left {
-      color: var(--text-main);
+    .descriptor-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.3;
+      margin-bottom: 4px;
       text-align: left;
-      flex: 1;
-      line-height: 1.2;
     }
 
-    .label-right {
-      color: var(--text-main);
-      text-align: right;
-      flex: 1;
-      line-height: 1.2;
+    .descriptor-desc {
+      font-size: 11px;
+      color: var(--text-muted-light);
+      margin-bottom: 10px;
+      line-height: 1.4;
+      text-align: left;
     }
 
     .slider-container {
       position: relative;
-      padding: 5px 0;
+      padding: 4px 0;
     }
 
     input[type=range] {
@@ -304,89 +304,107 @@
     }
 
     input[type=range]::-webkit-slider-thumb {
-      height: 24.5px;
-      width: 24.5px;
+      height: 24px;
+      width: 24px;
       border-radius: 50%;
-      background: #FFFFFF;
-      border: 2.5px solid var(--primary-red);
+      background: var(--light-gold);
+      border: 2.5px solid var(--accent-red);
       cursor: pointer;
       -webkit-appearance: none;
-      margin-top: -10.2px;
-      box-shadow: 0 2px 8px rgba(74, 14, 23, 0.15);
+      margin-top: -10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
     }
 
-    .wave-0::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.0s; }
-    .wave-1::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.22s; }
-    .wave-2::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.44s; }
-    .wave-3::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.66s; }
-    .wave-4::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.88s; }
+    .wave-pulse::-webkit-slider-thumb {
+      animation: wave-breathing 2.4s infinite ease-in-out;
+    }
 
-    @keyframes wave-pulse-subtle {
+    @keyframes wave-breathing {
       0%, 100% {
         transform: scale(1);
-        box-shadow: 0 2px 6px rgba(139, 0, 0, 0.12);
+        box-shadow: 0 2px 8px rgba(232, 211, 185, 0.2);
       }
       50% {
-        transform: scale(1.07);
-        box-shadow: 0 0 7px rgba(178, 34, 34, 0.3);
+        transform: scale(1.1);
+        box-shadow: 0 0 12px rgba(232, 211, 185, 0.6);
       }
     }
 
-    .val-1::-webkit-slider-thumb {
+    .val-pos-1::-webkit-slider-thumb {
       background: var(--pink-soft) !important;
       border-color: var(--accent-red) !important;
       animation: pulse-soft 1.4s infinite ease-in-out !important;
     }
 
-    .val-2::-webkit-slider-thumb {
+    .val-pos-2::-webkit-slider-thumb {
       background: var(--accent-red) !important;
-      border-color: var(--primary-red) !important;
+      border-color: var(--light-gold) !important;
       animation: pulse-active 0.9s infinite ease-in-out !important;
     }
 
-    .val-3::-webkit-slider-thumb {
+    .val-pos-3::-webkit-slider-thumb {
       background: var(--primary-red) !important;
-      border-color: var(--dark-red) !important;
+      border-color: #FFFFFF !important;
       animation: pulse-active 0.9s infinite ease-in-out !important;
+      transform: scale(1.12);
+    }
+
+    .val-neg-1::-webkit-slider-thumb {
+      background: #7D6F69 !important;
+      border-color: #4A403C !important;
+    }
+
+    .val-neg-2::-webkit-slider-thumb {
+      background: #524742 !important;
+      border-color: #332B27 !important;
+    }
+
+    .val-neg-3::-webkit-slider-thumb {
+      background: #2E2623 !important;
+      border-color: #1A1412 !important;
     }
 
     @keyframes pulse-soft {
-      0%, 100% { transform: scale(1); box-shadow: 0 2px 6px rgba(178, 34, 34, 0.25); }
-      50% { transform: scale(1.1); box-shadow: 0 0 8px rgba(178, 34, 34, 0.45); }
+      0%, 100% { transform: scale(1); box-shadow: 0 2px 6px rgba(244, 166, 176, 0.3); }
+      50% { transform: scale(1.1); box-shadow: 0 0 10px rgba(244, 166, 176, 0.6); }
     }
 
     @keyframes pulse-active {
-      0%, 100% { transform: scale(1); box-shadow: 0 2px 6px rgba(139, 0, 0, 0.35); }
-      50% { transform: scale(1.22); box-shadow: 0 0 14px rgba(178, 34, 34, 0.75); }
+      0%, 100% { transform: scale(1); box-shadow: 0 2px 8px rgba(178, 34, 34, 0.5); }
+      50% { transform: scale(1.22); box-shadow: 0 0 16px rgba(232, 211, 185, 0.8); }
+    }
+
+    .slider-labels-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5px;
+      font-weight: 600;
+      color: var(--text-muted-light);
+      margin-top: 5px;
     }
 
     .slider-ticks-flex {
       display: flex;
       justify-content: space-between;
       font-size: 9px;
-      font-weight: 500;
-      color: #A39B95;
-      margin-top: 4px;
-      padding: 0 12px;
+      font-weight: 600;
+      color: rgba(250, 244, 235, 0.35);
+      margin-top: 3px;
+      padding: 0 2px;
     }
 
     .slider-ticks-flex span {
-      width: 16px;
+      width: 20px;
       text-align: center;
-      margin-left: -8px;
-      margin-right: -8px;
     }
 
-    .slider-ticks-flex span:first-child { margin-left: -8px; }
-    .slider-ticks-flex span:last-child { margin-right: -8px; }
-
+    /* Кнопки */
     .btn-group {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       width: 100%;
-      margin-top: auto;
-      padding-top: 4px;
+      margin-top: 14px;
     }
 
     .btn-group-vertical {
@@ -394,13 +412,12 @@
       flex-direction: column;
       gap: 10px;
       width: 100%;
-      margin-top: auto;
-      padding-top: 4px;
+      margin-top: 6px;
     }
 
     .btn {
-      padding: 15px 16px;
-      border-radius: 14px;
+      padding: 16px 18px;
+      border-radius: 16px;
       font-size: 13.5px;
       font-weight: 700;
       text-align: center;
@@ -417,29 +434,25 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-red), var(--primary-red));
       color: #FFFFFF;
-      box-shadow: 0 4px 14px rgba(139, 0, 0, 0.25);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .btn-primary:active {
-      background: var(--dark-red);
       transform: scale(0.98);
+      background: #5C0000;
     }
 
     .btn-secondary {
-      background: #F0ECE4;
-      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-white);
+      border: 1px solid var(--border-light);
+      backdrop-filter: blur(8px);
     }
 
-    .btn-pro-gold {
-      background: linear-gradient(135deg, #2A0409, #540B14);
-      color: #FFFFFF;
-      border: 1px solid rgba(244, 166, 176, 0.3);
-      box-shadow: 0 6px 18px rgba(84, 11, 20, 0.25);
-    }
-
-    .btn-pro-gold:active {
+    .btn-secondary:active {
+      background: rgba(255, 255, 255, 0.18);
       transform: scale(0.98);
-      background: #190205;
     }
 
     .btn-pulse {
@@ -447,11 +460,12 @@
     }
 
     @keyframes btn-breathing {
-      0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(139, 0, 0, 0.28); }
-      50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(178, 34, 34, 0.45); }
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 16px rgba(178, 34, 34, 0.4); }
+      50% { transform: scale(1.02); box-shadow: 0 8px 28px rgba(232, 211, 185, 0.55); }
     }
 
-    .result-section, .pro-section {
+    /* Экран отчета (Белые карточки для безупречной читаемости) */
+    .result-section {
       display: none;
       flex-direction: column;
       gap: 16px;
@@ -466,20 +480,21 @@
 
     .report-main-title {
       font-size: 21px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 1.5px;
-      color: var(--dark-red);
+      color: var(--primary-red);
       text-align: center;
-      margin-top: 6px;
+      margin-top: 4px;
       margin-bottom: 2px;
     }
 
-    .driver-card, .info-white-card, .pro-hero-card {
-      background: #FFFFFF;
+    .driver-card, .info-white-card, .result-header-card {
+      background: var(--card-white);
+      color: var(--text-dark);
       border-radius: 20px;
       padding: 18px 20px;
-      box-shadow: 0 6px 20px rgba(74, 14, 23, 0.04);
-      border: 1px solid var(--border-color);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .driver-top-row {
@@ -490,9 +505,9 @@
     }
 
     .driver-title {
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 700;
-      color: var(--dark-red);
+      color: var(--primary-red);
     }
 
     .driver-pct-large {
@@ -503,7 +518,7 @@
     }
 
     .bar-bg {
-      background: var(--track-bg);
+      background: #EAE3D8;
       height: 6px;
       border-radius: 3px;
       overflow: hidden;
@@ -512,7 +527,7 @@
 
     .bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--accent-red), var(--dark-red));
+      background: linear-gradient(90deg, var(--accent-red), var(--primary-red));
       border-radius: 3px;
       transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -521,74 +536,12 @@
       font-size: 12px;
       line-height: 1.55;
       color: #4A423E;
-      margin-bottom: 10px;
-    }
-
-    .toggle-details-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #F7F3EC;
-      color: var(--dark-red);
-      border: none;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .toggle-details-btn:active {
-      background: #EAE3D8;
-    }
-
-    .details-arrow {
-      font-size: 9px;
-      transition: transform 0.3s ease;
-    }
-
-    .details-arrow.rotated {
-      transform: rotate(180deg);
-    }
-
-    .expandable-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      font-size: 11.5px;
-      line-height: 1.6;
-      color: #5A524C;
-      margin-top: 0;
-      border-top: 1px dashed transparent;
-    }
-
-    .expandable-content.is-open {
-      max-height: 600px;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px dashed #E8E2D9;
-    }
-
-    .details-subheading {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--primary-red);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-      margin-top: 8px;
-    }
-
-    .details-subheading:first-child {
-      margin-top: 0;
     }
 
     .formula-shares-bar {
       font-size: 12px;
       font-weight: 700;
-      color: var(--dark-red);
+      color: var(--primary-red);
       background: #FAF6F0;
       padding: 8px 12px;
       border-radius: 12px;
@@ -603,7 +556,7 @@
     .formula-section-title {
       font-size: 12.5px;
       font-weight: 700;
-      color: var(--dark-red);
+      color: var(--primary-red);
       margin-bottom: 4px;
     }
 
@@ -629,72 +582,10 @@
     .report-note {
       font-size: 11.5px;
       line-height: 1.55;
-      color: #7A726D;
+      color: var(--text-muted-light);
       text-align: center;
       padding: 0 8px;
       font-style: italic;
-    }
-
-    /* Стили PRO экрана */
-    .pro-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      background: var(--dark-red);
-      color: #FFFFFF;
-      padding: 4px 10px;
-      border-radius: 20px;
-      margin-bottom: 10px;
-    }
-
-    .pro-label-group {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--primary-red);
-      margin-top: 6px;
-      margin-bottom: 8px;
-      text-align: left;
-    }
-
-    /* 2 основные карточки, входящие в тариф */
-    .pro-card-main {
-      background: #FFFFFF;
-      border-radius: 16px;
-      padding: 16px 16px;
-      margin-bottom: 12px;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 4px 16px rgba(74, 14, 23, 0.04);
-      text-align: left;
-    }
-
-    /* 2 карточки открываемого доступа */
-    .pro-card-access {
-      background: #FAF7F2;
-      border-radius: 16px;
-      padding: 14px 16px;
-      margin-bottom: 12px;
-      border: 1px solid var(--border-red-light);
-      text-align: left;
-    }
-
-    .pro-block-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--dark-red);
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .pro-block-desc {
-      font-size: 11.5px;
-      line-height: 1.6;
-      color: #4E4642;
     }
 
     .toast {
@@ -702,13 +593,14 @@
       bottom: 24px;
       left: 50%;
       transform: translateX(-50%) translateY(100px);
-      background: #2A0409;
-      color: #FFFFFF;
-      padding: 12px 20px;
+      background: #190204;
+      color: var(--light-gold);
+      padding: 12px 22px;
       border-radius: 30px;
       font-size: 12.5px;
       font-weight: 600;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      border: 1px solid var(--border-light);
       opacity: 0;
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 1000;
@@ -723,54 +615,63 @@
     }
   </style>
 </head>
-<body class="is-scroll-view">
+<body>
 
-  <div class="container scroll-mode" id="main-container">
+  <div class="container" id="main-container">
     
-    <!-- ШАГ 0: Продающий экран введения -->
-    <div id="intro-section" class="intro-card-wrap">
+    <!-- ШАГ 0: Введение -->
+    <div id="intro-section" class="container">
       <div class="intro-hero-box">
-        <div class="top-bar">
-          <div class="brand-tag">IDEALIUM® PROTOCOL</div>
-          <div class="step-counter">START</div>
+        <div class="top-bar" style="border-bottom-color: #F2ECE4;">
+          <div class="brand-tag" style="color: var(--primary-red);">IDEALIUM® PRO SOMMELIER</div>
+          <div class="step-counter" style="color: var(--text-muted-dark);">VIP ACCESS</div>
         </div>
 
-        <h1 class="intro-main-title">Оцифруйте свой абсолютный сценарий наслаждения</h1>
-        <div class="intro-sub-lead">(Без неловких разговоров, догадок и испорченных встреч)</div>
+        <h1 class="intro-main-title">Измерьте то, о чем вы мечтаете втайне от самих себя</h1>
+        <div class="intro-sub-lead">Калибровка тончайших оттенков наслаждения по стандартам психосемантического сомелье</div>
 
         <div class="intro-deficits-lead">
-          Любое глубинное влечение — это попытка мозга закрыть один из трех острых нейрохимических дефицитов:
+          Любое тайное влечение раскрывается через три ключевых нейрохимических контура:
         </div>
 
         <div class="deficit-card">
-          <div class="deficit-title">Окситоциновый голод (Боль изоляции)</div>
-          <div class="deficit-text">Фоновое одиночество, страх отвержения и холод. Жажда тотального тепла, безопасности и растворения границ.</div>
+          <div class="deficit-title">
+            <span>Окситоцин (Тепло и Слияние)</span>
+            <span class="deficit-badge">Глубина</span>
+          </div>
+          <div class="deficit-text">Снимает фоновое одиночество и холод. Жажда безусловного доверия, безопасности и растворения личных границ в объятиях.</div>
         </div>
 
         <div class="deficit-card">
-          <div class="deficit-title">Серотониновый голод (Боль обесценивания)</div>
-          <div class="deficit-text">Страх унижения, потери контроля и ранга. Жажда признания, поклонения, абсолютной власти или безопасной сдачи контроля.</div>
+          <div class="deficit-title">
+            <span>Серотонин (Статус и Достоинство)</span>
+            <span class="deficit-badge">Власть</span>
+          </div>
+          <div class="deficit-text">Защищает от обесценивания и потери контроля. Потребность в признании исключительной желанности, доминировании или благородной сдаче контроля.</div>
         </div>
 
         <div class="deficit-card">
-          <div class="deficit-title">Дофаминовый голод (Боль эмоциональной смерти)</div>
-          <div class="deficit-text">Серая рутина, скука и апатия. Жажда электричества, азарта, запретного риска и сенсорного взрыва.</div>
+          <div class="deficit-title">
+            <span>Дофамин (Риск и Страсть)</span>
+            <span class="deficit-badge">Драйв</span>
+          </div>
+          <div class="deficit-text">Разрушает рутину и скуку. Жажда электричества, запретного риска, сенсорного контраста и охотничьего азарта.</div>
         </div>
       </div>
 
       <div class="benefits-box">
-        <div class="benefits-title">За 2 минуты на шкалах калибровки вы получите:</div>
-        <div class="benefit-item"><strong>Диагноз скрытой тяги:</strong> поймете, какое именно нейрохимическое топливо запускает ваше пиковое влечение.</div>
-        <div class="benefit-item"><strong>Карту идеального сценария:</strong> точный вектор темпа, дистанции, ролей и тактильных триггеров для партнера.</div>
+        <div class="benefits-title">Откройте 16 измерений пространства чувств и любви:</div>
+        <div class="benefit-item"><strong>Диагноз скрытых полутонов:</strong> распознайте свои истинные сексуальные триггеры, поднимающие качество жизни на новый уровень.</div>
+        <div class="benefit-item"><strong>Сенсорный райдер для партнёра:</strong> получите готовую карту желаемых сценариев, чтобы исключить неловкость и создать идеальный контакт.</div>
       </div>
 
       <div class="meta-pill-bar">
-        ⚡ Формат: Экспресс-калибровка • Время: 2 мин • Результат: Базовый нейропрофиль сразу
+        ⚡ 16 шкальных осей • 4 карточки сонастройки • VIP-нейропрофиль сразу
       </div>
 
       <div class="btn-group-vertical">
         <button class="btn btn-primary btn-pulse" onclick="startTest()">
-          Собрать карту идеального контакта
+          Пройти тестирование PRO
         </button>
         <button class="btn btn-secondary" onclick="shareBotLink()">
           Отправить калибровку партнёру
@@ -778,17 +679,17 @@
       </div>
     </div>
 
-    <!-- ШАГИ ТЕСТА 1-3 -->
-    <div id="test-section" style="display: none; flex-direction: column; flex-grow: 1; justify-content: space-between;">
-      <div>
-        <div class="top-bar">
-          <div class="brand-tag">IDEALIUM®</div>
-          <div class="step-counter" id="step-indicator">1/3</div>
-        </div>
-        <h1 class="test-title">Идеальный контакт — он какой?</h1>
-
-        <div class="scales-wrapper" id="scales-container"></div>
+    <!-- ШАГИ ТЕСТА 1-4 (Темный минималистичный премиум-интерфейс) -->
+    <div id="test-section" style="display: none; width: 100%;">
+      <div class="top-bar">
+        <div class="brand-tag">IDEALIUM® SOMMELIER</div>
+        <div class="step-counter" id="step-indicator">1/4</div>
       </div>
+      
+      <h1 class="test-main-title">Идеальный чувственный контакт</h1>
+      <div class="test-subtitle">Откалибруйте степень желанности каждого элемента взаимодействия</div>
+
+      <div class="scales-wrapper" id="scales-container"></div>
 
       <div class="btn-group">
         <button class="btn btn-secondary btn-half" id="prev-btn" onclick="prevStep()">Назад</button>
@@ -796,14 +697,15 @@
       </div>
     </div>
 
-    <!-- ЭКРАН ОТЧЕТА -->
+    <!-- ЭКРАН ОТЧЕТА (Белые контрастные карточки) -->
     <div id="result-section" class="result-section">
-      <div style="text-align: center; margin-bottom: 2px;">
-        <h1 class="report-main-title">IDEALIUM® REPORT</h1>
-        <div style="font-size: 11.5px; color: var(--text-muted);">Базовый сенсорный паспорт</div>
+      <div class="result-header-card" style="text-align: center; padding: 18px 20px;">
+        <div class="brand-tag" style="color: var(--primary-red); margin-bottom: 4px;">IDEALIUM® PRO SOMMELIER</div>
+        <h1 class="report-main-title">СЕНСОРНЫЙ ПАСПОРТ</h1>
+        <div style="font-size: 11.5px; color: var(--text-muted-dark);">Индивидуальный профиль наслаждения</div>
       </div>
 
-      <!-- КАРТОЧКА 1: Окситоцин -->
+      <!-- Карточка 1: Окситоцин -->
       <div class="driver-card">
         <div class="driver-top-row">
           <span class="driver-title">Окситоцин (Тепло и Слияние)</span>
@@ -811,22 +713,9 @@
         </div>
         <div class="bar-bg"><div class="bar-fill" id="oxy-bar" style="width: 0%;"></div></div>
         <div class="driver-main-desc" id="oxy-desc">Расчет потребности...</div>
-        
-        <button class="toggle-details-btn" onclick="toggleDetails('oxy-details', this)">
-          Подробнее <span class="details-arrow">▼</span>
-        </button>
-
-        <div id="oxy-details" class="expandable-content">
-          <div class="details-subheading">Психоэмоциональная борьба</div>
-          Снимает страх отвержения, гиперконтроль и глубинное телесное одиночество. Блокирует фоновую тревожность.
-          <div class="details-subheading">Нейробиологические триггеры выработки</div>
-          • Медленный непрерывный контакт «кожа к коже» и прикосновение к чувствительным зонам.<br>
-          • Долгий непрерывный взгляд глаза в глаза (синхронизация зеркальных нейронов).<br>
-          • Забота: ухаживание за цветами, объятия с питомцем, совместное неспешное чаепитие.
-        </div>
       </div>
 
-      <!-- КАРТОЧКА 2: Серотонин -->
+      <!-- Карточка 2: Серотонин -->
       <div class="driver-card">
         <div class="driver-top-row">
           <span class="driver-title">Серотонин (Статус и Достоинство)</span>
@@ -834,22 +723,9 @@
         </div>
         <div class="bar-bg"><div class="bar-fill" id="ser-bar" style="width: 0%;"></div></div>
         <div class="driver-main-desc" id="ser-desc">Расчет потребности...</div>
-
-        <button class="toggle-details-btn" onclick="toggleDetails('ser-details', this)">
-          Подробнее <span class="details-arrow">▼</span>
-        </button>
-
-        <div id="ser-details" class="expandable-content">
-          <div class="details-subheading">Психоэмоциональная борьба</div>
-          Защищает от чувства ничтожности, унижения, стыда и необходимости заслуживать любовь. Дает ощущение авторитета и спокойного превосходства.
-          <div class="details-subheading">Нейробиологические триггеры выработки</div>
-          • Фразы признания («мой мужчина», «ты особенная», искреннее восхищение выбором).<br>
-          • Просьба о помощи и защите, подтверждающая лидерство и силу.<br>
-          • Эстетика пространства, сдержанная статусная дистанция и безусловное уважение границ.
-        </div>
       </div>
 
-      <!-- КАРТОЧКА 3: Дофамин -->
+      <!-- Карточка 3: Дофамин -->
       <div class="driver-card">
         <div class="driver-top-row">
           <span class="driver-title">Дофамин (Риск и Страсть)</span>
@@ -857,25 +733,12 @@
         </div>
         <div class="bar-bg"><div class="bar-fill" id="dop-bar" style="width: 0%;"></div></div>
         <div class="driver-main-desc" id="dop-desc">Расчет потребности...</div>
-
-        <button class="toggle-details-btn" onclick="toggleDetails('dop-details', this)">
-          Подробнее <span class="details-arrow">▼</span>
-        </button>
-
-        <div id="dop-details" class="expandable-content">
-          <div class="details-subheading">Психоэмоциональная борьба</div>
-          Борется со скукой, бытовой рутиной, апатией и удушающей предсказуемостью. Включает охотничий инстинкт.
-          <div class="details-subheading">Нейробиологические триггеры выработки</div>
-          • Недоступность и сексуальная интрига (предвкушение награды сильнее самого обладания).<br>
-          • Внезапная смена локации, дерзкий флирт, слом привычного ролевого сценария.<br>
-          • Контрастный темпоритм: чередование паузы и нарастающего напряжения.
-        </div>
       </div>
 
-      <!-- КАРТОЧКА 4: Итоговая формула контакта -->
+      <!-- Карточка 4: Итоговая формула контакта -->
       <div class="info-white-card">
         <div class="driver-top-row" style="margin-bottom: 6px;">
-          <span class="driver-title" style="font-size: 16px;">Итоговая формула контакта</span>
+          <span class="driver-title" style="font-size: 15.5px;">Итоговая формула контакта</span>
         </div>
 
         <div id="formula-shares" class="formula-shares-bar">
@@ -884,83 +747,28 @@
           <span>Дофамин: ...%</span>
         </div>
 
-        <div class="formula-section-title">Чего не хочется:</div>
+        <div class="formula-section-title">Чего категорически не хочется:</div>
         <div id="anti-ideal-text" class="formula-text loading-pulse">
           Анализ стоп-факторов через Gemini...
         </div>
 
-        <div class="formula-section-title">Чего хочется:</div>
+        <div class="formula-section-title">Чего хочется (Идеальный сценарий):</div>
         <div id="ideal-text" class="formula-text loading-pulse">
-          Анализ идеального сценария через Gemini...
+          Формирование идеального сценария через Gemini...
         </div>
       </div>
 
       <div class="report-note">
-        Это основа вашего сенсорного профиля. Сохраните её для себя или перешлите партнёру, чтобы сонастроить контакт без лишних неловких разговоров.
+        Сохраните этот сенсорный паспорт или перешлите партнёру для идеальной сонастройки.
       </div>
 
-      <!-- Кнопка 1: Отправить/сохранить отчет -->
-      <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 15px;" onclick="saveOrShareReport()">
-        Сохранить демо-отчет / Отправить партнёру
+      <button class="btn btn-primary btn-pulse" style="width: 100%;" onclick="saveOrShareReport()">
+        Сохранить отчет / Отправить партнёру
       </button>
 
-      <!-- Кнопка 2: Переход на PRO уровень -->
-      <button class="btn btn-pro-gold" style="width: 100%; padding: 15px;" onclick="openProSection()">
-        PRO-исследование | Полная спецификация →
+      <button class="btn btn-secondary" style="width: 100%; margin-bottom: 20px;" onclick="restartTest()">
+        Пройти заново
       </button>
-
-      <!-- Кнопка 3: Пройти заново -->
-      <div style="margin-top: 2px; margin-bottom: 20px;">
-        <button class="btn btn-secondary" style="width: 100%; padding: 13px;" onclick="restartTest()">Пройти заново</button>
-      </div>
-    </div>
-
-    <!-- ЭКРАН PRO УРОВНЯ -->
-    <div id="pro-section" class="pro-section">
-      <div style="text-align: center; margin-bottom: 4px;">
-        <div class="pro-badge">PRO LEVEL SPECIFICATION</div>
-        <h1 class="report-main-title" style="font-size: 19px;">Глубокая сенсорная спецификация</h1>
-        <div style="font-size: 11.5px; color: var(--text-muted);">Прикладной протокол для вас и вашего партнера</div>
-      </div>
-
-      <div class="pro-hero-card">
-        
-        <div class="pro-label-group">Входит в PRO-исследование:</div>
-
-        <!-- 1. 18-мерное пространство -->
-        <div class="pro-card-main">
-          <div class="pro-block-title">📊 18-мерное пространство оттенков</div>
-          <div class="pro-block-desc">Откройте для себя 9 дополнительных скрытых измерений влечения. Научитесь, как чувственный сомелье, улавливать тончайшие полутона чувств, расшифровывать зажимы и понимать опыт, которого требует тело.</div>
-        </div>
-
-        <!-- 2. Чувственное ТЗ для любви -->
-        <div class="pro-card-main">
-          <div class="pro-block-title">🌿 Чувственное ТЗ для партнёра</div>
-          <div class="pro-block-desc">Получите и отправьте партнёру конкретную инструкцию по сенсорным триггерам: звукам, светотени, ароматам и плотности прикосновений. Позвольте партнёру точно понять, как доставить вам идеальный чувственный опыт, который нельзя купить за деньги.</div>
-        </div>
-
-        <div class="pro-label-group" style="margin-top: 14px;">Открывает доступ к ступеням:</div>
-
-        <!-- 3. Парный тест и наложение -->
-        <div class="pro-card-access">
-          <div class="pro-block-title">🔗 Доступ к тесту для пары (Match Engine)</div>
-          <div class="pro-block-desc">Отдельный модуль парной калибровки: наложите данные друг друга, чтобы найти то, от чего оба сойдёте с ума, и убрать точки трения. Откройте доступ к глубине, которую невозможно испытать в одиночестве.</div>
-        </div>
-
-        <!-- 4. Индивидуальный аудит -->
-        <div class="pro-card-access" style="margin-bottom: 16px;">
-          <div class="pro-block-title">💎 Приоритет на индивидуальную сессию</div>
-          <div class="pro-block-desc">Прямой приоритетный доступ к глубокому психометрическому замеру и индивидуальной консультации с автором методики.</div>
-        </div>
-
-        <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 16px; margin-bottom: 10px;" onclick="triggerHaptic(3); showToast('Контакт автора скопирован: @ilyaaugust'); copyAuthorHandle();">
-          Получить PRO-исследование — 499 ₽
-        </button>
-
-        <button class="btn btn-secondary" style="width: 100%; padding: 12px;" onclick="closeProSection()">
-          ← Назад к демо-отчету
-        </button>
-      </div>
     </div>
 
   </div>
@@ -996,7 +804,7 @@
       if (tg?.HapticFeedback) {
         if (absVal === 1) tg.HapticFeedback.selectionChanged();
         else if (absVal === 2) tg.HapticFeedback.impactOccurred('medium');
-        else if (absVal === 3) tg.HapticFeedback.impactOccurred('heavy');
+        else if (absVal >= 3) tg.HapticFeedback.impactOccurred('heavy');
       }
     }
 
@@ -1009,142 +817,121 @@
       }, 2600);
     }
 
-    function toggleDetails(id, btn) {
-      triggerHaptic(1);
-      const el = document.getElementById(id);
-      const arrow = btn.querySelector(".details-arrow");
-      if (el.classList.contains("is-open")) {
-        el.classList.remove("is-open");
-        if (arrow) arrow.classList.remove("rotated");
-      } else {
-        el.classList.add("is-open");
-        if (arrow) arrow.classList.add("rotated");
-      }
-    }
-
-    function openProSection() {
-      triggerHaptic(2);
-      document.getElementById("result-section").style.display = "none";
-      document.getElementById("pro-section").style.display = "flex";
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function closeProSection() {
-      triggerHaptic(1);
-      document.getElementById("pro-section").style.display = "none";
-      document.getElementById("result-section").style.display = "flex";
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function copyAuthorHandle() {
-      navigator.clipboard.writeText("@ilyaaugust");
-    }
-
-    const scales = [
+    // 16 шкал, разбитых на 4 карточки по 4 вопроса (без лишнего визуального шума)
+    const descriptorsSteps = [
+      // Карточка 1/4
       [
-        { left: "Властно-Направляющий", right: "Сладостно-Уступающий", driver: "ser", inverted: false },
-        { left: "Предельно-Искренний", right: "Загадочно-Сдержанный", driver: "oxy", inverted: false },
-        { left: "Привычно-Домашний", right: "Дерзко-Спонтанный", driver: "dop", inverted: true },
-        { left: "Легко-Непринужденный", right: "Торжественно-Статусный", driver: "ser", inverted: true },
-        { left: "Мягко-Обнимающий", right: "Контрастно-Бодрящий", driver: "oxy", inverted: false }
+        { id: "d1", title: "Непрерывный тактильный контакт", desc: "Объятия «кожа к коже», микропоглаживания, эффект телесного слияния", driver: "oxy" },
+        { id: "d2", title: "Абсолютное доминирование и ведение", desc: "Управление процессом, расстановка акцентов, власть над ситуацией", driver: "ser" },
+        { id: "d3", title: "Непредсказуемая интрига и азарт", desc: "Спонтанность, игра на грани фола, элемент запретности и охоты", driver: "dop" },
+        { id: "d4", title: "Автономное личное пространство", desc: "Четкие физические границы, точечные касания без эффекта прилипания", driver: "oxy_inv" }
       ],
+      // Карточка 2/4
       [
-        { left: "Остро-Провокационный", right: "Прямодушно-Открытый", driver: "dop", inverted: false },
-        { left: "Безмятежно-Расслабленный", right: "Осознанно-Собранный", driver: "oxy", inverted: false },
-        { left: "Искренне-Восхищенный", right: "Безоговорочно-Гордый", driver: "ser", inverted: true },
-        { left: "Неукротимо-Страстный", right: "Чутко-Созерцательный", driver: "dop", inverted: false },
-        { left: "Свободно-Партнерский", right: "Слитно-Неделимый", driver: "oxy", inverted: true }
+        { id: "d5", title: "Тотальная сдача контроля", desc: "Снять с себя ответственность, доверить тело и следовать за чужой волей", driver: "ser" },
+        { id: "d6", title: "Стабильный предсказуемый ритуал", desc: "Понятный сценарий, спокойствие, отсутствие резких сюрпризов", driver: "dop_inv" },
+        { id: "d7", title: "Безусловное принятие и уязвимость", desc: "Возможность снять социальные маски и быть слабым, полное тепло", driver: "oxy" },
+        { id: "d8", title: "Премиальный статус и культ", desc: "Атмосфера исключительности, эстетика Quiet Luxury, поклонение образу", driver: "ser" }
       ],
+      // Карточка 3/4
       [
-        { left: "Особо-Желанный", right: "Просто-Уютный", driver: "ser", inverted: false },
-        { left: "Классически-Каноничный", right: "Смело-Экспериментальный", driver: "dop", inverted: true },
-        { left: "Томительно-Медленный", right: "Ритмично-Страстный", driver: "oxy", inverted: false },
-        { left: "Властно-Уверенный", right: "Мягко-Податливый", driver: "ser", inverted: false },
-        { left: "Интригующе-Тайный", right: "Откровенно-Прямой", driver: "dop", inverted: false }
+        { id: "d9", title: "Высокая сенсорная контрастность", desc: "Смена температур, плотный хват, яркие тактильные вспышки", driver: "dop" },
+        { id: "d10", title: "Эмоциональная дистанция и маска", desc: "Легкий светский фрейм, сдержанность без глубоких откровений", driver: "oxy_inv" },
+        { id: "d11", title: "Приземленная простота без церемоний", desc: "Утилитарность, отсутствие сложного пафоса и статусных декораций", driver: "ser_inv" },
+        { id: "d12", title: "Плавное медитативное убаюкивание", desc: "Равномерное тепло, мягкий полумрак, фоновое спокойствие", driver: "dop_inv" }
+      ],
+      // Карточка 4/4
+      [
+        { id: "d13", title: "Синхронизация дыхания и взглядов", desc: "Трансовая сонастройка «глаза в глаза», созвучие темпоритма", driver: "oxy" },
+        { id: "d14", title: "Сакральный ритуал и служение", desc: "Ролевая асимметрия, где партнер выступает объектом поклонения", driver: "ser" },
+        { id: "d15", title: "Дразнящая недоступность (Охота)", desc: "Флирт с дистанцией, томление, растягивание ожидания перед пиком", driver: "dop" },
+        { id: "d16", title: "Партнерское равноправие 50/50", desc: "Симметричные роли, отсутствие иерархии и ролевого доминирования", driver: "ser_inv" }
       ]
     ];
+
+    function getThumbClass(val) {
+      if (val === 0) return "wave-pulse";
+      if (val === 1) return "val-pos-1";
+      if (val === 2) return "val-pos-2";
+      if (val === 3) return "val-pos-3";
+      if (val === -1) return "val-neg-1";
+      if (val === -2) return "val-neg-2";
+      if (val === -3) return "val-neg-3";
+      return "wave-pulse";
+    }
 
     let currentStep = 0;
     const userAnswers = {};
 
     function startTest() {
       triggerHaptic(2);
-      document.body.classList.remove("is-scroll-view");
-      document.getElementById("main-container").classList.remove("scroll-mode");
       document.getElementById("intro-section").style.display = "none";
-      document.getElementById("test-section").style.display = "flex";
+      document.getElementById("test-section").style.display = "block";
       renderScales();
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function getThumbClass(val, index) {
-      const abs = Math.abs(val);
-      if (abs === 1) return "val-1";
-      if (abs === 2) return "val-2";
-      if (abs === 3) return "val-3";
-      return `wave-${index % 5}`;
     }
 
     function renderScales() {
       const container = document.getElementById("scales-container");
       container.innerHTML = "";
       
-      const currentScales = scales[currentStep];
-      document.getElementById("step-indicator").innerText = `${currentStep + 1}/3`;
+      const currentList = descriptorsSteps[currentStep];
+      document.getElementById("step-indicator").innerText = `${currentStep + 1}/4`;
 
-      currentScales.forEach((item, index) => {
-        const id = `scale_${currentStep}_${index}`;
-        const val = userAnswers[id] !== undefined ? userAnswers[id] : 0;
-        const thumbClass = getThumbClass(val, index);
+      currentList.forEach((item, index) => {
+        const val = userAnswers[item.id] !== undefined ? userAnswers[item.id] : 0;
+        const thumbClass = getThumbClass(val);
 
-        const card = document.createElement("div");
-        card.className = "scale-card";
-        card.innerHTML = `
-          <div class="scale-labels">
-            <span class="label-left">${item.left}</span>
-            <span class="label-right">${item.right}</span>
-          </div>
+        const row = document.createElement("div");
+        row.className = "scale-row";
+        row.innerHTML = `
+          <div class="descriptor-title">${item.title}</div>
+          <div class="descriptor-desc">${item.desc}</div>
           <div class="slider-container">
-            <input type="range" id="${id}" class="${thumbClass}" min="-3" max="3" step="1" value="${val}" oninput="handleSlide('${id}', this.value, ${index})">
+            <input type="range" id="${item.id}" class="${thumbClass}" min="-3" max="3" step="1" value="${val}" oninput="handleSlide('${item.id}', this.value)">
+            <div class="slider-labels-row">
+              <span>-3 (Не моё)</span>
+              <span>+3 (Абсолютный идеал)</span>
+            </div>
             <div class="slider-ticks-flex">
               <span>-3</span><span>-2</span><span>-1</span><span>0</span><span>+1</span><span>+2</span><span>+3</span>
             </div>
           </div>
         `;
-        container.appendChild(card);
+        container.appendChild(row);
 
         setTimeout(() => {
-          card.classList.add("show-card");
-        }, index * 60 + 30);
+          row.classList.add("show-scale");
+        }, index * 40 + 20);
       });
 
       document.getElementById("prev-btn").innerText = currentStep === 0 ? "В начало" : "Назад";
-      document.getElementById("next-btn").innerText = currentStep === 2 ? "Получить отчет" : "Далее";
+      document.getElementById("next-btn").innerText = currentStep === 3 ? "Получить паспорт" : "Далее";
     }
 
-    function handleSlide(id, value, index) {
+    function handleSlide(id, value) {
       const intVal = parseInt(value, 10);
       const prevVal = userAnswers[id] !== undefined ? userAnswers[id] : 0;
       userAnswers[id] = intVal;
       
-      const el = document.getElementById(id);
-      el.className = getThumbClass(intVal, index);
+      const inputEl = document.getElementById(id);
+      inputEl.className = getThumbClass(intVal);
 
       if (intVal !== prevVal) {
-        triggerHaptic(Math.abs(intVal));
+        triggerHaptic(Math.abs(intVal) || 1);
       }
     }
 
     function nextStep() {
       triggerHaptic(1);
-      scales[currentStep].forEach((_, index) => {
-        const id = `scale_${currentStep}_${index}`;
-        if (userAnswers[id] === undefined) userAnswers[id] = 0;
+      descriptorsSteps[currentStep].forEach((item) => {
+        if (userAnswers[item.id] === undefined) userAnswers[item.id] = 0;
       });
 
-      if (currentStep < 2) {
+      if (currentStep < 3) {
         currentStep++;
         renderScales();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         calculateResults();
       }
@@ -1155,9 +942,8 @@
       if (currentStep > 0) {
         currentStep--;
         renderScales();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        document.body.classList.add("is-scroll-view");
-        document.getElementById("main-container").classList.add("scroll-mode");
         document.getElementById("test-section").style.display = "none";
         document.getElementById("intro-section").style.display = "flex";
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1174,20 +960,20 @@
       idealTextEl.innerText = "Формирование идеального сценария...";
 
       const promptText = `
-Ты психосемантический аналитик проекта IDEALIUM®.
-Проанализируй факторную структуру психосексуального идеала контакта респондента:
+Ты главный эксперт и психосемантический сомелье проекта IDEALIUM® PRO SOMMELIER.
+Проанализируй калибровку идеального контакта по 16 шкалам (от -3 до +3):
 Вклад драйверов в структуру (всего 100%):
 - Окситоцин (Тепло, нежность, доверие, слияние): ${oxyShare}%
-- Серотонин (Статус, уважение, достоинство, признание желанности): ${serShare}%
-- Дофамин (Сексуальный риск, игра, новизна, спонтанность): ${dopShare}%
+- Серотонин (Статус, уважение, достоинство, доминирование/сдача): ${serShare}%
+- Дофамин (Сексуальный риск, игра, новизна, контраст): ${dopShare}%
 
-Детализированные шкалы (-3 до +3):
+Детализированные оценки респондента (-3 до +3):
 ${JSON.stringify(detailedAnswers)}
 
 Сформулируй чистую и точную итоговую формулу контакта СТРОГО в формате JSON:
 {
-  "anti_ideal": "Ровно 2 емких предложения без общих фраз: что категорически разрушает влечение, вызывает отторжение и телесный зажим (главная боль и стоп-факторы).",
-  "ideal": "Ровно 2 емких предложения без лишней воды: идеальная чувственная атмосфера, темпоритм и сценарий контакта, чего хочется этому человеку для максимального раскрытия."
+  "anti_ideal": "Ровно 2 емких предложения: что категорически разрушает влечение, вызывает телесный зажим и отторжение (главная боль и анти-сценарий).",
+  "ideal": "Ровно 2 емких предложения: идеальная чувственная атмосфера, темпоритм, плотность контакта и роли, в которых человек раскрывается на 100%."
 }
 Ответь ТОЛЬКО валидным JSON без дополнительных символов.`;
 
@@ -1230,8 +1016,8 @@ ${JSON.stringify(detailedAnswers)}
         antiTextEl.className = "formula-text";
         idealTextEl.className = "formula-text";
 
-        let fallbackAnti = "Категорически разрушают влечение спешка, суетливые действия и необходимость оправдывать чьи-то ожидания. Бытовая рутина и критика полностью блокируют телесный отклик.";
-        let fallbackIdeal = "Необходима глубокая атмосфера приватности, выверенный темпоритм и безусловное признание вашей исключительной ценности. Чувственная сонастройка и непрерывное тактильное внимание раскрывают контакт на максимум.";
+        let fallbackAnti = "Категорически разрушают влечение спешка, суета и обесценивание ваших границ. Формальный подход и отсутствие эмоциональной включенности полностью блокируют отклик.";
+        let fallbackIdeal = "Необходима выверенная атмосфера приватности, четкое распределение ролей и чувственное внимание к вашим триггерам. Глубокая тактильность и уважение раскрывают контакт на максимум.";
 
         antiTextEl.innerText = fallbackAnti;
         idealTextEl.innerText = fallbackIdeal;
@@ -1244,21 +1030,30 @@ ${JSON.stringify(detailedAnswers)}
     function calculateResults() {
       triggerHaptic(3);
       let scores = { oxy: 0, ser: 0, dop: 0 };
-      let maxPossible = { oxy: 15, ser: 15, dop: 15 };
       let detailedList = [];
 
-      scales.forEach((group, stepIdx) => {
-        group.forEach((item, idx) => {
-          const val = userAnswers[`scale_${stepIdx}_${idx}`] || 0;
-          const normalizedScore = item.inverted ? -val : val;
-          scores[item.driver] += Math.abs(normalizedScore);
-          detailedList.push({ scale: `${item.left} — ${item.right}`, score: val, driver: item.driver });
+      descriptorsSteps.forEach((group) => {
+        group.forEach((item) => {
+          const val = userAnswers[item.id] !== undefined ? userAnswers[item.id] : 0;
+          let weight = 1;
+          let baseDriver = item.driver;
+
+          if (item.driver.endsWith("_inv")) {
+            baseDriver = item.driver.replace("_inv", "");
+            weight = -1;
+          }
+
+          const calculatedScore = (val * weight) + 3; // от 0 до 6
+          scores[baseDriver] += calculatedScore;
+
+          detailedList.push({ stimulus: item.title, score: val, driver: baseDriver });
         });
       });
 
-      const oxyPct = Math.round((scores.oxy / maxPossible.oxy) * 100);
-      const serPct = Math.round((scores.ser / maxPossible.ser) * 100);
-      const dopPct = Math.round((scores.dop / maxPossible.dop) * 100);
+      // Нормализация процентов
+      const oxyPct = Math.min(100, Math.round((scores.oxy / 30) * 100));
+      const serPct = Math.min(100, Math.round((scores.ser / 36) * 100));
+      const dopPct = Math.min(100, Math.round((scores.dop / 30) * 100));
 
       const totalScore = (scores.oxy + scores.ser + scores.dop) || 1;
       let oxyShare = Math.round((scores.oxy / totalScore) * 100);
@@ -1272,8 +1067,6 @@ ${JSON.stringify(detailedAnswers)}
       lastCalculatedData.serShare = serShare;
       lastCalculatedData.dopShare = dopShare;
 
-      document.body.classList.add("is-scroll-view");
-      document.getElementById("main-container").classList.add("scroll-mode");
       document.getElementById("test-section").style.display = "none";
       document.getElementById("result-section").style.display = "flex";
 
@@ -1292,40 +1085,39 @@ ${JSON.stringify(detailedAnswers)}
         `;
       }, 50);
 
-      document.getElementById("oxy-desc").innerText = oxyPct < 40 
-        ? "Острый дефицит тактильной безопасности. В теле преобладает гиперконтроль; для раскрепощения необходим длительный медленный вход, обнимающее легато и снятие тревожности."
-        : "Высокая потребность в эмоциональном слиянии, непрерывном нежном контакте «кожа к коже» и полном психологическом доверии.";
+      document.getElementById("oxy-desc").innerText = oxyPct < 45 
+        ? "Потребность в бережной автономности. Слишком быстрое слияние воспринимается как захват личных границ; вход в контакт должен быть неспешным и деликатным."
+        : "Высокая потребность в эмоциональном тепле, длительном непрерывном контакте «кожа к коже» и полном душевном растворении.";
 
-      document.getElementById("ser-desc").innerText = serPct < 40
-        ? "Фокус на равенстве и простоте без ролевого давления, проверок на статус и необходимости соответствовать сложным ожиданиям."
-        : "Высокая жажда признания исключительной желанности и безусловного уважения к личным границам. Важна эстетика процесса и подтверждение ценности.";
+      document.getElementById("ser-desc").innerText = serPct < 45
+        ? "Фокус на абсолютной простоте и равенстве без ролевых доминирований, демонстрации превосходства и усложненного церемониала."
+        : "Высокая жажда признания безусловной желанности и уважения к статусу. Критически важна эстетика пространства и ясная динамика контроля (ведение либо доверительная сдача).";
 
-      document.getElementById("dop-desc").innerText = dopPct < 40
-        ? "Предпочтение предсказуемого, глубокого и эмоционально безопасного сценария без резких перемен, спешки и стрессовой новизны."
-        : "Голод по новизне, сексуальной интриге и охотничьему азарту. Необходим контрастный темпоритм, элементы игры, дерзость и нарастающее напряжение.";
+      document.getElementById("dop-desc").innerText = dopPct < 45
+        ? "Предпочтение безопасного, размеренного и стабильного сценария без резких сюрпризов, напряжения и суетливой новизны."
+        : "Охотничий азарт, голод по сенсорным контрастам и сексуальной интриге. Влечение раскрывается через риск, дерзость и игру на грани.";
 
       fetchGeminiReport(oxyPct, serPct, dopPct, oxyShare, serShare, dopShare, detailedList);
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function saveOrShareReport() {
       triggerHaptic(2);
       const text = 
-`🏛 IDEALIUM® REPORT | Сенсорный паспорт
+`🏛 IDEALIUM® PRO SOMMELIER | Сенсорный паспорт
 
 🧬 Формула контакта (вклад 100%):
 • Окситоцин (Тепло и Слияние): ${lastCalculatedData.oxyShare}%
 • Серотонин (Статус и Достоинство): ${lastCalculatedData.serShare}%
 • Дофамин (Риск и Страсть): ${lastCalculatedData.dopShare}%
 
-🚫 Чего не хочется:
+🚫 Стоп-факторы:
 ${lastCalculatedData.antiIdealText}
 
-✨ Чего хочется:
+✨ Идеальный сценарий:
 ${lastCalculatedData.idealText}
 
-📌 Это основа моего сенсорного профиля. Пройди калибровку и сонастройся: ${BOT_APP_URL}`;
+📌 Откалибруй свой идеальный контакт: ${BOT_APP_URL}`;
 
       const shareTgUrl = `https://t.me/share/url?url=${encodeURIComponent(BOT_APP_URL)}&text=${encodeURIComponent(text)}`;
 
@@ -1333,7 +1125,7 @@ ${lastCalculatedData.idealText}
         tg.openTelegramLink(shareTgUrl);
       } else if (navigator.share) {
         navigator.share({
-          title: "IDEALIUM® REPORT",
+          title: "IDEALIUM® PRO SOMMELIER",
           text: text
         }).catch(() => copyToClipboard(text));
       } else {
@@ -1343,7 +1135,7 @@ ${lastCalculatedData.idealText}
 
     function shareBotLink() {
       triggerHaptic(1);
-      const inviteText = "Пройди психосемантический тест IDEALIUM® и определи параметры идеального контакта ✨";
+      const inviteText = "Пройди калибровку идеального контакта IDEALIUM® PRO SOMMELIER ✨";
       const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(BOT_APP_URL)}&text=${encodeURIComponent(inviteText)}`;
       
       if (tg?.openTelegramLink) {
@@ -1353,17 +1145,16 @@ ${lastCalculatedData.idealText}
       }
     }
 
-    function copyAuthorHandle() {
-      navigator.clipboard.writeText("@ilyaaugust");
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("Скопировано в буфер обмена!");
+      });
     }
 
     function restartTest() {
       triggerHaptic(2);
       for (let key in userAnswers) delete userAnswers[key];
       currentStep = 0;
-      document.body.classList.add("is-scroll-view");
-      document.getElementById("main-container").classList.add("scroll-mode");
-      document.getElementById("pro-section").style.display = "none";
       document.getElementById("result-section").style.display = "none";
       document.getElementById("intro-section").style.display = "flex";
       window.scrollTo({ top: 0, behavior: 'smooth' });

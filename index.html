@@ -1223,13 +1223,10 @@ ${lastCalculatedData.idealText}
 
     function orderConsultation() {
       triggerHaptic(2);
-      const text = "Здравствуйте, Илья! Прошел экспресс-калибровку IDEALIUM®, хочу заказать консультацию по своему сенсорному профилю.";
-      const shareUrl = `https://t.me/share/url?url=${encodeURIComponent('https://t.me/ilyaaugust')}&text=${encodeURIComponent(text)}`;
-      
       if (tg?.openTelegramLink) {
-        tg.openTelegramLink(shareUrl);
+        tg.openTelegramLink("https://t.me/ilyaaugust");
       } else {
-        window.location.href = `https://t.me/ilyaaugust`;
+        window.location.href = "https://t.me/ilyaaugust";
       }
     }
 

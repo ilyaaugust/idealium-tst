@@ -103,7 +103,7 @@
       letter-spacing: 1px;
     }
 
-    /* Введение: улучшенная типографика и отступы */
+    /* Введение */
     .intro-card-wrap {
       display: flex;
       flex-direction: column;
@@ -149,7 +149,6 @@
       padding-left: 12px;
     }
 
-    /* Белые карточки дефицитов с легкой красной обводкой */
     .deficit-card {
       background: #FFFFFF;
       border-radius: 16px;
@@ -670,7 +669,7 @@
 
   <div class="container scroll-mode" id="main-container">
     
-    <!-- ШАГ 0: Продающий экран введения с выверенным UX -->
+    <!-- ШАГ 0: Продающий экран введения -->
     <div id="intro-section" class="intro-card-wrap">
       <div class="intro-hero-box">
         <div class="top-bar">
@@ -685,19 +684,19 @@
           Любое глубинное влечение — это попытка мозга закрыть один из трех острых нейрохимических дефицитов:
         </div>
 
-        <!-- Белая карточка 1 с красной обводкой -->
+        <!-- Белая карточка 1 -->
         <div class="deficit-card">
           <div class="deficit-title">Окситоциновый голод (Боль изоляции)</div>
           <div class="deficit-text">Фоновое одиночество, страх отвержения и холод. Жажда тотального тепла, безопасности и растворения границ.</div>
         </div>
 
-        <!-- Белая карточка 2 с красной обводкой -->
+        <!-- Белая карточка 2 -->
         <div class="deficit-card">
           <div class="deficit-title">Серотониновый голод (Боль обесценивания)</div>
           <div class="deficit-text">Страх унижения, потери контроля и ранга. Жажда признания, поклонения, абсолютной власти или безопасной сдачи контроля.</div>
         </div>
 
-        <!-- Белая карточка 3 с красной обводкой -->
+        <!-- Белая карточка 3 -->
         <div class="deficit-card">
           <div class="deficit-title">Дофаминовый голод (Боль эмоциональной смерти)</div>
           <div class="deficit-text">Серая рутина, скука и апатия. Жажда электричества, азарта, запретного риска и сенсорного взрыва.</div>
@@ -851,9 +850,9 @@
         Сохранить демо-отчет / Отправить партнёру
       </button>
 
-      <!-- Кнопка 2: Заказать консультацию автора -->
+      <!-- Кнопка 2: Заказать консультацию -->
       <button class="btn btn-author" style="width: 100%; padding: 14px;" onclick="orderConsultation()">
-        Заказать консультацию автора
+        Заказать консультацию
       </button>
 
       <!-- Кнопка 3: Пройти заново -->
@@ -1235,10 +1234,13 @@ ${lastCalculatedData.idealText}
 
     function orderConsultation() {
       triggerHaptic(2);
+      const message = "Здравствуйте, Илья! Прошел экспресс-калибровку IDEALIUM®, хочу заказать консультацию по своему сенсорному профилю.";
+      const targetUrl = `https://t.me/ilyaaugust?text=${encodeURIComponent(message)}`;
+      
       if (tg?.openTelegramLink) {
-        tg.openTelegramLink("https://t.me/ilyaaugust");
+        tg.openTelegramLink(targetUrl);
       } else {
-        window.open("https://t.me/ilyaaugust", "_blank");
+        window.open(targetUrl, "_blank");
       }
     }
 

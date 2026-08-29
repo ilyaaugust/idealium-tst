@@ -6,7 +6,7 @@
   <title>IDEALIUM®</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <style>
@@ -20,6 +20,7 @@
       --text-main: #2A2523;
       --text-muted: #7A726D;
       --border-color: #E8E2D9;
+      --border-red-light: rgba(139, 0, 0, 0.22);
       --track-bg: #EAE5DC;
     }
 
@@ -63,12 +64,12 @@
       overflow: hidden;
     }
 
-    body.is-report-view {
+    body.is-scroll-view {
       align-items: flex-start !important;
-      padding: 16px 12px 40px 12px !important;
+      padding: 14px 12px 36px 12px !important;
     }
 
-    .container.report-mode {
+    .container.scroll-mode {
       height: auto !important;
       max-height: none !important;
       background: transparent !important;
@@ -82,7 +83,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       padding-bottom: 8px;
       border-bottom: 1px solid #F2ECE4;
     }
@@ -102,33 +103,132 @@
       letter-spacing: 1px;
     }
 
-    .intro-title {
-      font-size: 18.5px;
-      font-weight: 700;
+    /* Введение: улучшенная типографика и отступы */
+    .intro-card-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .intro-hero-box {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 22px 20px 20px 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 6px 20px rgba(74, 14, 23, 0.04);
+    }
+
+    .intro-main-title {
+      font-size: 19px;
+      font-weight: 800;
       color: var(--dark-red);
-      text-align: left;
       line-height: 1.35;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    }
-
-    .intro-body-text {
-      font-size: 12.5px;
-      line-height: 1.6;
-      color: #4A423E;
+      margin-bottom: 6px;
       text-align: left;
-      margin-bottom: 22px;
     }
 
-    .intro-scale-guide-clean {
-      border-left: 3px solid var(--primary-red);
-      padding-left: 14px;
-      font-size: 11.5px;
+    .intro-sub-lead {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+    .intro-deficits-lead {
+      font-size: 12.5px;
+      font-weight: 600;
       line-height: 1.6;
       color: var(--text-main);
+      margin-top: 6px;
+      margin-bottom: 14px;
+      text-align: left;
+      border-left: 3px solid var(--primary-red);
+      padding-left: 12px;
+    }
+
+    /* Белые карточки дефицитов с легкой красной обводкой */
+    .deficit-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-red-light);
+      box-shadow: 0 4px 14px rgba(139, 0, 0, 0.03);
       text-align: left;
     }
 
+    .deficit-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .deficit-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 5px;
+    }
+
+    .deficit-text {
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #4E4642;
+    }
+
+    .benefits-box {
+      background: #FFFFFF;
+      border-radius: 18px;
+      padding: 18px 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 6px 20px rgba(74, 14, 23, 0.04);
+      text-align: left;
+    }
+
+    .benefits-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 10px;
+    }
+
+    .benefit-item {
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #4A423E;
+      margin-bottom: 10px;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .benefit-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .benefit-item::before {
+      content: "•";
+      color: var(--primary-red);
+      font-weight: 800;
+      position: absolute;
+      left: 0;
+      top: -1px;
+      font-size: 14px;
+    }
+
+    .meta-pill-bar {
+      background: #EFEAE1;
+      color: #554D48;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 12px;
+      text-align: center;
+      line-height: 1.4;
+      letter-spacing: 0.3px;
+    }
+
+    /* Шкалы */
     .test-title {
       font-size: 17.5px;
       font-weight: 700;
@@ -284,6 +384,7 @@
     .slider-ticks-flex span:first-child { margin-left: -8px; }
     .slider-ticks-flex span:last-child { margin-right: -8px; }
 
+    /* Кнопки */
     .btn-group {
       display: flex;
       gap: 10px;
@@ -302,10 +403,10 @@
     }
 
     .btn {
-      padding: 14px 16px;
+      padding: 15px 16px;
       border-radius: 14px;
       font-size: 13.5px;
-      font-weight: 600;
+      font-weight: 700;
       text-align: center;
       cursor: pointer;
       border: none;
@@ -354,6 +455,7 @@
       50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(178, 34, 34, 0.45); }
     }
 
+    /* Экран отчета */
     .result-section {
       display: none;
       flex-direction: column;
@@ -488,7 +590,6 @@
       margin-top: 0;
     }
 
-    /* Стили формулы */
     .formula-shares-bar {
       font-size: 12px;
       font-weight: 700;
@@ -565,40 +666,66 @@
     }
   </style>
 </head>
-<body>
+<body class="is-scroll-view">
 
-  <div class="container" id="main-container">
-    <!-- Шаг 0: Введение -->
-    <div id="intro-section" style="display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;">
-      <div>
+  <div class="container scroll-mode" id="main-container">
+    
+    <!-- ШАГ 0: Продающий экран введения с выверенным UX -->
+    <div id="intro-section" class="intro-card-wrap">
+      <div class="intro-hero-box">
         <div class="top-bar">
-          <div class="brand-tag">IDEALIUM®</div>
+          <div class="brand-tag">IDEALIUM® PROTOCOL</div>
           <div class="step-counter">START</div>
         </div>
 
-        <h1 class="intro-title">Идеальный психосексуальный контакт — для вас он какой?</h1>
+        <h1 class="intro-main-title">Оцифруйте свой абсолютный сценарий наслаждения</h1>
+        <div class="intro-sub-lead">(Без неловких разговоров, догадок и испорченных встреч)</div>
 
-        <div class="intro-body-text">
-          Перед вами полярные пары дескрипторов, описывающие различные характеристики и оттенки идеального в вашем представлении психосексуального контакта.
-          <br><br>
-          Оценивайте качества по первому импульсу. Двигайте ползунок исходя из ощущений. Если какой-то дескриптор вам непонятен — оставьте ползунок в центре на 0.
+        <div class="intro-deficits-lead">
+          Любое глубинное влечение — это попытка мозга закрыть один из трех острых нейрохимических дефицитов:
         </div>
 
-        <div class="intro-scale-guide-clean">
-          <strong style="color: var(--dark-red);">Шкала отклика:</strong><br>
-          • <strong>0 (По центру)</strong> — нейтрально / пропустить<br>
-          • <strong>+3</strong> — абсолютно ассоциируется с идеалом<br>
-          • <strong>-3</strong> — абсолютно не ассоциируется / отталкивает
+        <!-- Белая карточка 1 с красной обводкой -->
+        <div class="deficit-card">
+          <div class="deficit-title">Окситоциновый голод (Боль изоляции)</div>
+          <div class="deficit-text">Фоновое одиночество, страх отвержения и холод. Жажда тотального тепла, безопасности и растворения границ.</div>
         </div>
+
+        <!-- Белая карточка 2 с красной обводкой -->
+        <div class="deficit-card">
+          <div class="deficit-title">Серотониновый голод (Боль обесценивания)</div>
+          <div class="deficit-text">Страх унижения, потери контроля и ранга. Жажда признания, поклонения, абсолютной власти или безопасной сдачи контроля.</div>
+        </div>
+
+        <!-- Белая карточка 3 с красной обводкой -->
+        <div class="deficit-card">
+          <div class="deficit-title">Дофаминовый голод (Боль эмоциональной смерти)</div>
+          <div class="deficit-text">Серая рутина, скука и апатия. Жажда электричества, азарта, запретного риска и сенсорного взрыва.</div>
+        </div>
+      </div>
+
+      <!-- Блок ценности -->
+      <div class="benefits-box">
+        <div class="benefits-title">За 2 минуты на шкалах калибровки вы получите:</div>
+        <div class="benefit-item"><strong>Диагноз скрытой тяги:</strong> поймете, какое именно нейрохимическое топливо запускает ваше пиковое влечение.</div>
+        <div class="benefit-item"><strong>Карту идеального сценария:</strong> точный вектор темпа, дистанции, ролей и тактильных триггеров для партнера.</div>
+      </div>
+
+      <div class="meta-pill-bar">
+        ⚡ Формат: Экспресс-калибровка • Время: 2 мин • Результат: Базовый нейропрофиль сразу
       </div>
 
       <div class="btn-group-vertical">
-        <button class="btn btn-primary btn-pulse" onclick="startTest()">Далее</button>
-        <button class="btn btn-secondary" onclick="shareBotLink()">Отправить тест партнёру</button>
+        <button class="btn btn-primary btn-pulse" onclick="startTest()">
+          Собрать карту идеального контакта
+        </button>
+        <button class="btn btn-secondary" onclick="shareBotLink()">
+          Отправить калибровку партнёру
+        </button>
       </div>
     </div>
 
-    <!-- Шаги теста 1-3 -->
+    <!-- ШАГИ ТЕСТА 1-3 -->
     <div id="test-section" style="display: none; flex-direction: column; flex-grow: 1; justify-content: space-between;">
       <div>
         <div class="top-bar">
@@ -616,7 +743,7 @@
       </div>
     </div>
 
-    <!-- Экран отчета -->
+    <!-- ЭКРАН ОТЧЕТА -->
     <div id="result-section" class="result-section">
       <div style="text-align: center; margin-bottom: 2px;">
         <h1 class="report-main-title">IDEALIUM® REPORT</h1>
@@ -822,9 +949,12 @@
 
     function startTest() {
       triggerHaptic(2);
+      document.body.classList.remove("is-scroll-view");
+      document.getElementById("main-container").classList.remove("scroll-mode");
       document.getElementById("intro-section").style.display = "none";
       document.getElementById("test-section").style.display = "flex";
       renderScales();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function getThumbClass(val, index) {
@@ -906,8 +1036,11 @@
         currentStep--;
         renderScales();
       } else {
+        document.body.classList.add("is-scroll-view");
+        document.getElementById("main-container").classList.add("scroll-mode");
         document.getElementById("test-section").style.display = "none";
         document.getElementById("intro-section").style.display = "flex";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -1007,7 +1140,6 @@ ${JSON.stringify(detailedAnswers)}
       const serPct = Math.round((scores.ser / maxPossible.ser) * 100);
       const dopPct = Math.round((scores.dop / maxPossible.dop) * 100);
 
-      // Расчет долей в общей факторной структуре (сумма 100%)
       const totalScore = (scores.oxy + scores.ser + scores.dop) || 1;
       let oxyShare = Math.round((scores.oxy / totalScore) * 100);
       let serShare = Math.round((scores.ser / totalScore) * 100);
@@ -1020,8 +1152,8 @@ ${JSON.stringify(detailedAnswers)}
       lastCalculatedData.serShare = serShare;
       lastCalculatedData.dopShare = dopShare;
 
-      document.body.classList.add("is-report-view");
-      document.getElementById("main-container").classList.add("report-mode");
+      document.body.classList.add("is-scroll-view");
+      document.getElementById("main-container").classList.add("scroll-mode");
       document.getElementById("test-section").style.display = "none";
       document.getElementById("result-section").style.display = "flex";
 
@@ -1122,8 +1254,8 @@ ${lastCalculatedData.idealText}
       triggerHaptic(2);
       for (let key in userAnswers) delete userAnswers[key];
       currentStep = 0;
-      document.body.classList.remove("is-report-view");
-      document.getElementById("main-container").classList.remove("report-mode");
+      document.body.classList.add("is-scroll-view");
+      document.getElementById("main-container").classList.add("scroll-mode");
       document.getElementById("result-section").style.display = "none";
       document.getElementById("intro-section").style.display = "flex";
       window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -430,16 +430,17 @@
       color: var(--text-main);
     }
 
-    .btn-author {
-      background: #FFFFFF;
-      color: var(--dark-red);
-      border: 1.5px solid var(--primary-red);
-      box-shadow: 0 4px 12px rgba(139, 0, 0, 0.08);
+    .btn-pro-gold {
+      background: linear-gradient(135deg, #2A0409, #540B14);
+      color: #FFFFFF;
+      border: 1px solid rgba(244, 166, 176, 0.3);
+      box-shadow: 0 6px 18px rgba(84, 11, 20, 0.25);
+      position: relative;
     }
 
-    .btn-author:active {
-      background: #F8F3ED;
+    .btn-pro-gold:active {
       transform: scale(0.98);
+      background: #190205;
     }
 
     .btn-pulse {
@@ -451,7 +452,7 @@
       50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(178, 34, 34, 0.45); }
     }
 
-    .result-section {
+    .result-section, .pro-section {
       display: none;
       flex-direction: column;
       gap: 16px;
@@ -474,7 +475,7 @@
       margin-bottom: 2px;
     }
 
-    .driver-card, .info-white-card {
+    .driver-card, .info-white-card, .pro-hero-card {
       background: #FFFFFF;
       border-radius: 20px;
       padding: 18px 20px;
@@ -633,6 +634,69 @@
       text-align: center;
       padding: 0 8px;
       font-style: italic;
+    }
+
+    /* Стили PRO экрана */
+    .pro-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: var(--dark-red);
+      color: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .pro-card-block {
+      background: #FAF7F2;
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid #EFE8DE;
+      text-align: left;
+    }
+
+    .pro-card-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .pro-block-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pro-block-desc {
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #4E4642;
+    }
+
+    .pro-price-tag {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--dark-red);
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .pro-upsell-note {
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #6E6661;
+      background: #FFFFFF;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px dashed var(--primary-red);
+      text-align: left;
+      margin-bottom: 10px;
     }
 
     .toast {
@@ -837,18 +901,65 @@
         Это основа вашего сенсорного профиля. Сохраните её для себя или перешлите партнёру, чтобы сонастроить контакт без лишних неловких разговоров.
       </div>
 
+      <!-- Кнопка 1: Отправить/сохранить отчет -->
       <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 15px;" onclick="saveOrShareReport()">
         Сохранить демо-отчет / Отправить партнёру
       </button>
 
-      <button class="btn btn-author" style="width: 100%; padding: 14px;" onclick="orderConsultation()">
-        Заказать консультацию
+      <!-- Кнопка 2: Переход на PRO уровень -->
+      <button class="btn btn-pro-gold" style="width: 100%; padding: 15px;" onclick="openProSection()">
+        PRO-исследование | Полная спецификация →
       </button>
 
+      <!-- Кнопка 3: Пройти заново -->
       <div style="margin-top: 2px; margin-bottom: 20px;">
         <button class="btn btn-secondary" style="width: 100%; padding: 13px;" onclick="restartTest()">Пройти заново</button>
       </div>
     </div>
+
+    <!-- ЭКРАН PRO УРОВНЯ (Платный оффер с новой копирайтинговой структурой) -->
+    <div id="pro-section" class="pro-section">
+      <div style="text-align: center; margin-bottom: 4px;">
+        <div class="pro-badge">PRO LEVEL SPECIFICATION</div>
+        <h1 class="report-main-title" style="font-size: 19px;">Глубокая сенсорная спецификация</h1>
+        <div style="font-size: 11.5px; color: var(--text-muted);">Перевод психосемантики в прикладной физический протокол</div>
+      </div>
+
+      <div class="pro-hero-card">
+        <!-- Блок 1 -->
+        <div class="pro-card-block">
+          <div class="pro-block-title">📊 18-мерное пространство оттенков</div>
+          <div class="pro-block-desc">Раскройте 9 дополнительных измерений. Научитесь, как чувственный сомелье, различать тончайшие полутона влечения, расшифровывать скрытые зажимы и безошибочно калибровать опыт, которого требует ваше тело.</div>
+        </div>
+
+        <!-- Блок 2 -->
+        <div class="pro-card-block">
+          <div class="pro-block-title">🌿 Физический язык & Сенсорные ключи</div>
+          <div class="pro-block-desc">Переведите абстрактные желания в физический язык: узнайте конкретные ноты ароматов, звуковые частоты (BPM), световую геометрию и плотность прикосновений. Создайте сценарий, который невозможно купить за деньги — его можно только собрать.</div>
+        </div>
+
+        <!-- Блок 3 -->
+        <div class="pro-card-block">
+          <div class="pro-block-title">🔗 Сравнение сенсорных паспортов</div>
+          <div class="pro-block-desc">Передайте партнёру прямой ключ к своей чувственности. Сопоставьте два сенсорных профиля, чтобы увидеть скрытые точки резонанса и зоны трения, открыв взаимный доступ к глубине, которую невозможно пережить в одиночку.</div>
+        </div>
+
+        <div class="pro-price-tag">499 ₽</div>
+
+        <div class="pro-upsell-note">
+          💎 <strong>Приоритетный доступ:</strong> После получения PRO-спецификации вам открывается право на закрытый индивидуальный психометрический аудит с автором методики.
+        </div>
+
+        <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 16px; margin-bottom: 10px;" onclick="triggerHaptic(3); showToast('Контакт автора скопирован: @ilyaaugust'); copyAuthorHandle();">
+          Получить PRO-исследование — 499 ₽
+        </button>
+
+        <button class="btn btn-secondary" style="width: 100%; padding: 12px;" onclick="closeProSection()">
+          ← Назад к демо-отчету
+        </button>
+      </div>
+    </div>
+
   </div>
 
   <div id="toast" class="toast">Отчет скопирован в буфер обмена!</div>
@@ -906,6 +1017,24 @@
         el.classList.add("is-open");
         if (arrow) arrow.classList.add("rotated");
       }
+    }
+
+    function openProSection() {
+      triggerHaptic(2);
+      document.getElementById("result-section").style.display = "none";
+      document.getElementById("pro-section").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeProSection() {
+      triggerHaptic(1);
+      document.getElementById("pro-section").style.display = "none";
+      document.getElementById("result-section").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function copyAuthorHandle() {
+      navigator.clipboard.writeText("@ilyaaugust");
     }
 
     const scales = [
@@ -1221,23 +1350,6 @@ ${lastCalculatedData.idealText}
       }
     }
 
-    function orderConsultation() {
-      triggerHaptic(2);
-      const text = "Здравствуйте, Илья! Прошел экспресс-калибровку IDEALIUM®, хочу заказать консультацию по своему сенсорному профилю.";
-      const targetUrl = "https://t.me/ilyaaugust";
-      const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(targetUrl)}&text=${encodeURIComponent(text)}`;
-
-      if (tg) {
-        if (tg.openTelegramLink) {
-          tg.openTelegramLink(shareUrl);
-        } else if (tg.openLink) {
-          tg.openLink(targetUrl);
-        }
-      } else {
-        window.open(targetUrl, "_blank");
-      }
-    }
-
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
         showToast("Отчет скопирован в буфер обмена!");
@@ -1252,6 +1364,7 @@ ${lastCalculatedData.idealText}
       currentStep = 0;
       document.body.classList.add("is-scroll-view");
       document.getElementById("main-container").classList.add("scroll-mode");
+      document.getElementById("pro-section").style.display = "none";
       document.getElementById("result-section").style.display = "none";
       document.getElementById("intro-section").style.display = "flex";
       window.scrollTo({ top: 0, behavior: 'smooth' });

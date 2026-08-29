@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>IDEALIUM®</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    :root {
+      --bg-cream: #F9F6F0;
+      --card-bg: #FFFFFF;
+      --primary-red: #8B0000;
+      --dark-red: #4A0E17;
+      --accent-red: #B22222;
+      --pink-soft: #F4A6B0;
+      --text-main: #2A2523;
+      --text-muted: #7A726D;
+      --border-color: #E8E2D9;
+      --border-red-light: rgba(139, 0, 0, 0.22);
+      --track-bg: #EAE5DC;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: 'Montserrat', -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      padding: 10px 12px;
+    }
+
+    html {
+      height: -webkit-fill-available;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+      height: 640px;
+      max-height: 96vh;
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 24px 22px 18px 22px;
+      box-shadow: 0 10px 30px rgba(74, 14, 23, 0.06);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body.is-scroll-view {
+      align-items: flex-start !important;
+      padding: 14px 12px 36px 12px !important;
+    }
+
+    .container.scroll-mode {
+      height: auto !important;
+      max-height: none !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      overflow: visible !important;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #F2ECE4;
+    }
+
+    .brand-tag {
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary-red);
+      font-weight: 700;
+    }
+
+    .step-counter {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .intro-card-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .intro-hero-box {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 22px 20px 20px 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 6px 20px rgba(74, 14, 23, 0.04);
+    }
+
+    .intro-main-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--dark-red);
+      line-height: 1.35;
+      margin-bottom: 6px;
+      text-align: left;
+    }
+
+    .intro-sub-lead {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+    .intro-deficits-lead {
+      font-size: 12.5px;
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-top: 6px;
+      margin-bottom: 14px;
+      text-align: left;
+      border-left: 3px solid var(--primary-red);
+      padding-left: 12px;
+    }
+
+    .deficit-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-red-light);
+      box-shadow: 0 4px 14px rgba(139, 0, 0, 0.03);
+      text-align: left;
+    }
+
+    .deficit-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .deficit-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 5px;
+    }
+
+    .deficit-text {
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #4E4642;
+    }
+
+    .benefits-box {
+      background: #FFFFFF;
+      border-radius: 18px;
+      padding: 18px 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 6px 20px rgba(74, 14, 23, 0.04);
+      text-align: left;
+    }
+
+    .benefits-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 10px;
+    }
+
+    .benefit-item {
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #4A423E;
+      margin-bottom: 10px;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .benefit-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .benefit-item::before {
+      content: "•";
+      color: var(--primary-red);
+      font-weight: 800;
+      position: absolute;
+      left: 0;
+      top: -1px;
+      font-size: 14px;
+    }
+
+    .meta-pill-bar {
+      background: #EFEAE1;
+      color: #554D48;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 12px;
+      text-align: center;
+      line-height: 1.4;
+      letter-spacing: 0.3px;
+    }
+
+    .test-title {
+      font-size: 17.5px;
+      font-weight: 700;
+      color: var(--dark-red);
+      text-align: left;
+      line-height: 1.3;
+      margin-top: 8px;
+      margin-bottom: 22px;
+    }
+
+    .scales-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .scale-card {
+      padding-bottom: 8px;
+      border-bottom: 1px solid #F4EFEA;
+      opacity: 0;
+      transform: translateY(-12px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .scale-card.show-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      gap: 8px;
+    }
+
+    .label-left {
+      color: var(--text-main);
+      text-align: left;
+      flex: 1;
+      line-height: 1.2;
+    }
+
+    .label-right {
+      color: var(--text-main);
+      text-align: right;
+      flex: 1;
+      line-height: 1.2;
+    }
+
+    .slider-container {
+      position: relative;
+      padding: 5px 0;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      background: transparent;
+      margin: 0;
+    }
+
+    input[type=range]:focus {
+      outline: none;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 4px;
+      cursor: pointer;
+      background: var(--track-bg);
+      border-radius: 2px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      height: 24.5px;
+      width: 24.5px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 2.5px solid var(--primary-red);
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -10.2px;
+      box-shadow: 0 2px 8px rgba(74, 14, 23, 0.15);
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .wave-0::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.0s; }
+    .wave-1::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.22s; }
+    .wave-2::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.44s; }
+    .wave-3::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.66s; }
+    .wave-4::-webkit-slider-thumb { animation: wave-pulse-subtle 2.6s infinite ease-in-out 0.88s; }
+
+    @keyframes wave-pulse-subtle {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 6px rgba(139, 0, 0, 0.12);
+      }
+      50% {
+        transform: scale(1.07);
+        box-shadow: 0 0 7px rgba(178, 34, 34, 0.3);
+      }
+    }
+
+    .val-1::-webkit-slider-thumb {
+      background: var(--pink-soft) !important;
+      border-color: var(--accent-red) !important;
+      animation: pulse-soft 1.4s infinite ease-in-out !important;
+    }
+
+    .val-2::-webkit-slider-thumb {
+      background: var(--accent-red) !important;
+      border-color: var(--primary-red) !important;
+      animation: pulse-active 0.9s infinite ease-in-out !important;
+    }
+
+    .val-3::-webkit-slider-thumb {
+      background: var(--primary-red) !important;
+      border-color: var(--dark-red) !important;
+      animation: pulse-active 0.9s infinite ease-in-out !important;
+    }
+
+    @keyframes pulse-soft {
+      0%, 100% { transform: scale(1); box-shadow: 0 2px 6px rgba(178, 34, 34, 0.25); }
+      50% { transform: scale(1.1); box-shadow: 0 0 8px rgba(178, 34, 34, 0.45); }
+    }
+
+    @keyframes pulse-active {
+      0%, 100% { transform: scale(1); box-shadow: 0 2px 6px rgba(139, 0, 0, 0.35); }
+      50% { transform: scale(1.22); box-shadow: 0 0 14px rgba(178, 34, 34, 0.75); }
+    }
+
+    .slider-ticks-flex {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      font-weight: 500;
+      color: #A39B95;
+      margin-top: 4px;
+      padding: 0 12px;
+    }
+
+    .slider-ticks-flex span {
+      width: 16px;
+      text-align: center;
+      margin-left: -8px;
+      margin-right: -8px;
+    }
+
+    .slider-ticks-flex span:first-child { margin-left: -8px; }
+    .slider-ticks-flex span:last-child { margin-right: -8px; }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .btn-group-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .btn {
+      padding: 15px 16px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .btn-half {
+      flex: 1;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-red), var(--primary-red));
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(139, 0, 0, 0.25);
+    }
+
+    .btn-primary:active {
+      background: var(--dark-red);
+      transform: scale(0.98);
+    }
+
+    .btn-secondary {
+      background: #F0ECE4;
+      color: var(--text-main);
+    }
+
+    .btn-pro-gold {
+      background: linear-gradient(135deg, #2A0409, #540B14);
+      color: #FFFFFF;
+      border: 1px solid rgba(244, 166, 176, 0.3);
+      box-shadow: 0 6px 18px rgba(84, 11, 20, 0.25);
+    }
+
+    .btn-pro-gold:active {
+      transform: scale(0.98);
+      background: #190205;
+    }
+
+    .btn-pulse {
+      animation: btn-breathing 2.2s infinite ease-in-out;
+    }
+
+    @keyframes btn-breathing {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(139, 0, 0, 0.28); }
+      50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(178, 34, 34, 0.45); }
+    }
+
+    .result-section, .pro-section {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      animation: fadeInResult 0.5s ease;
+    }
+
+    @keyframes fadeInResult {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .report-main-title {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--dark-red);
+      text-align: center;
+      margin-top: 6px;
+      margin-bottom: 2px;
+    }
+
+    .driver-card, .info-white-card, .pro-hero-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 18px 20px;
+      box-shadow: 0 6px 20px rgba(74, 14, 23, 0.04);
+      border: 1px solid var(--border-color);
+    }
+
+    .driver-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .driver-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark-red);
+    }
+
+    .driver-pct-large {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-red);
+      letter-spacing: -0.5px;
+    }
+
+    .bar-bg {
+      background: var(--track-bg);
+      height: 6px;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-red), var(--dark-red));
+      border-radius: 3px;
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .driver-main-desc {
+      font-size: 12px;
+      line-height: 1.55;
+      color: #4A423E;
+      margin-bottom: 10px;
+    }
+
+    .toggle-details-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F7F3EC;
+      color: var(--dark-red);
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .toggle-details-btn:active {
+      background: #EAE3D8;
+    }
+
+    .details-arrow {
+      font-size: 9px;
+      transition: transform 0.3s ease;
+    }
+
+    .details-arrow.rotated {
+      transform: rotate(180deg);
+    }
+
+    .expandable-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: #5A524C;
+      margin-top: 0;
+      border-top: 1px dashed transparent;
+    }
+
+    .expandable-content.is-open {
+      max-height: 600px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed #E8E2D9;
+    }
+
+    .details-subheading {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-red);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      margin-top: 8px;
+    }
+
+    .details-subheading:first-child {
+      margin-top: 0;
+    }
+
+    .formula-shares-bar {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--dark-red);
+      background: #FAF6F0;
+      padding: 8px 12px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border-left: 3px solid var(--primary-red);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .formula-section-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 4px;
+    }
+
+    .formula-text {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #4A423E;
+      margin-bottom: 12px;
+    }
+
+    .loading-pulse {
+      animation: text-pulse 1.2s infinite ease-in-out;
+      color: var(--primary-red) !important;
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    @keyframes text-pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    .report-note {
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #7A726D;
+      text-align: center;
+      padding: 0 8px;
+      font-style: italic;
+    }
+
+    /* Стили PRO экрана */
+    .pro-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: var(--dark-red);
+      color: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .pro-label-group {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary-red);
+      margin-top: 6px;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    /* 2 основные карточки, входящие в тариф */
+    .pro-card-main {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 16px 16px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 16px rgba(74, 14, 23, 0.04);
+      text-align: left;
+    }
+
+    /* 2 карточки открываемого доступа */
+    .pro-card-access {
+      background: #FAF7F2;
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-red-light);
+      text-align: left;
+    }
+
+    .pro-block-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pro-block-desc {
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: #4E4642;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #2A0409;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 12.5px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      text-align: center;
+      width: max-content;
+      max-width: 90%;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="is-scroll-view">
+
+  <div class="container scroll-mode" id="main-container">
+    
+    <!-- ШАГ 0: Продающий экран введения -->
+    <div id="intro-section" class="intro-card-wrap">
+      <div class="intro-hero-box">
+        <div class="top-bar">
+          <div class="brand-tag">IDEALIUM® PROTOCOL</div>
+          <div class="step-counter">START</div>
+        </div>
+
+        <h1 class="intro-main-title">Оцифруйте свой абсолютный сценарий наслаждения</h1>
+        <div class="intro-sub-lead">(Без неловких разговоров, догадок и испорченных встреч)</div>
+
+        <div class="intro-deficits-lead">
+          Любое глубинное влечение — это попытка мозга закрыть один из трех острых нейрохимических дефицитов:
+        </div>
+
+        <div class="deficit-card">
+          <div class="deficit-title">Окситоциновый голод (Боль изоляции)</div>
+          <div class="deficit-text">Фоновое одиночество, страх отвержения и холод. Жажда тотального тепла, безопасности и растворения границ.</div>
+        </div>
+
+        <div class="deficit-card">
+          <div class="deficit-title">Серотониновый голод (Боль обесценивания)</div>
+          <div class="deficit-text">Страх унижения, потери контроля и ранга. Жажда признания, поклонения, абсолютной власти или безопасной сдачи контроля.</div>
+        </div>
+
+        <div class="deficit-card">
+          <div class="deficit-title">Дофаминовый голод (Боль эмоциональной смерти)</div>
+          <div class="deficit-text">Серая рутина, скука и апатия. Жажда электричества, азарта, запретного риска и сенсорного взрыва.</div>
+        </div>
+      </div>
+
+      <div class="benefits-box">
+        <div class="benefits-title">За 2 минуты на шкалах калибровки вы получите:</div>
+        <div class="benefit-item"><strong>Диагноз скрытой тяги:</strong> поймете, какое именно нейрохимическое топливо запускает ваше пиковое влечение.</div>
+        <div class="benefit-item"><strong>Карту идеального сценария:</strong> точный вектор темпа, дистанции, ролей и тактильных триггеров для партнера.</div>
+      </div>
+
+      <div class="meta-pill-bar">
+        ⚡ Формат: Экспресс-калибровка • Время: 2 мин • Результат: Базовый нейропрофиль сразу
+      </div>
+
+      <div class="btn-group-vertical">
+        <button class="btn btn-primary btn-pulse" onclick="startTest()">
+          Собрать карту идеального контакта
+        </button>
+        <button class="btn btn-secondary" onclick="shareBotLink()">
+          Отправить калибровку партнёру
+        </button>
+      </div>
+    </div>
+
+    <!-- ШАГИ ТЕСТА 1-3 -->
+    <div id="test-section" style="display: none; flex-direction: column; flex-grow: 1; justify-content: space-between;">
+      <div>
+        <div class="top-bar">
+          <div class="brand-tag">IDEALIUM®</div>
+          <div class="step-counter" id="step-indicator">1/3</div>
+        </div>
+        <h1 class="test-title">Идеальный контакт — он какой?</h1>
+
+        <div class="scales-wrapper" id="scales-container"></div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary btn-half" id="prev-btn" onclick="prevStep()">Назад</button>
+        <button class="btn btn-primary btn-half" id="next-btn" onclick="nextStep()">Далее</button>
+      </div>
+    </div>
+
+    <!-- ЭКРАН ОТЧЕТА -->
+    <div id="result-section" class="result-section">
+      <div style="text-align: center; margin-bottom: 2px;">
+        <h1 class="report-main-title">IDEALIUM® REPORT</h1>
+        <div style="font-size: 11.5px; color: var(--text-muted);">Базовый сенсорный паспорт</div>
+      </div>
+
+      <!-- КАРТОЧКА 1: Окситоцин -->
+      <div class="driver-card">
+        <div class="driver-top-row">
+          <span class="driver-title">Окситоцин (Тепло и Слияние)</span>
+          <span class="driver-pct-large" id="oxy-val">0%</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" id="oxy-bar" style="width: 0%;"></div></div>
+        <div class="driver-main-desc" id="oxy-desc">Расчет потребности...</div>
+        
+        <button class="toggle-details-btn" onclick="toggleDetails('oxy-details', this)">
+          Подробнее <span class="details-arrow">▼</span>
+        </button>
+
+        <div id="oxy-details" class="expandable-content">
+          <div class="details-subheading">Психоэмоциональная борьба</div>
+          Снимает страх отвержения, гиперконтроль и глубинное телесное одиночество. Блокирует фоновую тревожность.
+          <div class="details-subheading">Нейробиологические триггеры выработки</div>
+          • Медленный непрерывный контакт «кожа к коже» и прикосновение к чувствительным зонам.<br>
+          • Долгий непрерывный взгляд глаза в глаза (синхронизация зеркальных нейронов).<br>
+          • Забота: ухаживание за цветами, объятия с питомцем, совместное неспешное чаепитие.
+        </div>
+      </div>
+
+      <!-- КАРТОЧКА 2: Серотонин -->
+      <div class="driver-card">
+        <div class="driver-top-row">
+          <span class="driver-title">Серотонин (Статус и Достоинство)</span>
+          <span class="driver-pct-large" id="ser-val">0%</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" id="ser-bar" style="width: 0%;"></div></div>
+        <div class="driver-main-desc" id="ser-desc">Расчет потребности...</div>
+
+        <button class="toggle-details-btn" onclick="toggleDetails('ser-details', this)">
+          Подробнее <span class="details-arrow">▼</span>
+        </button>
+
+        <div id="ser-details" class="expandable-content">
+          <div class="details-subheading">Психоэмоциональная борьба</div>
+          Защищает от чувства ничтожности, унижения, стыда и необходимости заслуживать любовь. Дает ощущение авторитета и спокойного превосходства.
+          <div class="details-subheading">Нейробиологические триггеры выработки</div>
+          • Фразы признания («мой мужчина», «ты особенная», искреннее восхищение выбором).<br>
+          • Просьба о помощи и защите, подтверждающая лидерство и силу.<br>
+          • Эстетика пространства, сдержанная статусная дистанция и безусловное уважение границ.
+        </div>
+      </div>
+
+      <!-- КАРТОЧКА 3: Дофамин -->
+      <div class="driver-card">
+        <div class="driver-top-row">
+          <span class="driver-title">Дофамин (Риск и Страсть)</span>
+          <span class="driver-pct-large" id="dop-val">0%</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" id="dop-bar" style="width: 0%;"></div></div>
+        <div class="driver-main-desc" id="dop-desc">Расчет потребности...</div>
+
+        <button class="toggle-details-btn" onclick="toggleDetails('dop-details', this)">
+          Подробнее <span class="details-arrow">▼</span>
+        </button>
+
+        <div id="dop-details" class="expandable-content">
+          <div class="details-subheading">Психоэмоциональная борьба</div>
+          Борется со скукой, бытовой рутиной, апатией и удушающей предсказуемостью. Включает охотничий инстинкт.
+          <div class="details-subheading">Нейробиологические триггеры выработки</div>
+          • Недоступность и сексуальная интрига (предвкушение награды сильнее самого обладания).<br>
+          • Внезапная смена локации, дерзкий флирт, слом привычного ролевого сценария.<br>
+          • Контрастный темпоритм: чередование паузы и нарастающего напряжения.
+        </div>
+      </div>
+
+      <!-- КАРТОЧКА 4: Итоговая формула контакта -->
+      <div class="info-white-card">
+        <div class="driver-top-row" style="margin-bottom: 6px;">
+          <span class="driver-title" style="font-size: 16px;">Итоговая формула контакта</span>
+        </div>
+
+        <div id="formula-shares" class="formula-shares-bar">
+          <span>Окситоцин: ...%</span>
+          <span>Серотонин: ...%</span>
+          <span>Дофамин: ...%</span>
+        </div>
+
+        <div class="formula-section-title">Чего не хочется:</div>
+        <div id="anti-ideal-text" class="formula-text loading-pulse">
+          Анализ стоп-факторов через Gemini...
+        </div>
+
+        <div class="formula-section-title">Чего хочется:</div>
+        <div id="ideal-text" class="formula-text loading-pulse">
+          Анализ идеального сценария через Gemini...
+        </div>
+      </div>
+
+      <div class="report-note">
+        Это основа вашего сенсорного профиля. Сохраните её для себя или перешлите партнёру, чтобы сонастроить контакт без лишних неловких разговоров.
+      </div>
+
+      <!-- Кнопка 1: Отправить/сохранить отчет -->
+      <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 15px;" onclick="saveOrShareReport()">
+        Сохранить демо-отчет / Отправить партнёру
+      </button>
+
+      <!-- Кнопка 2: Переход на PRO уровень -->
+      <button class="btn btn-pro-gold" style="width: 100%; padding: 15px;" onclick="openProSection()">
+        PRO-исследование | Полная спецификация →
+      </button>
+
+      <!-- Кнопка 3: Пройти заново -->
+      <div style="margin-top: 2px; margin-bottom: 20px;">
+        <button class="btn btn-secondary" style="width: 100%; padding: 13px;" onclick="restartTest()">Пройти заново</button>
+      </div>
+    </div>
+
+    <!-- ЭКРАН PRO УРОВНЯ -->
+    <div id="pro-section" class="pro-section">
+      <div style="text-align: center; margin-bottom: 4px;">
+        <div class="pro-badge">PRO LEVEL SPECIFICATION</div>
+        <h1 class="report-main-title" style="font-size: 19px;">Глубокая сенсорная спецификация</h1>
+        <div style="font-size: 11.5px; color: var(--text-muted);">Прикладной протокол для вас и вашего партнера</div>
+      </div>
+
+      <div class="pro-hero-card">
+        
+        <div class="pro-label-group">Входит в PRO-исследование:</div>
+
+        <!-- 1. 18-мерное пространство -->
+        <div class="pro-card-main">
+          <div class="pro-block-title">📊 18-мерное пространство оттенков</div>
+          <div class="pro-block-desc">Откройте для себя 9 дополнительных скрытых измерений влечения. Научитесь, как чувственный сомелье, улавливать тончайшие полутона чувств, расшифровывать зажимы и понимать опыт, которого требует тело.</div>
+        </div>
+
+        <!-- 2. Чувственное ТЗ для любви -->
+        <div class="pro-card-main">
+          <div class="pro-block-title">🌿 Чувственное ТЗ для партнёра</div>
+          <div class="pro-block-desc">Получите и отправьте партнёру конкретную инструкцию по сенсорным триггерам: звукам, светотени, ароматам и плотности прикосновений. Позвольте партнёру точно понять, как доставить вам идеальный чувственный опыт, который нельзя купить за деньги.</div>
+        </div>
+
+        <div class="pro-label-group" style="margin-top: 14px;">Открывает доступ к ступеням:</div>
+
+        <!-- 3. Парный тест и наложение -->
+        <div class="pro-card-access">
+          <div class="pro-block-title">🔗 Доступ к тесту для пары (Match Engine)</div>
+          <div class="pro-block-desc">Отдельный модуль парной калибровки: наложите данные друг друга, чтобы найти то, от чего оба сойдёте с ума, и убрать точки трения. Откройте доступ к глубине, которую невозможно испытать в одиночестве.</div>
+        </div>
+
+        <!-- 4. Индивидуальный аудит -->
+        <div class="pro-card-access" style="margin-bottom: 16px;">
+          <div class="pro-block-title">💎 Приоритет на индивидуальную сессию</div>
+          <div class="pro-block-desc">Прямой приоритетный доступ к глубокому психометрическому замеру и индивидуальной консультации с автором методики.</div>
+        </div>
+
+        <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 16px; margin-bottom: 10px;" onclick="triggerHaptic(3); showToast('Контакт автора скопирован: @ilyaaugust'); copyAuthorHandle();">
+          Получить PRO-исследование — 499 ₽
+        </button>
+
+        <button class="btn btn-secondary" style="width: 100%; padding: 12px;" onclick="closeProSection()">
+          ← Назад к демо-отчету
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="toast" class="toast">Отчет скопирован в буфер обмена!</div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) {
+      tg.expand();
+      tg.ready();
+    }
+
+    const _k1 = "AQ.Ab8RN6lyigNy";
+    const _k2 = "frpXp-az0gCalqXxszQytKB";
+    const _k3 = "XAwsp5YUP95gwfg";
+    const GEMINI_API_KEY = _k1 + _k2 + _k3;
+
+    const BOT_APP_URL = "https://t.me/idealium_test_bot/start";
+
+    let lastCalculatedData = {
+      oxyPct: 0,
+      serPct: 0,
+      dopPct: 0,
+      oxyShare: 0,
+      serShare: 0,
+      dopShare: 0,
+      antiIdealText: "",
+      idealText: ""
+    };
+
+    function triggerHaptic(absVal) {
+      if (tg?.HapticFeedback) {
+        if (absVal === 1) tg.HapticFeedback.selectionChanged();
+        else if (absVal === 2) tg.HapticFeedback.impactOccurred('medium');
+        else if (absVal === 3) tg.HapticFeedback.impactOccurred('heavy');
+      }
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById("toast");
+      toast.innerText = text;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2600);
+    }
+
+    function toggleDetails(id, btn) {
+      triggerHaptic(1);
+      const el = document.getElementById(id);
+      const arrow = btn.querySelector(".details-arrow");
+      if (el.classList.contains("is-open")) {
+        el.classList.remove("is-open");
+        if (arrow) arrow.classList.remove("rotated");
+      } else {
+        el.classList.add("is-open");
+        if (arrow) arrow.classList.add("rotated");
+      }
+    }
+
+    function openProSection() {
+      triggerHaptic(2);
+      document.getElementById("result-section").style.display = "none";
+      document.getElementById("pro-section").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeProSection() {
+      triggerHaptic(1);
+      document.getElementById("pro-section").style.display = "none";
+      document.getElementById("result-section").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function copyAuthorHandle() {
+      navigator.clipboard.writeText("@ilyaaugust");
+    }
+
+    const scales = [
+      [
+        { left: "Властно-Направляющий", right: "Сладостно-Уступающий", driver: "ser", inverted: false },
+        { left: "Предельно-Искренний", right: "Загадочно-Сдержанный", driver: "oxy", inverted: false },
+        { left: "Привычно-Домашний", right: "Дерзко-Спонтанный", driver: "dop", inverted: true },
+        { left: "Легко-Непринужденный", right: "Торжественно-Статусный", driver: "ser", inverted: true },
+        { left: "Мягко-Обнимающий", right: "Контрастно-Бодрящий", driver: "oxy", inverted: false }
+      ],
+      [
+        { left: "Остро-Провокационный", right: "Прямодушно-Открытый", driver: "dop", inverted: false },
+        { left: "Безмятежно-Расслабленный", right: "Осознанно-Собранный", driver: "oxy", inverted: false },
+        { left: "Искренне-Восхищенный", right: "Безоговорочно-Гордый", driver: "ser", inverted: true },
+        { left: "Неукротимо-Страстный", right: "Чутко-Созерцательный", driver: "dop", inverted: false },
+        { left: "Свободно-Партнерский", right: "Слитно-Неделимый", driver: "oxy", inverted: true }
+      ],
+      [
+        { left: "Особо-Желанный", right: "Просто-Уютный", driver: "ser", inverted: false },
+        { left: "Классически-Каноничный", right: "Смело-Экспериментальный", driver: "dop", inverted: true },
+        { left: "Томительно-Медленный", right: "Ритмично-Страстный", driver: "oxy", inverted: false },
+        { left: "Властно-Уверенный", right: "Мягко-Податливый", driver: "ser", inverted: false },
+        { left: "Интригующе-Тайный", right: "Откровенно-Прямой", driver: "dop", inverted: false }
+      ]
+    ];
+
+    let currentStep = 0;
+    const userAnswers = {};
+
+    function startTest() {
+      triggerHaptic(2);
+      document.body.classList.remove("is-scroll-view");
+      document.getElementById("main-container").classList.remove("scroll-mode");
+      document.getElementById("intro-section").style.display = "none";
+      document.getElementById("test-section").style.display = "flex";
+      renderScales();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function getThumbClass(val, index) {
+      const abs = Math.abs(val);
+      if (abs === 1) return "val-1";
+      if (abs === 2) return "val-2";
+      if (abs === 3) return "val-3";
+      return `wave-${index % 5}`;
+    }
+
+    function renderScales() {
+      const container = document.getElementById("scales-container");
+      container.innerHTML = "";
+      
+      const currentScales = scales[currentStep];
+      document.getElementById("step-indicator").innerText = `${currentStep + 1}/3`;
+
+      currentScales.forEach((item, index) => {
+        const id = `scale_${currentStep}_${index}`;
+        const val = userAnswers[id] !== undefined ? userAnswers[id] : 0;
+        const thumbClass = getThumbClass(val, index);
+
+        const card = document.createElement("div");
+        card.className = "scale-card";
+        card.innerHTML = `
+          <div class="scale-labels">
+            <span class="label-left">${item.left}</span>
+            <span class="label-right">${item.right}</span>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="${id}" class="${thumbClass}" min="-3" max="3" step="1" value="${val}" oninput="handleSlide('${id}', this.value, ${index})">
+            <div class="slider-ticks-flex">
+              <span>-3</span><span>-2</span><span>-1</span><span>0</span><span>+1</span><span>+2</span><span>+3</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+
+        setTimeout(() => {
+          card.classList.add("show-card");
+        }, index * 60 + 30);
+      });
+
+      document.getElementById("prev-btn").innerText = currentStep === 0 ? "В начало" : "Назад";
+      document.getElementById("next-btn").innerText = currentStep === 2 ? "Получить отчет" : "Далее";
+    }
+
+    function handleSlide(id, value, index) {
+      const intVal = parseInt(value, 10);
+      const prevVal = userAnswers[id] !== undefined ? userAnswers[id] : 0;
+      userAnswers[id] = intVal;
+      
+      const el = document.getElementById(id);
+      el.className = getThumbClass(intVal, index);
+
+      if (intVal !== prevVal) {
+        triggerHaptic(Math.abs(intVal));
+      }
+    }
+
+    function nextStep() {
+      triggerHaptic(1);
+      scales[currentStep].forEach((_, index) => {
+        const id = `scale_${currentStep}_${index}`;
+        if (userAnswers[id] === undefined) userAnswers[id] = 0;
+      });
+
+      if (currentStep < 2) {
+        currentStep++;
+        renderScales();
+      } else {
+        calculateResults();
+      }
+    }
+
+    function prevStep() {
+      triggerHaptic(1);
+      if (currentStep > 0) {
+        currentStep--;
+        renderScales();
+      } else {
+        document.body.classList.add("is-scroll-view");
+        document.getElementById("main-container").classList.add("scroll-mode");
+        document.getElementById("test-section").style.display = "none";
+        document.getElementById("intro-section").style.display = "flex";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    async function fetchGeminiReport(oxyPct, serPct, dopPct, oxyShare, serShare, dopShare, detailedAnswers) {
+      const antiTextEl = document.getElementById("anti-ideal-text");
+      const idealTextEl = document.getElementById("ideal-text");
+
+      antiTextEl.className = "formula-text loading-pulse";
+      idealTextEl.className = "formula-text loading-pulse";
+      antiTextEl.innerText = "Формулирование стоп-факторов через Gemini...";
+      idealTextEl.innerText = "Формирование идеального сценария...";
+
+      const promptText = `
+Ты психосемантический аналитик проекта IDEALIUM®.
+Проанализируй факторную структуру психосексуального идеала контакта респондента:
+Вклад драйверов в структуру (всего 100%):
+- Окситоцин (Тепло, нежность, доверие, слияние): ${oxyShare}%
+- Серотонин (Статус, уважение, достоинство, признание желанности): ${serShare}%
+- Дофамин (Сексуальный риск, игра, новизна, спонтанность): ${dopShare}%
+
+Детализированные шкалы (-3 до +3):
+${JSON.stringify(detailedAnswers)}
+
+Сформулируй чистую и точную итоговую формулу контакта СТРОГО в формате JSON:
+{
+  "anti_ideal": "Ровно 2 емких предложения без общих фраз: что категорически разрушает влечение, вызывает отторжение и телесный зажим (главная боль и стоп-факторы).",
+  "ideal": "Ровно 2 емких предложения без лишней воды: идеальная чувственная атмосфера, темпоритм и сценарий контакта, чего хочется этому человеку для максимального раскрытия."
+}
+Ответь ТОЛЬКО валидным JSON без дополнительных символов.`;
+
+      const requestBody = {
+        contents: [{ role: "user", parts: [{ text: promptText }] }],
+        generationConfig: { responseMimeType: "application/json" },
+        safetySettings: [
+          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
+        ]
+      };
+
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) throw new Error("HTTP error " + response.status);
+
+        const data = await response.json();
+        const res = JSON.parse(data.candidates[0].content.parts[0].text);
+
+        antiTextEl.className = "formula-text";
+        idealTextEl.className = "formula-text";
+
+        antiTextEl.innerText = res.anti_ideal;
+        idealTextEl.innerText = res.ideal;
+
+        lastCalculatedData.antiIdealText = res.anti_ideal;
+        lastCalculatedData.idealText = res.ideal;
+
+      } catch (err) {
+        console.error("Gemini Error:", err);
+        antiTextEl.className = "formula-text";
+        idealTextEl.className = "formula-text";
+
+        let fallbackAnti = "Категорически разрушают влечение спешка, суетливые действия и необходимость оправдывать чьи-то ожидания. Бытовая рутина и критика полностью блокируют телесный отклик.";
+        let fallbackIdeal = "Необходима глубокая атмосфера приватности, выверенный темпоритм и безусловное признание вашей исключительной ценности. Чувственная сонастройка и непрерывное тактильное внимание раскрывают контакт на максимум.";
+
+        antiTextEl.innerText = fallbackAnti;
+        idealTextEl.innerText = fallbackIdeal;
+
+        lastCalculatedData.antiIdealText = fallbackAnti;
+        lastCalculatedData.idealText = fallbackIdeal;
+      }
+    }
+
+    function calculateResults() {
+      triggerHaptic(3);
+      let scores = { oxy: 0, ser: 0, dop: 0 };
+      let maxPossible = { oxy: 15, ser: 15, dop: 15 };
+      let detailedList = [];
+
+      scales.forEach((group, stepIdx) => {
+        group.forEach((item, idx) => {
+          const val = userAnswers[`scale_${stepIdx}_${idx}`] || 0;
+          const normalizedScore = item.inverted ? -val : val;
+          scores[item.driver] += Math.abs(normalizedScore);
+          detailedList.push({ scale: `${item.left} — ${item.right}`, score: val, driver: item.driver });
+        });
+      });
+
+      const oxyPct = Math.round((scores.oxy / maxPossible.oxy) * 100);
+      const serPct = Math.round((scores.ser / maxPossible.ser) * 100);
+      const dopPct = Math.round((scores.dop / maxPossible.dop) * 100);
+
+      const totalScore = (scores.oxy + scores.ser + scores.dop) || 1;
+      let oxyShare = Math.round((scores.oxy / totalScore) * 100);
+      let serShare = Math.round((scores.ser / totalScore) * 100);
+      let dopShare = 100 - oxyShare - serShare;
+
+      lastCalculatedData.oxyPct = oxyPct;
+      lastCalculatedData.serPct = serPct;
+      lastCalculatedData.dopPct = dopPct;
+      lastCalculatedData.oxyShare = oxyShare;
+      lastCalculatedData.serShare = serShare;
+      lastCalculatedData.dopShare = dopShare;
+
+      document.body.classList.add("is-scroll-view");
+      document.getElementById("main-container").classList.add("scroll-mode");
+      document.getElementById("test-section").style.display = "none";
+      document.getElementById("result-section").style.display = "flex";
+
+      setTimeout(() => {
+        document.getElementById("oxy-bar").style.width = oxyPct + "%";
+        document.getElementById("ser-bar").style.width = serPct + "%";
+        document.getElementById("dop-bar").style.width = dopPct + "%";
+        document.getElementById("oxy-val").innerText = oxyPct + "%";
+        document.getElementById("ser-val").innerText = serPct + "%";
+        document.getElementById("dop-val").innerText = dopPct + "%";
+
+        document.getElementById("formula-shares").innerHTML = `
+          <span>Окситоцин: <strong>${oxyShare}%</strong></span>
+          <span>Серотонин: <strong>${serShare}%</strong></span>
+          <span>Дофамин: <strong>${dopShare}%</strong></span>
+        `;
+      }, 50);
+
+      document.getElementById("oxy-desc").innerText = oxyPct < 40 
+        ? "Острый дефицит тактильной безопасности. В теле преобладает гиперконтроль; для раскрепощения необходим длительный медленный вход, обнимающее легато и снятие тревожности."
+        : "Высокая потребность в эмоциональном слиянии, непрерывном нежном контакте «кожа к коже» и полном психологическом доверии.";
+
+      document.getElementById("ser-desc").innerText = serPct < 40
+        ? "Фокус на равенстве и простоте без ролевого давления, проверок на статус и необходимости соответствовать сложным ожиданиям."
+        : "Высокая жажда признания исключительной желанности и безусловного уважения к личным границам. Важна эстетика процесса и подтверждение ценности.";
+
+      document.getElementById("dop-desc").innerText = dopPct < 40
+        ? "Предпочтение предсказуемого, глубокого и эмоционально безопасного сценария без резких перемен, спешки и стрессовой новизны."
+        : "Голод по новизне, сексуальной интриге и охотничьему азарту. Необходим контрастный темпоритм, элементы игры, дерзость и нарастающее напряжение.";
+
+      fetchGeminiReport(oxyPct, serPct, dopPct, oxyShare, serShare, dopShare, detailedList);
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function saveOrShareReport() {
+      triggerHaptic(2);
+      const text = 
+`🏛 IDEALIUM® REPORT | Сенсорный паспорт
+
+🧬 Формула контакта (вклад 100%):
+• Окситоцин (Тепло и Слияние): ${lastCalculatedData.oxyShare}%
+• Серотонин (Статус и Достоинство): ${lastCalculatedData.serShare}%
+• Дофамин (Риск и Страсть): ${lastCalculatedData.dopShare}%
+
+🚫 Чего не хочется:
+${lastCalculatedData.antiIdealText}
+
+✨ Чего хочется:
+${lastCalculatedData.idealText}
+
+📌 Это основа моего сенсорного профиля. Пройди калибровку и сонастройся: ${BOT_APP_URL}`;
+
+      const shareTgUrl = `https://t.me/share/url?url=${encodeURIComponent(BOT_APP_URL)}&text=${encodeURIComponent(text)}`;
+
+      if (tg?.openTelegramLink) {
+        tg.openTelegramLink(shareTgUrl);
+      } else if (navigator.share) {
+        navigator.share({
+          title: "IDEALIUM® REPORT",
+          text: text
+        }).catch(() => copyToClipboard(text));
+      } else {
+        copyToClipboard(text);
+      }
+    }
+
+    function shareBotLink() {
+      triggerHaptic(1);
+      const inviteText = "Пройди психосемантический тест IDEALIUM® и определи параметры идеального контакта ✨";
+      const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(BOT_APP_URL)}&text=${encodeURIComponent(inviteText)}`;
+      
+      if (tg?.openTelegramLink) {
+        tg.openTelegramLink(shareUrl);
+      } else {
+        copyToClipboard(BOT_APP_URL);
+      }
+    }
+
+    function copyAuthorHandle() {
+      navigator.clipboard.writeText("@ilyaaugust");
+    }
+
+    function restartTest() {
+      triggerHaptic(2);
+      for (let key in userAnswers) delete userAnswers[key];
+      currentStep = 0;
+      document.body.classList.add("is-scroll-view");
+      document.getElementById("main-container").classList.add("scroll-mode");
+      document.getElementById("pro-section").style.display = "none";
+      document.getElementById("result-section").style.display = "none";
+      document.getElementById("intro-section").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

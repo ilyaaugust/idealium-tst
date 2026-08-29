@@ -103,7 +103,6 @@
       letter-spacing: 1px;
     }
 
-    /* Введение */
     .intro-card-wrap {
       display: flex;
       flex-direction: column;
@@ -227,7 +226,6 @@
       letter-spacing: 0.3px;
     }
 
-    /* Шкалы */
     .test-title {
       font-size: 17.5px;
       font-weight: 700;
@@ -383,7 +381,6 @@
     .slider-ticks-flex span:first-child { margin-left: -8px; }
     .slider-ticks-flex span:last-child { margin-right: -8px; }
 
-    /* Кнопки */
     .btn-group {
       display: flex;
       gap: 10px;
@@ -454,7 +451,6 @@
       50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(178, 34, 34, 0.45); }
     }
 
-    /* Экран отчета */
     .result-section {
       display: none;
       flex-direction: column;
@@ -684,26 +680,22 @@
           Любое глубинное влечение — это попытка мозга закрыть один из трех острых нейрохимических дефицитов:
         </div>
 
-        <!-- Белая карточка 1 -->
         <div class="deficit-card">
           <div class="deficit-title">Окситоциновый голод (Боль изоляции)</div>
           <div class="deficit-text">Фоновое одиночество, страх отвержения и холод. Жажда тотального тепла, безопасности и растворения границ.</div>
         </div>
 
-        <!-- Белая карточка 2 -->
         <div class="deficit-card">
           <div class="deficit-title">Серотониновый голод (Боль обесценивания)</div>
           <div class="deficit-text">Страх унижения, потери контроля и ранга. Жажда признания, поклонения, абсолютной власти или безопасной сдачи контроля.</div>
         </div>
 
-        <!-- Белая карточка 3 -->
         <div class="deficit-card">
           <div class="deficit-title">Дофаминовый голод (Боль эмоциональной смерти)</div>
           <div class="deficit-text">Серая рутина, скука и апатия. Жажда электричества, азарта, запретного риска и сенсорного взрыва.</div>
         </div>
       </div>
 
-      <!-- Блок ценности -->
       <div class="benefits-box">
         <div class="benefits-title">За 2 минуты на шкалах калибровки вы получите:</div>
         <div class="benefit-item"><strong>Диагноз скрытой тяги:</strong> поймете, какое именно нейрохимическое топливо запускает ваше пиковое влечение.</div>
@@ -845,17 +837,14 @@
         Это основа вашего сенсорного профиля. Сохраните её для себя или перешлите партнёру, чтобы сонастроить контакт без лишних неловких разговоров.
       </div>
 
-      <!-- Кнопка 1: Отправить/сохранить отчет -->
       <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 15px;" onclick="saveOrShareReport()">
         Сохранить демо-отчет / Отправить партнёру
       </button>
 
-      <!-- Кнопка 2: Заказать консультацию -->
       <button class="btn btn-author" style="width: 100%; padding: 14px;" onclick="orderConsultation()">
         Заказать консультацию
       </button>
 
-      <!-- Кнопка 3: Пройти заново -->
       <div style="margin-top: 2px; margin-bottom: 20px;">
         <button class="btn btn-secondary" style="width: 100%; padding: 13px;" onclick="restartTest()">Пройти заново</button>
       </div>
@@ -1234,13 +1223,13 @@ ${lastCalculatedData.idealText}
 
     function orderConsultation() {
       triggerHaptic(2);
-      const message = "Здравствуйте, Илья! Прошел экспресс-калибровку IDEALIUM®, хочу заказать консультацию по своему сенсорному профилю.";
-      const targetUrl = `https://t.me/ilyaaugust?text=${encodeURIComponent(message)}`;
+      const text = "Здравствуйте, Илья! Прошел экспресс-калибровку IDEALIUM®, хочу заказать консультацию по своему сенсорному профилю.";
+      const shareUrl = `https://t.me/share/url?url=${encodeURIComponent('https://t.me/ilyaaugust')}&text=${encodeURIComponent(text)}`;
       
       if (tg?.openTelegramLink) {
-        tg.openTelegramLink(targetUrl);
+        tg.openTelegramLink(shareUrl);
       } else {
-        window.open(targetUrl, "_blank");
+        window.location.href = `https://t.me/ilyaaugust`;
       }
     }
 

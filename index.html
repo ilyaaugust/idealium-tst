@@ -103,6 +103,7 @@
       letter-spacing: 1px;
     }
 
+    /* Введение */
     .intro-card-wrap {
       display: flex;
       flex-direction: column;
@@ -226,6 +227,7 @@
       letter-spacing: 0.3px;
     }
 
+    /* Шкалы */
     .test-title {
       font-size: 17.5px;
       font-weight: 700;
@@ -381,6 +383,7 @@
     .slider-ticks-flex span:first-child { margin-left: -8px; }
     .slider-ticks-flex span:last-child { margin-right: -8px; }
 
+    /* Кнопки */
     .btn-group {
       display: flex;
       gap: 10px;
@@ -451,6 +454,7 @@
       50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(178, 34, 34, 0.45); }
     }
 
+    /* Экран отчета */
     .result-section {
       display: none;
       flex-direction: column;
@@ -1226,7 +1230,7 @@ ${lastCalculatedData.idealText}
       if (tg?.openTelegramLink) {
         tg.openTelegramLink("https://t.me/ilyaaugust");
       } else {
-        window.location.href = "https://t.me/ilyaaugust";
+        window.open("https://t.me/ilyaaugust", "_blank");
       }
     }
 

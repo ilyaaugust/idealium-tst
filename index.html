@@ -104,7 +104,6 @@
       letter-spacing: 1px;
     }
 
-    /* Введение Базового теста */
     .intro-card-wrap {
       display: flex;
       flex-direction: column;
@@ -228,7 +227,6 @@
       letter-spacing: 0.3px;
     }
 
-    /* Шкалы тестирования (Базовые) */
     .test-title {
       font-size: 17.5px;
       font-weight: 700;
@@ -376,7 +374,6 @@
     .slider-ticks-flex span:first-child { margin-left: -8px; }
     .slider-ticks-flex span:last-child { margin-right: -8px; }
 
-    /* Кнопки */
     .btn-group {
       display: flex;
       gap: 10px;
@@ -421,33 +418,33 @@
       transform: scale(0.98);
     }
 
+    /* Кнопка с легкой красной окантовкой */
+    .btn-outline-red {
+      background: #FFFFFF;
+      color: var(--dark-red);
+      border: 1.5px solid var(--primary-red);
+      box-shadow: 0 3px 10px rgba(139, 0, 0, 0.08);
+    }
+
+    .btn-outline-red:active {
+      background: #FAF4EE;
+      transform: scale(0.98);
+    }
+
     .btn-secondary {
       background: #F0ECE4;
       color: var(--text-main);
     }
 
-    .btn-pro-gold {
-      background: linear-gradient(135deg, #2A0409, #540B14);
-      color: #FFFFFF;
-      border: 1px solid rgba(244, 166, 176, 0.3);
-      box-shadow: 0 6px 18px rgba(84, 11, 20, 0.25);
+    .btn-pulse-soft {
+      animation: btn-breathing-subtle 2.4s infinite ease-in-out;
     }
 
-    .btn-pro-gold:active {
-      transform: scale(0.98);
-      background: #190205;
+    @keyframes btn-breathing-subtle {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(139, 0, 0, 0.25); }
+      50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(178, 34, 34, 0.42); }
     }
 
-    .btn-pulse {
-      animation: btn-breathing 2.2s infinite ease-in-out;
-    }
-
-    @keyframes btn-breathing {
-      0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(139, 0, 0, 0.28); }
-      50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(178, 34, 34, 0.45); }
-    }
-
-    /* Экраны отчетов */
     .result-section, .pro-section, .pro-flow-section {
       display: none;
       flex-direction: column;
@@ -562,7 +559,7 @@
     }
 
     .expandable-content.is-open {
-      max-height: 600px;
+      max-height: 800px;
       margin-top: 12px;
       padding-top: 12px;
       border-top: 1px dashed #E8E2D9;
@@ -587,14 +584,14 @@
       font-weight: 700;
       color: var(--dark-red);
       background: #FAF6F0;
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 12px;
-      margin-bottom: 12px;
-      border-left: 3px solid var(--primary-red);
+      margin-bottom: 14px;
+      border-left: 3.5px solid var(--primary-red);
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 4px;
+      gap: 6px;
     }
 
     .formula-section-title {
@@ -609,6 +606,18 @@
       line-height: 1.6;
       color: #4A423E;
       margin-bottom: 12px;
+    }
+
+    /* Дизайн опыта / Рекомендательный список */
+    .experience-kit-box {
+      background: #FAF6F2;
+      border: 1px solid #EFE8DE;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-top: 10px;
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #443B36;
     }
 
     .loading-pulse {
@@ -691,7 +700,6 @@
       color: #4E4642;
     }
 
-    /* Специфические стили для PRO SOMMELIER Runner */
     .pro-scale-row {
       display: flex;
       flex-direction: column;
@@ -748,20 +756,9 @@
       transform: scale(1.12);
     }
 
-    .val-neg-1::-webkit-slider-thumb {
-      background: #E0DAD3 !important;
-      border-color: #9E948C !important;
-    }
-
-    .val-neg-2::-webkit-slider-thumb {
-      background: #B5ACA3 !important;
-      border-color: #6E645C !important;
-    }
-
-    .val-neg-3::-webkit-slider-thumb {
-      background: #6E645C !important;
-      border-color: #38302A !important;
-    }
+    .val-neg-1::-webkit-slider-thumb { background: #E0DAD3 !important; border-color: #9E948C !important; }
+    .val-neg-2::-webkit-slider-thumb { background: #B5ACA3 !important; border-color: #6E645C !important; }
+    .val-neg-3::-webkit-slider-thumb { background: #6E645C !important; border-color: #38302A !important; }
 
     .toast {
       position: fixed;
@@ -793,7 +790,7 @@
 
   <div class="container scroll-mode" id="main-container">
     
-    <!-- 1. ШАГ 0: Продающий экран введения базового теста -->
+    <!-- 1. ШАГ 0: Введение базового теста -->
     <div id="intro-section" class="intro-card-wrap">
       <div class="intro-hero-box">
         <div class="top-bar">
@@ -835,7 +832,7 @@
       </div>
 
       <div class="btn-group-vertical">
-        <button class="btn btn-primary btn-pulse" onclick="startTest()">
+        <button class="btn btn-primary btn-pulse-soft" onclick="startTest()">
           Собрать карту идеального контакта
         </button>
         <button class="btn btn-secondary" onclick="shareBotLink()">
@@ -869,7 +866,7 @@
         <div style="font-size: 11.5px; color: var(--text-muted);">Базовый сенсорный паспорт</div>
       </div>
 
-      <!-- КАРТОЧКА 1: Окситоцин -->
+      <!-- Окситоцин -->
       <div class="driver-card">
         <div class="driver-top-row">
           <span class="driver-title">Окситоцин (Тепло и Слияние)</span>
@@ -892,7 +889,7 @@
         </div>
       </div>
 
-      <!-- КАРТОЧКА 2: Серотонин -->
+      <!-- Серотонин -->
       <div class="driver-card">
         <div class="driver-top-row">
           <span class="driver-title">Серотонин (Статус и Достоинство)</span>
@@ -915,7 +912,7 @@
         </div>
       </div>
 
-      <!-- КАРТОЧКА 3: Дофамин -->
+      <!-- Дофамин -->
       <div class="driver-card">
         <div class="driver-top-row">
           <span class="driver-title">Дофамин (Риск и Страсть)</span>
@@ -938,26 +935,40 @@
         </div>
       </div>
 
-      <!-- КАРТОЧКА 4: Итоговая формула контакта -->
+      <!-- Карточка 4: Итоговая формула контакта -->
       <div class="info-white-card">
         <div class="driver-top-row" style="margin-bottom: 6px;">
           <span class="driver-title" style="font-size: 16px;">Итоговая формула контакта</span>
         </div>
 
         <div id="formula-shares" class="formula-shares-bar">
-          <span>Окситоцин: ...%</span>
+          <span>Добавить Окситоцин: ...%</span>
           <span>Серотонин: ...%</span>
           <span>Дофамин: ...%</span>
         </div>
 
-        <div class="formula-section-title">Чего не хочется:</div>
+        <div class="formula-section-title">Чего не хочется (Стоп-факторы):</div>
         <div id="anti-ideal-text" class="formula-text loading-pulse">
           Анализ стоп-факторов через Gemini...
         </div>
 
-        <div class="formula-section-title">Чего хочется:</div>
+        <div class="formula-section-title">Чего хочется (Идеальный сценарий):</div>
         <div id="ideal-text" class="formula-text loading-pulse">
           Анализ идеального сценария через Gemini...
+        </div>
+
+        <!-- Кнопка раскрытия дизайна опыта -->
+        <button class="toggle-details-btn" style="margin-top: 4px;" onclick="toggleDetails('experience-kit-demo', this)">
+          Элементы дизайна опыта <span class="details-arrow">▼</span>
+        </button>
+
+        <div id="experience-kit-demo" class="expandable-content">
+          <div class="details-subheading">Какими элементами достичь этих состояний:</div>
+          <div class="experience-kit-box">
+            • <strong>Окситоциновый вход:</strong> неспешный чайный ритуал, теплый полумрак, непрерывные касания ладоней, синхронизация медленного дыхания.<br><br>
+            • <strong>Серотониновое признание:</strong> эстетичная приватная обстановка, четкое доверительное лидерство/сдача контроля, искреннее вербальное восхищение статусом партнера.<br><br>
+            • <strong>Дофаминовый азарт:</strong> тонкая интрига с таймингом встречи, игра с завязанными глазами, тактильные контрасты (лед / горячее дыхание).
+          </div>
         </div>
       </div>
 
@@ -965,11 +976,13 @@
         Это основа вашего сенсорного профиля. Сохраните её для себя или перешлите партнёру, чтобы сонастроить контакт без лишних неловких разговоров.
       </div>
 
-      <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 15px;" onclick="saveOrShareReport()">
+      <!-- Кнопка с красной окантовкой -->
+      <button class="btn btn-outline-red" style="width: 100%; padding: 15px;" onclick="saveOrShareReport()">
         Сохранить демо-отчет / Отправить партнёру
       </button>
 
-      <button class="btn btn-pro-gold" style="width: 100%; padding: 15px;" onclick="openProSection()">
+      <!-- Красная залитая пульсирующая кнопка -->
+      <button class="btn btn-primary btn-pulse-soft" style="width: 100%; padding: 16px;" onclick="openProSection()">
         PRO-исследование | Полная спецификация →
       </button>
 
@@ -1011,8 +1024,7 @@
           <div class="pro-block-desc">Прямой приоритетный доступ к глубокому психометрическому замеру и индивидуальной консультации с автором методики.</div>
         </div>
 
-        <!-- Кнопка перехода к PRO SOMMELIER -->
-        <button class="btn btn-primary btn-pulse" style="width: 100%; padding: 16px; margin-bottom: 10px;" onclick="triggerHaptic(3); launchProSommelierRunner();">
+        <button class="btn btn-primary btn-pulse-soft" style="width: 100%; padding: 16px; margin-bottom: 10px;" onclick="triggerHaptic(3); openProIntroGuide();">
           Получить доступ к PRO-исследованию
         </button>
 
@@ -1022,7 +1034,39 @@
       </div>
     </div>
 
-    <!-- 5. ПРОДВИНУТЫЙ PRO SOMMELIER RUNNER (16 шкал) -->
+    <!-- 5. НОВАЯ ВВОДНАЯ КАРТОЧКА ПЕРЕД PRO-КАЛИБРОВКОЙ -->
+    <div id="pro-guide-section" class="pro-flow-section">
+      <div class="white-card">
+        <div class="top-bar">
+          <div class="brand-tag">IDEALIUM® PRO SOMMELIER</div>
+          <div class="step-counter">ИНСТРУКЦИЯ</div>
+        </div>
+
+        <h1 class="intro-main-title">Идеальный контакт — он какой лично для вас?</h1>
+        <div class="intro-sub-lead">Перед вами углубленная калибровка тончайших оттенков влечения. Оценивайте каждый дескриптор по первому внутреннему отклику:</div>
+
+        <div class="benefits-box">
+          <div class="benefit-item"><strong>-3 (Слева):</strong> абсолютно не ассоциируется с идеалом / вызывает телесное сопротивление и отталкивает.</div>
+          <div class="benefit-item"><strong>0 (По центру):</strong> нейтрально или не имеет для вас значения.</div>
+          <div class="benefit-item"><strong>+3 (Справа):</strong> абсолютно ассоциируется с идеалом / вызывает мощный эмоциональный и чувственный отклик.</div>
+        </div>
+
+        <div class="meta-pill-bar" style="margin-bottom: 16px;">
+          💎 Формат: 16 точных измерений • Время: 3 мин • Личный паспорт сомелье
+        </div>
+
+        <div class="btn-group-vertical">
+          <button class="btn btn-primary btn-pulse-soft" onclick="startProRunner()">
+            Начать PRO-калибровку
+          </button>
+          <button class="btn btn-secondary" onclick="closeProGuide()">
+            Назад
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. ПРОДВИНУТЫЙ PRO SOMMELIER RUNNER (16 шкал) -->
     <div id="pro-runner-section" class="pro-flow-section">
       <div class="white-card">
         <div class="top-bar">
@@ -1039,7 +1083,7 @@
       </div>
     </div>
 
-    <!-- 6. ФИНАЛЬНЫЙ ЭКРАН СЕНСОРНОГО ПАСПОРТА PRO -->
+    <!-- 7. ФИНАЛЬНЫЙ ЭКРАН СЕНСОРНОГО ПАСПОРТА PRO -->
     <div id="pro-result-section" class="pro-flow-section">
       <div class="white-card" style="text-align: center; padding: 18px 20px;">
         <div class="brand-tag" style="margin-bottom: 4px;">IDEALIUM® PRO SOMMELIER</div>
@@ -1080,7 +1124,7 @@
         </div>
 
         <div id="pro-formula-shares" class="formula-shares-bar">
-          <span>Окситоцин: ...%</span>
+          <span>Добавить Окситоцин: ...%</span>
           <span>Серотонин: ...%</span>
           <span>Дофамин: ...%</span>
         </div>
@@ -1094,13 +1138,27 @@
         <div id="pro-ideal-text" class="formula-text loading-pulse">
           Формирование идеального сценария через Gemini...
         </div>
+
+        <!-- Кнопка раскрытия дизайна опыта PRO -->
+        <button class="toggle-details-btn" style="margin-top: 4px;" onclick="toggleDetails('experience-kit-pro', this)">
+          Сенсорный банк опыта и практик <span class="details-arrow">▼</span>
+        </button>
+
+        <div id="experience-kit-pro" class="expandable-content">
+          <div class="details-subheading">Прикладные ключи для сонастройки с партнером:</div>
+          <div class="experience-kit-box">
+            • <strong>Окситоциновые практики:</strong> контакт «кожа к коже» без сексуального давления первые 20 минут, массаж теплым маслом без спешки, долгий немигающий взгляд глаза в глаза.<br><br>
+            • <strong>Серотониновые ключи:</strong> статусная локация, исключительный визуальный образ, просьба о защите, подтверждение доминантности или безопасное снятие контроля.<br><br>
+            • <strong>Дофаминовые триггеры:</strong> запретная игра, сексуальная интрига, внезапный слом сценария, кинестетические контрасты (холод/жар, жесткий хват / невесомое касание).
+          </div>
+        </div>
       </div>
 
       <div class="report-note">
         Сохраните этот сенсорный паспорт или перешлите партнёру для идеальной сонастройки.
       </div>
 
-      <button class="btn btn-primary btn-pulse" style="width: 100%;" onclick="saveOrShareProReport()">
+      <button class="btn btn-outline-red" style="width: 100%;" onclick="saveOrShareProReport()">
         Сохранить PRO-паспорт / Отправить партнёру
       </button>
 
@@ -1198,7 +1256,7 @@
     let currentProStep = 0;
     const proUserAnswers = {};
 
-    /* =================== УТИЛИТЫ И UI =================== */
+    /* =================== УТИЛИТЫ =================== */
     function triggerHaptic(absVal) {
       if (tg?.HapticFeedback) {
         if (absVal === 1) tg.HapticFeedback.selectionChanged();
@@ -1353,18 +1411,18 @@
 
       const promptText = `
 Ты психосемантический аналитик проекта IDEALIUM®.
-Проанализируй факторную структуру психосексуального идеала контакта респондента:
+Проанализируй факторную структуру идеального контакта респондента:
 Вклад драйверов (всего 100%):
-- Окситоцин (Тепло, доверие): ${oxyShare}%
-- Серотонин (Статус, уважение): ${serShare}%
-- Дофамин (Риск, новизна): ${dopShare}%
+- Добавить Окситоцин (Тепло, эмоциональная безопасность): ${oxyShare}%
+- Добавить Серотонин (Статус, уважение, признание): ${serShare}%
+- Добавить Дофамин (Риск, интрига, новизна): ${dopShare}%
 
-Детализированные шкалы (-3 до +3): ${JSON.stringify(detailedAnswers)}
+Детализированные шкалы: ${JSON.stringify(detailedAnswers)}
 
-Сформулируй чистую формулу контакта в JSON:
+Сформулируй чистую формулу контакта строго в формате JSON:
 {
-  "anti_ideal": "Ровно 2 емких предложения: что категорически разрушает влечение и вызывает зажим.",
-  "ideal": "Ровно 2 емких предложения: идеальная чувственная атмосфера и сценарий контакта."
+  "anti_ideal": "Ровно 2 емких предложения: что категорически разрушает влечение, вызывает телесный зажим и отторжение.",
+  "ideal": "Ровно 2 емких предложения: идеальная чувственная атмосфера, темпоритм и сценарий контакта."
 }`;
 
       const requestBody = {
@@ -1437,7 +1495,7 @@
         document.getElementById("dop-val").innerText = dopPct + "%";
 
         document.getElementById("formula-shares").innerHTML = `
-          <span>Окситоцин: <strong>${oxyShare}%</strong></span>
+          <span>Добавить Окситоцин: <strong>${oxyShare}%</strong></span>
           <span>Серотонин: <strong>${serShare}%</strong></span>
           <span>Дофамин: <strong>${dopShare}%</strong></span>
         `;
@@ -1473,10 +1531,24 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    /* =================== ЗАПУСК И ЛОГИКА PRO SOMMELIER RUNNER =================== */
-    function launchProSommelierRunner() {
+    /* =================== ПЕРЕХОД И ЛОГИКА PRO SOMMELIER =================== */
+    function openProIntroGuide() {
       copyAuthorHandle();
       document.getElementById("pro-section").style.display = "none";
+      document.getElementById("pro-guide-section").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeProGuide() {
+      triggerHaptic(1);
+      document.getElementById("pro-guide-section").style.display = "none";
+      document.getElementById("pro-section").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function startProRunner() {
+      triggerHaptic(2);
+      document.getElementById("pro-guide-section").style.display = "none";
       document.getElementById("pro-runner-section").style.display = "flex";
       currentProStep = 0;
       renderProScales();
@@ -1520,7 +1592,7 @@
         setTimeout(() => { row.classList.add("show-scale"); }, index * 40 + 20);
       });
 
-      document.getElementById("pro-prev-btn").innerText = currentProStep === 0 ? "В презентацию" : "Назад";
+      document.getElementById("pro-prev-btn").innerText = currentProStep === 0 ? "В инструкцию" : "Назад";
       document.getElementById("pro-next-btn").innerText = currentProStep === 3 ? "Получить паспорт" : "Далее";
     }
 
@@ -1556,7 +1628,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         document.getElementById("pro-runner-section").style.display = "none";
-        document.getElementById("pro-section").style.display = "flex";
+        document.getElementById("pro-guide-section").style.display = "flex";
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
@@ -1570,10 +1642,10 @@
       const promptText = `
 Ты главный эксперт и психосемантический сомелье проекта IDEALIUM® PRO SOMMELIER.
 Проанализируй калибровку идеального контакта по 16 шкалам (от -3 до +3):
-Вклад драйверов (всего 100%):
-- Окситоцин (Тепло, нежность): ${oxyShare}%
-- Серотонин (Статус, достоинство): ${serShare}%
-- Дофамин (Риск, игра, новизна): ${dopShare}%
+Вклад драйверов в структуру (всего 100%):
+- Добавить Окситоцин (Тепло, нежность, доверие): ${oxyShare}%
+- Добавить Серотонин (Статус, уважение, достоинство): ${serShare}%
+- Добавить Дофамин (Риск, интрига, новизна): ${dopShare}%
 
 Детализированные оценки: ${JSON.stringify(detailedAnswers)}
 
@@ -1657,7 +1729,7 @@
         document.getElementById("pro-dop-val").innerText = dopPct + "%";
 
         document.getElementById("pro-formula-shares").innerHTML = `
-          <span>Окситоцин: <strong>${oxyShare}%</strong></span>
+          <span>Добавить Окситоцин: <strong>${oxyShare}%</strong></span>
           <span>Серотонин: <strong>${serShare}%</strong></span>
           <span>Дофамин: <strong>${dopShare}%</strong></span>
         `;
@@ -1679,16 +1751,16 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    /* =================== ШЕРИНГ И ПЕРЕЗАПУСК =================== */
+    /* =================== ШЕРИНГ И СБРОС =================== */
     function saveOrShareReport() {
       triggerHaptic(2);
       const text = 
 `🏛 IDEALIUM® REPORT | Сенсорный паспорт
 
 🧬 Формула контакта (вклад 100%):
-• Окситоцин (Тепло и Слияние): ${lastCalculatedData.oxyShare}%
-• Серотонин (Статус и Достоинство): ${lastCalculatedData.serShare}%
-• Дофамин (Риск и Страсть): ${lastCalculatedData.dopShare}%
+• Добавить Окситоцин (Тепло и Слияние): ${lastCalculatedData.oxyShare}%
+• Добавить Серотонин (Статус и Достоинство): ${lastCalculatedData.serShare}%
+• Добавить Дофамин (Риск и Страсть): ${lastCalculatedData.dopShare}%
 
 🚫 Чего не хочется:
 ${lastCalculatedData.antiIdealText}
@@ -1700,13 +1772,9 @@ ${lastCalculatedData.idealText}
 
       const shareTgUrl = `https://t.me/share/url?url=${encodeURIComponent(BOT_APP_URL)}&text=${encodeURIComponent(text)}`;
 
-      if (tg?.openTelegramLink) {
-        tg.openTelegramLink(shareTgUrl);
-      } else if (navigator.share) {
-        navigator.share({ title: "IDEALIUM® REPORT", text: text }).catch(() => copyToClipboard(text));
-      } else {
-        copyToClipboard(text);
-      }
+      if (tg?.openTelegramLink) tg.openTelegramLink(shareTgUrl);
+      else if (navigator.share) navigator.share({ title: "IDEALIUM® REPORT", text: text }).catch(() => copyToClipboard(text));
+      else copyToClipboard(text);
     }
 
     function saveOrShareProReport() {
@@ -1715,9 +1783,9 @@ ${lastCalculatedData.idealText}
 `🏛 IDEALIUM® PRO SOMMELIER | Сенсорный паспорт
 
 🧬 Формула контакта (вклад 100%):
-• Окситоцин (Тепло и Слияние): ${lastProCalculatedData.oxyShare}%
-• Серотонин (Статус и Достоинство): ${lastProCalculatedData.serShare}%
-• Дофамин (Риск и Страсть): ${lastProCalculatedData.dopShare}%
+• Добавить Окситоцин (Тепло и Слияние): ${lastProCalculatedData.oxyShare}%
+• Добавить Серотонин (Статус и Достоинство): ${lastProCalculatedData.serShare}%
+• Добавить Дофамин (Риск и Страсть): ${lastProCalculatedData.dopShare}%
 
 🚫 Стоп-факторы:
 ${lastProCalculatedData.antiIdealText}
@@ -1729,13 +1797,9 @@ ${lastProCalculatedData.idealText}
 
       const shareTgUrl = `https://t.me/share/url?url=${encodeURIComponent(BOT_APP_URL)}&text=${encodeURIComponent(text)}`;
 
-      if (tg?.openTelegramLink) {
-        tg.openTelegramLink(shareTgUrl);
-      } else if (navigator.share) {
-        navigator.share({ title: "IDEALIUM® PRO SOMMELIER", text: text }).catch(() => copyToClipboard(text));
-      } else {
-        copyToClipboard(text);
-      }
+      if (tg?.openTelegramLink) tg.openTelegramLink(shareTgUrl);
+      else if (navigator.share) navigator.share({ title: "IDEALIUM® PRO SOMMELIER", text: text }).catch(() => copyToClipboard(text));
+      else copyToClipboard(text);
     }
 
     function shareBotLink() {
@@ -1749,9 +1813,7 @@ ${lastProCalculatedData.idealText}
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
         showToast("Отчет скопирован в буфер обмена!");
-      }).catch(() => {
-        showToast("Скопируйте текст вручную");
-      });
+      }).catch(() => showToast("Скопируйте текст вручную"));
     }
 
     function restartTest() {
@@ -1776,6 +1838,7 @@ ${lastProCalculatedData.idealText}
       document.getElementById("main-container").classList.add("scroll-mode");
       document.getElementById("pro-result-section").style.display = "none";
       document.getElementById("pro-runner-section").style.display = "none";
+      document.getElementById("pro-guide-section").style.display = "none";
       document.getElementById("pro-section").style.display = "none";
       document.getElementById("result-section").style.display = "none";
       document.getElementById("intro-section").style.display = "flex";
